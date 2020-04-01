@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Navbar} from "react-bootstrap"
+// import Background from "../src/images/backgroundImage"
+import BackgroundImagePage from "./components/bgImage"
+import "./assets/css/heading-flicker.css"
+import Button from "./components/playGame"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BackgroundImagePage />
+      <h1 data-heading="a" id = "heading">deadlock</h1> 
+      <Button />
     </div>
   );
+}
+
+class Nav extends React.Component{
+  
+    constructor(){
+      super()
+      this.state = {
+        style : {
+          backgroundColor : "#180c4d"
+        }
+      }
+    }
+
+  render(){
+    return(
+      <div id = "navbar-wrapper" style = {this.state.style}>
+        <Navbar bg = "light">
+        <Navbar.Brand href="#home">
+        <img
+          src="/logo.svg"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="React Bootstrap logo"
+        />
+        </Navbar.Brand>
+        </Navbar>
+      </div>
+    )
+  }
+
 }
 
 export default App;
