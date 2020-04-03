@@ -1,7 +1,7 @@
 import React from "react"
 import { AlertHeading } from "react-bootstrap/Alert"
 import "../assets/css/playGameButton.css"
-import Svg from "./playGameSVG"
+import Svg from "./playGameSVG.jsx"
 class playGameButton extends React.Component{
     render(){
         return(<div className="main-grid">
