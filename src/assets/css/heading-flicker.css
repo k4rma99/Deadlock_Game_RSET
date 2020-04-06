@@ -3,29 +3,25 @@
   font-size: 15vw;
   text-align: center;
   line-height: 1;
-  margin: 0;
-  top: 45%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  position: absolute;
+  display: inline;
+  position: relative;
   color: #3f3d3d;
-  letter-spacing: -.5rem;
+  padding-left: 7%;
 }
 
 #heading:before {
-  content: attr(data-heading);
-  position: absolute;
+  content: "A";
+  position: relative;
   overflow: hidden;
   color: #ffcc00;
-  width: 100%;
   z-index: 5;
   text-shadow: none;
-  left: 24%;
+  left: 25.3%;
   text-align: left;
   -webkit-animation: flicker 3s linear infinite;
           animation: flicker 3s linear infinite;
 }
+
 
 @-webkit-keyframes flicker {
   0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {

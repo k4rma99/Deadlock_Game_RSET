@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { Component,useRef,useEffect,useState } from 'react';
 import {TweenLite,Circ} from 'gsap';
 import '../assets/css/animated-background.css'
+import { ScrollSnap } from '../components/ScrollSnap.jsx';
 
 export const AnimatedBackground = () =>{
 
@@ -188,11 +189,11 @@ export const AnimatedBackground = () =>{
     addListeners();
     },[])
 
-    return (<div class="container demo">
+    return (<div class=" demo">
     <div class="content">
        <div id="large-header" class="large-header">
           <canvas id="demo-canvas"></canvas>
-          <h1 class="main-title"><span class="thin">Explore</span> Space</h1>
+          <ScrollSnap></ScrollSnap>
        </div>
     </div>
  </div>)
