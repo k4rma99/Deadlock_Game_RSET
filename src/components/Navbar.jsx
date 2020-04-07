@@ -7,7 +7,7 @@ export const Navbar = () =>{
         <nav>
             <img src="" alt="Logo"></img>
             <ul>
-                <li>Rules</li>
+                <li >Rules</li>
                 <li>LeaderBoards</li>
                 <li>Clues</li>
             </ul>
