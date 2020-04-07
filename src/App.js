@@ -1,5 +1,5 @@
 import React from 'react';
-import BackgroundImagePage from "./components/bgImage"
+import BackgroundImagePage from "./components/bgImage.jsx"
 import "./assets/css/heading-flicker.css"
 import {ScrollButton} from './components/scrollButton.jsx'
 import "./assets/css/ScrollSnap.css"
