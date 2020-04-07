@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import Button from './playGame.js';
+import Button from './playGame.jsx';
 import "../assets/css/ScrollSnap.css"
 import "../assets/css/arrow.css"
 export const ScrollSnap = () => {
