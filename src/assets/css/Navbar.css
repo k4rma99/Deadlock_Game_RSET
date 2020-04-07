@@ -8,6 +8,7 @@ nav{
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    mix-blend-mode: difference;
 }
 
 ul{
@@ -27,6 +28,6 @@ nav li{
     color: white;
 }
 
-li{
+nav li{
     margin-right: 30px;
 }
