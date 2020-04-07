@@ -12,7 +12,8 @@
 }
 
 .cta {
-    display: flex;
+    display: grid;
+    grid-template-columns: 80% 20%;
     padding: 10px 45px;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -22,7 +23,7 @@
     transition: 1s;
     box-shadow: 6px 6px 0 black;
     transform: skewX(-15deg);
-    width: 25%;
+    width: 55%;
 }
 
 .cta:focus {
@@ -49,11 +50,18 @@
   }
 
   span:nth-child(2) {
-    width: 20px;
-    margin-left: 30px;
-    position: relative;
-    top: 12%;
+      display: flex;
+      margin: auto 0;
+      width: 100%;
+    text-align: center;
   }
+
+  span:nth-child(1) {
+    text-align: center;
+  }
+  
+  
+  
   
 /**************SVG****************/
 
@@ -92,5 +100,17 @@ path.two {
     }
     100% {
         fill: white;
+    }
+}
+
+@media only screen and (min-width:375px){
+    .cta{
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .cta{
+        width:20%;
     }
 }

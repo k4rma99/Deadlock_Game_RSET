@@ -7,7 +7,7 @@ class playGameButton extends React.Component{
         return(
             <div class="wrapper">
             <a class="cta" href="#">
-                <span>PLAY GAME</span>
+                <span>PLAY</span>
                 <Svg />
             </a>
             </div>

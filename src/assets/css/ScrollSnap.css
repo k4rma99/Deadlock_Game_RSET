@@ -20,12 +20,13 @@
 
 .container div:nth-child(1){
     display: grid;
-    grid-template-columns: 98% 2%;
+    grid-template-columns: 98% 0% 2%;
 }
 
 .container div:nth-child(2){
     display: grid;
-    grid-template-columns: 0% 2% 98%;
+    grid-template-columns: 98% 0% 2%;
+    height: 100%;
 }
 
 
@@ -34,7 +35,7 @@
     flex-direction: column;
     width: 100%;
     position: relative;
-
+    left: 0.5%;
 }
 
 .scroll-div{

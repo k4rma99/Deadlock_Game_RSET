@@ -77,17 +77,19 @@ useEffect(
                 <Button></Button>
            </div>
            </div>
-           <div onClick={()=>{goCarousel('next')}}  className="scroll-div">
+           
+           <div >
              <i className="right arrow-white"></i>
            </div>
+           <div onClick={()=>{goCarousel('next')}}  className="scroll-div"></div>
        </div>
        <div  ref={ref=>{page2Ref=ref}} className="blue">
-         
+       <div></div>
        <div >
        <i className="left arrow-white"></i>
        </div>
        <div onClick={()=>{goCarousel('previous')}}  className="scroll-div"></div>
-       <div></div>
+       
        </div>
             
       </div>

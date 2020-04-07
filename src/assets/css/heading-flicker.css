@@ -16,7 +16,7 @@
   color: #ffcc00;
   z-index: 5;
   text-shadow: none;
-  left: 26.5%;
+  left: 26%;
   text-align: left;
   -webkit-animation: flicker 3s linear infinite;
           animation: flicker 3s linear infinite;
