@@ -1,15 +1,15 @@
 import React from 'react';
-import {Navbar, Container} from "react-bootstrap"
 import BackgroundImagePage from "./components/bgImage"
 import "./assets/css/heading-flicker.css"
 import Button from "./components/playGame"
 import {AnimatedBackground} from "./components/animatedBackground.jsx" 
-import {ScrollSnap} from "./components/ScrollSnap.jsx"
+import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
 
 function App() {
   return (
     <div className="App">
+      <Navbar></Navbar>
       <AnimatedBackground>
       </AnimatedBackground>
      </div>

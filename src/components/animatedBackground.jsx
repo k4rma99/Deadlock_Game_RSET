@@ -183,7 +183,6 @@ export const AnimatedBackground = () =>{
     }
 
     useEffect(()=>{
-        // Main
     initHeader();
     initAnimation();
     addListeners();

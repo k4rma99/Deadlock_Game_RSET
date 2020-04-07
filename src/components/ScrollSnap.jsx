@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import Button from './playGame.js';
 import "../assets/css/ScrollSnap.css"
-import {AnimatedBackground} from "../components/animatedBackground";
+import "../assets/css/arrow.css"
 export const ScrollSnap = () => {
 
 
@@ -11,6 +11,7 @@ var currentItem;
 var ContainerRef=null;
 var page1Ref=null;
 var page2Ref=null;
+var RightScroll=null;
 
 const getCarouselPositions = () => {
   carouselPositions = [];
@@ -59,7 +60,6 @@ useEffect(
     
     ()=>{
         function f(){
-            console.log("item1");
             getCarouselPositions();
             window.addEventListener('resize', getCarouselPositions);
         }
@@ -69,23 +69,25 @@ useEffect(
 
   return (
      <div ref={ref=>{ContainerRef=ref}} className="container">
-       <div ref={ref=>{page1Ref=ref}} className="red">
+       <div ref={ref=>{page1Ref=ref}}>
            <div>
            <div className="heading-container"><h1 data-heading="a" id = "heading">deadlock</h1> </div>
-           <div>
-           <button className="right" onClick={()=>{goCarousel('next')}}>
-               <span className="arrow">  </span>
-           </button>
-           </div>
            <div >
                 <div ></div>
                 <Button></Button>
            </div>
            </div>
-           
+           <div onClick={()=>{goCarousel('next')}}  className="scroll-div">
+             <i className="right arrow-white"></i>
+           </div>
        </div>
-       <div ref={ref=>{page2Ref=ref}} className="blue">
-       <button onClick={()=>{goCarousel('previous')}}></button>
+       <div  ref={ref=>{page2Ref=ref}} className="blue">
+         
+       <div >
+       <i className="left arrow-white"></i>
+       </div>
+       <div onClick={()=>{goCarousel('previous')}}  className="scroll-div"></div>
+       <div></div>
        </div>
             
       </div>
