@@ -71,7 +71,13 @@ useEffect(
      <div ref={ref=>{ContainerRef=ref}} className="container">
        <div ref={ref=>{page1Ref=ref}}>
            <div>
-           <div className="heading-container"><h1 data-heading="a" id = "heading">deadlock</h1> </div>
+              <div className="heading-container">
+                <span style={{display:"flex"}}>
+                  <h1 className="heading">de</h1>
+                  <h1 id="light-flicker" className = "heading">a</h1>
+                  <h1 className = "heading" >dlock</h1>
+                </span>
+              </div>
            <div >
                 <div ></div>
                 <Button></Button>

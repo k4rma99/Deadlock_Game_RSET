@@ -35,7 +35,10 @@
     flex-direction: column;
     width: 100%;
     position: relative;
-    left: 0.5%;
+}
+
+.container div:nth-child(1) div div{
+    display: flex;
 }
 
 .scroll-div{

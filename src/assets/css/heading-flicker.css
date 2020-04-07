@@ -1,4 +1,4 @@
-#heading {
+.heading {
   font-family: 'CODE Bold';
   font-size: 15vw;
   text-align: center;
@@ -6,9 +6,23 @@
   display: inline;
   position: relative;
   color: #3f3d3d;
-  padding-left: 7%;
+  font-style: italic;
 }
 
+.main-font{
+  font-family: 'CODE Bold';
+}
+#light-flicker:before{
+  content: "A";
+  color: #ffcc00;
+  position: absolute;
+  z-index: 5;
+  text-shadow: none;
+  text-align: left;
+  -webkit-animation: flicker 3s linear infinite;
+          animation: flicker 3s linear infinite;
+}
+/*
 #heading:before {
   content: "A";
   position: relative;
@@ -22,7 +36,7 @@
           animation: flicker 3s linear infinite;
 }
 
-
+*/
 @-webkit-keyframes flicker {
   0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
     opacity: .99;

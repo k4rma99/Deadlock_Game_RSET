@@ -5,13 +5,13 @@ import Button from "./components/playGame"
 import {AnimatedBackground} from "./components/animatedBackground.jsx" 
 import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
+import { ScrollSnap } from './components/ScrollSnap';
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
-      <AnimatedBackground>
-      </AnimatedBackground>
+      <AnimatedBackground></AnimatedBackground>
      </div>
   );
 }
