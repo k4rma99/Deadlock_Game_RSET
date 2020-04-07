@@ -3,11 +3,11 @@
 
 
 .wrapper {
-    width: 100%;
-  position: relative;
+  width: 100%;
   place-items: center;
   bottom: 20vw;
-  /*change here */z-index: auto;
+  z-index: auto;
+  display: grid;
 }
 
 .cta {

@@ -5,9 +5,9 @@
     grid-template-columns: 100% 100%;
     scroll-snap-type: x mandatory;
     overflow-x: hidden;
+    overflow-y: hidden;
     width: 100%;
     height: 100%;
-    overflow-y: hidden;
     position: fixed;
     z-index: 10;
     padding: 0px;
@@ -20,13 +20,13 @@
 }
 
 .container div:nth-child(1){
-    display: grid;
-    grid-template-columns: 98% 0% 2%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.container div:nth-child(1) div div:nth-child(2){
-    top: 10%;
+.container div:nth-child(1) div:nth-child(1) div div {
+    top: 20%;
 }
 
 .container div:nth-child(2){
@@ -43,6 +43,20 @@
     position: relative;
 }
 
+.container div:nth-child(2) div{
+    display: flex;
+    z-index: 10;
+}
+
+.container div:nth-child(2) div:nth-child(2){
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: thin black solid;
+    width: 100%;
+    z-index: 1;
+}
+
 .container div:nth-child(1) div div{
     display: flex;;
 }
@@ -57,47 +71,15 @@ width: 100%;
 right:0;
 }
 
-.container div:nth-child(1) div:nth-child(3){
-    display: flex;
-    width: 100%;
+
+
+@media only screen and (max-width:1023px){
+    .container{
+        scroll-snap-type: y mandatory;
+        grid-template-columns: auto;
+        grid-template-rows: 100% 100%;
+        overflow-y: scroll;
     }
-    
-
-.container div:nth-child(1) div button{
-    height: 10%;
-}
-
-
-.container2 div:nth-child(1) {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-  }
-  .container2 div:nth-child(2) {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height:100%;
-  }
-  
-  
-  .child {
-    width: 100%;
-    height: 100%;
-    scroll-snap-align: start;
-  }
-
-.red{
-    
-    background-color: transparent;
-    border: thin black solid;
-    display: flex;
-    flex-direction: row;
-}
-
-.blue{
-    background: transparent;
 }
 
 @media only screen and (min-width:1024px){

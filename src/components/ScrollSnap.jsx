@@ -6,7 +6,8 @@ export const ScrollSnap = () => {
 
 
 var carouselPositions;
-var halfContainer;
+var halfWidth;
+var halfHeight;
 var currentItem;
 var ContainerRef=null;
 var page1Ref=null;
@@ -15,48 +16,62 @@ var RightScroll=null;
 
 const getCarouselPositions = () => {
   carouselPositions = [];
-  //document.querySelectorAll('.container div').forEach(function(div) {
     console.log("item1");
-    carouselPositions.push([page1Ref.offsetLeft, page1Ref.offsetLeft + page1Ref.offsetWidth]);
-    carouselPositions.push([page2Ref.offsetLeft, page2Ref.offsetLeft + page2Ref.offsetWidth]); // add to array the positions information
+    carouselPositions.push([page1Ref.offsetLeft, page1Ref.offsetLeft + page1Ref.offsetWidth,page1Ref.offsetTop, page1Ref.offsetTop + page1Ref.offsetHeight]);
+    carouselPositions.push([page2Ref.offsetLeft, page2Ref.offsetLeft + page2Ref.offsetWidth,page2Ref.offsetTop, page2Ref.offsetTop + page2Ref.offsetHeight]); // add to array the positions information
     console.log(carouselPositions);
-    //})
-  halfContainer = document.querySelector('.container').offsetWidth/2;
+  halfWidth = document.querySelector('.container').offsetWidth/2;
+  halfHeight = document.querySelector('.container').offsetHeight/2;
 }
 
  // call it once
 
 function goCarousel(direction) {
   
-  var currentScrollTop = document.querySelector('.container').scrollLeft;
-  var currentScrollBottom = currentScrollTop + document.querySelector('.container').offsetWidth;
-  
-  if (currentScrollTop === 0 && direction === 'next') {
+  var currentScollTopHorizontal = document.querySelector('.container').scrollLeft;
+  var currentScrollBottom = currentScollTopHorizontal + document.querySelector('.container').offsetWidth;
+  var currentScrollTopVertical = document.querySelector('.container').scrollTop;
+  if (direction === 'next' || direction== 'next-vert') {
       currentItem = 1;
-  } else if (currentScrollBottom === document.querySelector('.container').scrollWidth && direction === 'previous') {
-      console.log('here')
-      currentItem = carouselPositions.length - 2;
-  } else {
-      var currentMiddlePosition = currentScrollTop + halfContainer;
+  } else if (direction=='previous'){
+      var currentMiddlePosition = currentScollTopHorizontal + halfWidth;
       for (var i = 0; i < carouselPositions.length; i++) {
         if (currentMiddlePosition > carouselPositions[i][0] && currentMiddlePosition < carouselPositions[i][1]) {
           currentItem = i;
           if (direction === 'next') {
-              currentItem++;
+              currentItem=1;
           } else if (direction === 'previous') {
-              currentItem--    
+              currentItem=0;
           }
         }
       }
+  }
+  else if (direction=='previous-vert'){
+    var currentMiddlePosition = currentScrollTopVertical + halfHeight;
+    for (var i = 0; i < carouselPositions.length; i++) {
+      if (currentMiddlePosition > carouselPositions[i][2] && currentMiddlePosition < carouselPositions[i][3]) {
+        currentItem = i;
+        if (direction === 'next-vert') {
+            currentItem=1;
+        } else if (direction === 'previous-vert') {
+            currentItem=0   
+        }
+      }
+    }
+  }
+  if(direction=='next-vert' ||direction=='previous-vert'){
+    ContainerRef.scrollTo({
+      top: carouselPositions[currentItem][2],
+      behavior: 'smooth' 
+    });
   } 
-  ContainerRef.scrollTo({
-    left: carouselPositions[currentItem][0],
-    behavior: 'smooth' 
-  });
-  
+  else{
+    ContainerRef.scrollTo({
+      left: carouselPositions[currentItem][0],
+      behavior: 'smooth' 
+    });
+  }
 }
-
-  const changeTextSize = () =>{}
 
 useEffect(
     
@@ -74,30 +89,39 @@ useEffect(
      <div ref={ref=>{ContainerRef=ref}} className="container">
        <div style={{width:"100%"}} ref={ref=>{page1Ref=ref}}>
            <div>
-           <div style={{width:"100%"}} className="heading-container">
-                <span className="span-header">
-                  {/*<h1 style={{border:"thin green solid",display:"inline-block"}} className="heading">de</h1>*/}
+                <span style={{width:"100%"}}  className="span-header heading-container">
                   <h1 style={{display:"inline-block",width:"12.5"}} id="light-flicker" className = "heading">deadlock</h1>
-                 {/* <h1 style={{border:"thin green solid",display:"inline-block",width:"62.5"}} className = "heading" >dlock</h1>*/}
                 </span>
-        </div>
-              <div style={{width:"102%"}}>
+                <div style={{width:"100%",display:"block",position:"absolute",top:"60%"}}>
                   <Button></Button>
-              </div>
-           </div>
-           
-           <div >
-             <i className="right arrow-white"></i>
-           </div>
-           <div onClick={()=>{goCarousel('next')}}  className="scroll-div"></div>
+            </div>
+            
+          </div>
+          {window.screen.width<1024?        
+          <div onClick={()=>{goCarousel('next-vert')}} style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
+              <i style={{position:"absolute"}}class="arrow-white down"/>
+          </div>
+              :
+          <div onClick={()=>{goCarousel('next')}} style={{position:"absolute",right:"0%",width:"3%",height:"100%"}}>
+            <i class="arrow-white right"/>
+          </div>
+          }
        </div>
-       <div  ref={ref=>{page2Ref=ref}} className="blue">
-       <div></div>
-       <div >
-       <i className="left arrow-white"></i>
+       <div style={{backgroundColor:"white",position:"relative"}} ref={ref=>{page2Ref=ref}} className="blue">
+       <div>
+       {window.screen.width<1024?        
+          <div onClick={()=>{goCarousel('previous-vert')}} style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
+              <i style={{position:"absolute"}}class=" up"/>
+          </div>
+              :
+          <div onClick={()=>{goCarousel('previous')}} style={{position:"absolute",right:"0%",width:"3%",height:"100%"}}>
+            <i class="left"/>
+          </div>
+       }
        </div>
-       <div onClick={()=>{goCarousel('previous')}}  className="scroll-div"></div>
-       
+       <div>
+         <h1>ABOUT</h1>
+       </div>
        </div>
             
       </div>

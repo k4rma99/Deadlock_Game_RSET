@@ -4,17 +4,23 @@
   font-size: 20vw;
   color: #3f3d3d;
   position: relative;
+  font-style: italic;
 }
 
 .span-header{
-  display: contents;
+  padding: 0px;
+  text-align: center;
+}
+
+.border{
+  border: thin green solid;
 }
 
 .heading-container{
+
+  display: flex;
   width: 100%;
   padding:0px;
-  justify-content: center;
-  place-items: center;
 }
 
 .main-font{
@@ -98,9 +104,20 @@
 }
 /*# sourceMappingURL=heading-flicker.css.map */
 
+@media only screen and (max-width:1023px){
+  .heading-container{
+    padding: 1%;
+  }
+}
 
 @media only screen and (min-width:1024px){
   .heading {
     font-size: 15vw;
+
+  }
+
+  .heading-container{
+    text-align: center;
+    justify-content: center;
   }
 }

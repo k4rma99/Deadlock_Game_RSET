@@ -3,6 +3,7 @@ import BackgroundImagePage from "./components/bgImage"
 import "./assets/css/heading-flicker.css"
 import Button from "./components/playGame"
 import {AnimatedBackground} from "./components/animatedBackground.jsx" 
+import "./assets/css/animated-background.css"
 import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap';
@@ -12,8 +13,6 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <AnimatedBackground></AnimatedBackground>
-      
-       
      </div>
   );
 }
