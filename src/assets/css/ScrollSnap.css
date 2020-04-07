@@ -10,6 +10,7 @@
     overflow-y: hidden;
     position: fixed;
     z-index: 10;
+    padding: 0px;
 }
 
 .container div{
@@ -21,6 +22,11 @@
 .container div:nth-child(1){
     display: grid;
     grid-template-columns: 98% 0% 2%;
+}
+
+
+.container div:nth-child(1) div div:nth-child(2){
+    top: 10%;
 }
 
 .container div:nth-child(2){
@@ -38,7 +44,7 @@
 }
 
 .container div:nth-child(1) div div{
-    display: flex;
+    display: flex;;
 }
 
 .scroll-div{
@@ -92,4 +98,10 @@ right:0;
 
 .blue{
     background: transparent;
+}
+
+@media only screen and (min-width:1024px){
+    .container div:nth-child(1) div div:nth-child(2){
+        top: 20%;
+    }
 }

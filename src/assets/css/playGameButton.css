@@ -3,12 +3,11 @@
 
 
 .wrapper {
-  
+    width: 100%;
   position: relative;
+  place-items: center;
   bottom: 20vw;
   /*change here */z-index: auto;
-  /*change here */top: 50%;
-  bottom: 0;
 }
 
 .cta {

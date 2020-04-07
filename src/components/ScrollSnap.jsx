@@ -56,10 +56,13 @@ function goCarousel(direction) {
   
 }
 
+  const changeTextSize = () =>{}
+
 useEffect(
     
     ()=>{
         function f(){
+
             getCarouselPositions();
             window.addEventListener('resize', getCarouselPositions);
         }
@@ -69,19 +72,18 @@ useEffect(
 
   return (
      <div ref={ref=>{ContainerRef=ref}} className="container">
-       <div ref={ref=>{page1Ref=ref}}>
+       <div style={{width:"100%"}} ref={ref=>{page1Ref=ref}}>
            <div>
-              <div className="heading-container">
-                <span style={{display:"flex"}}>
-                  <h1 className="heading">de</h1>
-                  <h1 id="light-flicker" className = "heading">a</h1>
-                  <h1 className = "heading" >dlock</h1>
+           <div style={{width:"100%"}} className="heading-container">
+                <span className="span-header">
+                  {/*<h1 style={{border:"thin green solid",display:"inline-block"}} className="heading">de</h1>*/}
+                  <h1 style={{display:"inline-block",width:"12.5"}} id="light-flicker" className = "heading">deadlock</h1>
+                 {/* <h1 style={{border:"thin green solid",display:"inline-block",width:"62.5"}} className = "heading" >dlock</h1>*/}
                 </span>
+        </div>
+              <div style={{width:"102%"}}>
+                  <Button></Button>
               </div>
-           <div >
-                <div ></div>
-                <Button></Button>
-           </div>
            </div>
            
            <div >
