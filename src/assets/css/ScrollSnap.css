@@ -3,7 +3,7 @@
     left: 0;
     position: absolute;
     display: grid;
-    height: 100vh;
+    height: 100%;
     grid-template-columns: 100% 100%;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -13,9 +13,9 @@
 }
 
 #carousel.snap {
-    scroll-snap-type: x;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch; /* Needed to work on iOS Safari */
-    -ms-scroll-snap-type: mandatory;
+    -ms-scroll-snap-type: x mandatory;
     scroll-snap-points-x: repeat(100%);
     -ms-scroll-snap-points-x: repeat(100%);
 }
@@ -31,11 +31,11 @@
   
   .page2{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    scroll-snap-align: ;
+    scroll-snap-align: start;
     background-color: white;
   }
 
@@ -44,6 +44,9 @@
     height: 100%;}
 
 @media only screen and (max-width:1023px){
+    .page2{
+        height: 93vh;
+    }
     .container{
         grid-template-columns: auto;
         grid-template-rows: 100% 100%;
