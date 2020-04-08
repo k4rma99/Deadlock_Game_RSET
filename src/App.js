@@ -14,7 +14,6 @@ import { ScrollSnap } from './components/ScrollSnap.jsx';
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
       <AnimatedBackground></AnimatedBackground>
       <ScrollSnap></ScrollSnap>
       </div>
