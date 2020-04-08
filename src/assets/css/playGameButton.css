@@ -5,9 +5,9 @@
 .wrapper {
   width: 100%;
   place-items: center;
-  bottom: 20vw;
   z-index: auto;
   display: grid;
+  margin-top: 3.5vh;
 }
 
 .cta {

@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/ScrollToPlugin.min.js"></script>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

@@ -4,13 +4,20 @@ import "../assets/css/playGameButton.css"
 import Svg from "./playGameSVG"
 class playGameButton extends React.Component{
     render(){
-        return(
-            <div class="wrapper">
-            <a class="cta" href="#">
+        return(<div className="main-grid">
+        <div className="main-header">
+        <h1 id="light-flicker" className = "heading">deadlock</h1>
+        </div>
+        <div className="wrapper">
+                <a class="cta" href="#">
                 <span>PLAY</span>
                 <Svg />
             </a>
+      
+      </div>
+            
             </div>
+            
         )
     }
 }

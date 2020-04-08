@@ -1,10 +1,11 @@
 .heading {
+  display: inline;
   font-family: 'CODE Bold';
-  line-height: 1;
-  font-size: 20vw;
+  font-size: 10vh;
   color: #3f3d3d;
   position: relative;
-  font-style: italic;
+  justify-content: space-around;
+  right: 1%;
 }
 
 .span-header{
@@ -104,16 +105,16 @@
 }
 /*# sourceMappingURL=heading-flicker.css.map */
 
-@media only screen and (max-width:1023px){
-  .heading-container{
-    padding: 1%;
+
+@media only screen and(min-width:768px){
+  .heading{
+    font-size: 20vw;
   }
 }
 
 @media only screen and (min-width:1024px){
-  .heading {
-    font-size: 15vw;
-
+  .heading{
+    font-size: 16vw;
   }
 
   .heading-container{
@@ -121,3 +122,13 @@
     justify-content: center;
   }
 }
+
+.main-header{
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 30vh;
+}
+

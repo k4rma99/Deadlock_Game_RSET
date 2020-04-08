@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import Button from './playGame.js';
 import "../assets/css/ScrollSnap.css"
+import "../assets/css/heading-flicker.css"
 import "../assets/css/arrow.css"
 import {ScrollButton} from '../components/scrollButton.jsx'
 import {gsap} from "gsap/all";
@@ -77,9 +78,9 @@ function goCarousel(direction) {
     t.to(".container",{duration:0.7,scrollTo: {y:carouselPositions[currentItem][2]}, ease: "power2"})  
    }
    else{
-    document.getElementById('carousel').classList.toggle('snap');
+    ToggleSnap();
     setTimeout(()=>{
-      document.getElementById('carousel').classList.toggle('snap');
+      ToggleSnap();
     },700)
     t.to(".container",{duration:0.7,scrollTo: {x: carouselPositions[currentItem][0]}, ease: "power2"})
    }
@@ -88,40 +89,26 @@ function goCarousel(direction) {
   const ToggleSnap = () =>{
       document.getElementById('carousel').classList.toggle('snap');
   }
-  
 useEffect(
     
     ()=>{
         function f(){
           getCarouselPositions();
-          //window.addEventListener("keydown",scrollTo);
         }
         f();
     }
 )
 
   return (
-     <div  ref={ref=>{ContainerRef=ref}} id="carousel" className="container snap">
-       <div style={{position:"relative"}}  ref={ref=>{page1Ref=ref}}>
-           <div>
-                <span style={{width:"100%"}}  className="span-header heading-container">
-                  <h1 style={{display:"inline-block",width:"12.5"}} id="light-flicker" className = "heading">deadlock</h1>
-                </span>
-                <div style={{width:"100%",display:"block",position:"absolute",top:"60%"}}>
-                  <Button></Button>
-            </div>
-            
-          </div>
-          <ScrollButton  refreshAnims={props.refreshAnims} getCarouselPositions={getCarouselPositions} goCarousel={goCarousel} page={0}></ScrollButton>
-       </div>
-       <div style={{backgroundColor:"white",position:"relative",width:"100%"}} ref={ref=>{page2Ref=ref}} className="blue">
-       <div>
-       <ScrollButton refreshAnims={props.refreshAnims} getCarouselPositions={getCarouselPositions} goCarousel={goCarousel} page={1}></ScrollButton>
-       </div>
-       <div>
-         <h1>ABOUT</h1>
-       </div>
-       </div>
+    <div id="carousel" className="container snap">
+    <div ref={ref=>page1Ref=ref} className="page1">
+        <Button></Button>
+        <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
     </div>
+    <div ref={ref=>page2Ref=ref} className="page2">
+      <h1>About</h1>
+    <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
+    </div> 
+  </div>
   );
 }
