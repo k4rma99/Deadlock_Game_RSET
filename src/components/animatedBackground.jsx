@@ -5,8 +5,8 @@ import { ScrollSnap } from '../components/ScrollSnap.jsx';
 
 export const AnimatedBackground = () =>{
 
-    var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
-
+    let width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
+    var scrollSnap =null;
     function initHeader() {
         width = window.innerWidth;
         height = window.innerHeight;
@@ -97,8 +97,8 @@ export const AnimatedBackground = () =>{
     }
 
     function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight;
+        width = window.Width;
+        height = window.Height;
         largeHeader.style.height = height+'px';
         canvas.width = width;
         canvas.height = height;
@@ -182,17 +182,20 @@ export const AnimatedBackground = () =>{
         return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
     }
 
+    const refreshAnims = () =>{
+    }
+
     useEffect(()=>{
-    initHeader();
-    initAnimation();
-    addListeners();
+        initHeader();
+        initAnimation();
+        addListeners();
     },[])
 
     return (<div class=" demo">
     <div class="content">
        <div id="large-header" class="large-header">
           <canvas id="demo-canvas"></canvas>
-          <ScrollSnap></ScrollSnap>
+          
        </div>
     </div>
  </div>)
