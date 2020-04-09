@@ -10,6 +10,8 @@ nav{
     padding-right: 10px;
     mix-blend-mode: difference;
     padding: 0px;
+    height: 10vh;
+    padding-left: 5vw;
 }
 
 .menu-holder{
@@ -23,9 +25,8 @@ nav{
 
 .menu-svg{
     transform: scale(0.5);
-    border: thin orange solid;
     position: fixed;
-    right: 0vh;
+    right: 1vh;
     top: 0vh;
     transform-origin: right top;
     width: 20vh;
@@ -34,7 +35,7 @@ nav{
 
 .menu-div{
     position: fixed;
-    right: 0vh;
+    right: 1vh;
     top: 0vh;
     width: 10vh;
     height: 10vh;

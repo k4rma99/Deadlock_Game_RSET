@@ -14,9 +14,9 @@ let increment = 1;
             links.forEach((link, index) => {
                 console.log(links)
                 if (links[index].classList.contains("active")) {
-                    light.style.left = `${links[index].offsetLeft + light.offsetWidth / 4}px`;
+                   // light.style.left = `${links[index].offsetLeft + light.offsetWidth / 4}px`;
                 }
-            
+                
                 link.addEventListener("click", e => {
                     activeIndex = index;
                     let t = setInterval(() => {
@@ -26,14 +26,14 @@ let increment = 1;
             
                         links[currentIndex].classList.add("active");
                         if (currentIndex != -1) links[currentIndex - increment].classList.remove("active");
-            
+                        
                         if (currentIndex == activeIndex) {
                             e.target.classList.add("active");
                             increment = 0;
                             clearInterval(t);
                         }
                     }, 50);
-                    light.style.left = `${e.target.offsetLeft + light.offsetWidth / 4}px`;
+                    //light.style.left = `${e.target.offsetLeft + light.offsetWidth / 4}px`;
                 });
             });
         }
@@ -41,7 +41,6 @@ let increment = 1;
 }, [])
 
     return(
-        <div className="main-nav">
         <div className = "nav-container">
 	<nav className="sub-nav">
 		<ul>
@@ -80,10 +79,7 @@ let increment = 1;
 			</li>
             
 		</ul>
-
-		<div className="tubelight">
-			<div className="light-ray"></div>
-		</div>        
+   
 	</nav>
 
 	<svg xmlns="http://www.w3.org/2000/svg" style={{display: "none;"}}>
@@ -114,6 +110,5 @@ let increment = 1;
 	</svg>
 
 </div>
-        </div>
     )
 }

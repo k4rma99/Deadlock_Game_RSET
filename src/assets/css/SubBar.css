@@ -1,20 +1,21 @@
 .nav-container {
 	--scale: 1;
     --icon-size: 24px;
-    width: 100%;
-    border: thin blue solid;
     height: 10vh;
     border-radius: 5vh;
-    background-color: black;
-    z-index: 100;
-    position: relative;
-    top: 10%;
-    right: 0;
+    width: 0%;
+    background-color: white;
+    position: fixed;
+    top: 10vh;
+    right: 0vh;
+    mix-blend-mode: difference;
 }
 .main-nav{
     position: absolute;
     border: thick green solid;
     width: 100%;
+    top: 10vh;
+    right: 0;
 }
 
 
@@ -31,10 +32,10 @@
     box-sizing: border-box;
     height: 10vh;
     position: relative;
-    top: 0;
     width: 100%;
 	display: grid;
-	grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(5, 20%);
+    padding: 0px;
     border-radius: 5vh;
     background-color: black;
 	box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
@@ -77,9 +78,8 @@
 
 .sub-nav .tubelight {
 	position: absolute;
-	left: 0px;
 	top: 0px;
-	transform: translateX(-50%);
+    transform: translateX(-50%);
 	width: 45px;
 	height: 5px;
 	border-radius: 5px;
@@ -120,5 +120,7 @@
 	transform: scale(1.1);
 }
 
-@media only screen and(max-width:767px){
+@media only screen and (min-width:1024px){
+    .nav-container{
+    }
 }

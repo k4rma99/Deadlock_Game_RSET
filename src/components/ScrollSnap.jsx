@@ -106,7 +106,6 @@ useEffect(
         <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
     </div>
     <div ref={ref=>page2Ref=ref} className="page2">
-      <h1>About</h1>
     <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
     </div> 
   </div>
