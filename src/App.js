@@ -6,14 +6,15 @@ import {AnimatedBackground} from "./components/animatedBackground.jsx"
 import "./assets/css/animated-background.css"
 import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
-import { ScrollSnap } from './components/ScrollSnap';
+import { ScrollSnap } from './components/ScrollSnap.jsx';
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
       <AnimatedBackground></AnimatedBackground>
-     </div>
+      <ScrollSnap></ScrollSnap>
+      </div>
   );
 }
 

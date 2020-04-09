@@ -1,18 +1,24 @@
 import React,{useEffect} from 'react';
 import Button from './playGame.jsx';
 import "../assets/css/ScrollSnap.css"
+import "../assets/css/heading-flicker.css"
 import "../assets/css/arrow.css"
-export const ScrollSnap = () => {
+import {ScrollButton} from '../components/scrollButton.jsx'
+import {gsap} from "gsap/all";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+export const ScrollSnap = (props) => {
 
 
 var carouselPositions;
 var halfWidth;
 var halfHeight;
-var currentItem;
+var currentItem = 0;
 var ContainerRef=null;
 var page1Ref=null;
 var page2Ref=null;
 var RightScroll=null;
+var t = gsap.timeline();
+gsap.registerPlugin(ScrollToPlugin);
 
 const getCarouselPositions = () => {
   carouselPositions = [];
@@ -60,70 +66,49 @@ function goCarousel(direction) {
     }
   }
   if(direction=='next-vert' ||direction=='previous-vert'){
-    ContainerRef.scrollTo({
-      top: carouselPositions[currentItem][2],
-      behavior: 'smooth' 
-    });
+    scrollTo('up')
   } 
   else{
-    ContainerRef.scrollTo({
-      left: carouselPositions[currentItem][0],
-      behavior: 'smooth' 
-    });
+    scrollTo('left')
   }
 }
 
+ const scrollTo = (method) =>{  
+   if(method == 'up'){
+    t.to(".container",{duration:0.7,scrollTo: {y:carouselPositions[currentItem][2]}, ease: "power2"})  
+   }
+   else{
+    ToggleSnap();
+    setTimeout(()=>{
+      ToggleSnap();
+    },700)
+    t.to(".container",{duration:0.7,scrollTo: {x: carouselPositions[currentItem][0]}, ease: "power2"})
+   }
+  }
+
+  const ToggleSnap = () =>{
+      document.getElementById('carousel').classList.toggle('snap');
+  }
 useEffect(
     
     ()=>{
         function f(){
-
-            getCarouselPositions();
-            window.addEventListener('resize', getCarouselPositions);
+          getCarouselPositions();
         }
         f();
     }
 )
 
   return (
-     <div ref={ref=>{ContainerRef=ref}} className="container">
-       <div style={{width:"100%"}} ref={ref=>{page1Ref=ref}}>
-           <div>
-                <span style={{width:"100%"}}  className="span-header heading-container">
-                  <h1 style={{display:"inline-block",width:"12.5"}} id="light-flicker" className = "heading">deadlock</h1>
-                </span>
-                <div style={{width:"100%",display:"block",position:"absolute",top:"60%"}}>
-                  <Button></Button>
-            </div>
-            
-          </div>
-          {window.screen.width<1024?        
-          <div onClick={()=>{goCarousel('next-vert')}} style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
-              <i style={{position:"absolute"}}class="arrow-white down"/>
-          </div>
-              :
-          <div onClick={()=>{goCarousel('next')}} style={{position:"absolute",right:"0%",width:"3%",height:"100%"}}>
-            <i class="arrow-white right"/>
-          </div>
-          }
-       </div>
-       <div style={{backgroundColor:"white",position:"relative"}} ref={ref=>{page2Ref=ref}} className="blue">
-       <div>
-       {window.screen.width<1024?        
-          <div onClick={()=>{goCarousel('previous-vert')}} style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
-              <i style={{position:"absolute"}}class=" up"/>
-          </div>
-              :
-          <div onClick={()=>{goCarousel('previous')}} style={{position:"absolute",right:"0%",width:"3%",height:"100%"}}>
-            <i class="left"/>
-          </div>
-       }
-       </div>
-       <div>
-         <h1>ABOUT</h1>
-       </div>
-       </div>
-            
-      </div>
+    <div id="carousel" className="container snap">
+    <div ref={ref=>page1Ref=ref} className="page1">
+        <Button></Button>
+        <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
+    </div>
+    <div ref={ref=>page2Ref=ref} className="page2">
+      <h1>About</h1>
+    <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
+    </div> 
+  </div>
   );
 }
