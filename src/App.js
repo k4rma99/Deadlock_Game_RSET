@@ -10,6 +10,7 @@ import "./assets/css/animated-background.css"
 import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
+import {SubBar} from "./components/SubBar.jsx";
 
 function App() {
   return (

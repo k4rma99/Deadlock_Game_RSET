@@ -8,6 +8,18 @@
   right: 1%;
 }
 
+
+
+.main-header{
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 35vh;
+}
+
+
 .span-header{
   padding: 0px;
   text-align: center;
@@ -112,6 +124,7 @@
   }
 }
 
+
 @media only screen and (min-width:1024px){
   .heading{
     font-size: 16vw;
@@ -121,14 +134,7 @@
     text-align: center;
     justify-content: center;
   }
+  .main-header{
+    margin-top: 30vh;
+  }
 }
-
-.main-header{
-  width: 100%;
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  margin-top: 30vh;
-}
-

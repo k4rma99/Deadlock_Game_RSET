@@ -9,6 +9,50 @@ nav{
     padding-left: 10px;
     padding-right: 10px;
     mix-blend-mode: difference;
+    padding: 0px;
+}
+
+.menu-holder{
+    border: thin yellow solid;
+    display: flex;
+    flex-direction: column;
+    padding :0;
+    position: fixed;
+    right: 0;
+}
+
+.menu-svg{
+    transform: scale(0.5);
+    border: thin orange solid;
+    position: fixed;
+    right: 0vh;
+    top: 0vh;
+    transform-origin: right top;
+    width: 20vh;
+    height: 20vh;
+}
+
+.menu-div{
+    position: fixed;
+    right: 0vh;
+    top: 0vh;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-button{
+    height: 75%;
+    margin:auto auto;
+    border-radius: 30vh;
+    width: 75%;
+    background-color: transparent;
+    border: none;
+}
+
+.menu-button:hover{
+    cursor: pointer;
 }
 
 ul{
