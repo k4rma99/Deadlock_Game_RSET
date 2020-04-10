@@ -10,28 +10,32 @@ export const About = () =>{
     var buttonRef = null;
     useEffect(()=>{
         const f = () =>{
-            buttonRef.addEventListener("click",()=>{
-                state = state * -1;
-                if(state == 1){
-                    t.reversed()?t.restart():t
-                    .fromTo('.about-main img',{width:"100%",height:"70%"},{duration:0.5,width:"55%",height:"100%"})
-                    .fromTo('.about-main .about-content div',{top:"70%"},{top:"0%",duration:0.5},0)
-                    .fromTo('.about-content p',{display:"none"},{display:"initial",duration:0})
-                    .fromTo('.about-content p',{opacity:0},{opacity:1,duration:0.3});
-                    contentRef.classList.toggle('overflow-hide');
-                }
-                else{
-                    contentRef.classList.toggle('overflow-hide');
-                    t.reverse();
-                }
-            });
         }
         f();
     },[])
 
    const contentShift = () =>{
-        
+       var imgWidth;
+       if(window.screen.width<1024){
+            imgWidth = "100%"
+       }
+       else{
+            imgWidth = "55%"
+       }
+    state = state * -1;
+    if(state == 1){
+        t.reversed()?t.restart():t
+        .fromTo('.about-main img',{width:"100%",height:"70%"},{duration:0.5,width:imgWidth,height:"100%"})
+        .fromTo('.about-main .about-content div',{top:"70%"},{top:"0%",duration:0.5},0)
+        .fromTo('.about-content p',{display:"none"},{display:"initial",duration:0})
+        .fromTo('.about-content p',{opacity:0},{opacity:1,duration:0.3});
+        contentRef.classList.toggle('overflow-hide');
     }
+    else{
+        contentRef.classList.toggle('overflow-hide');
+        t.reverse();
+    }
+    }   
 
     return(
         <div className="about-main">

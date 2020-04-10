@@ -26,7 +26,7 @@ export const Navbar = () =>{
         const f = () => {
         }
         f();
-    }, [t])
+    }, [])
 
     return (
         <nav>

@@ -7,15 +7,16 @@
     background-color: white;
     position: fixed;
     top: 10vh;
-    right: 0vh;
-    mix-blend-mode: difference;
+	right: 0vh;
+	mix-blend-mode: unset;
 }
 .main-nav{
     position: absolute;
     border: thick green solid;
     width: 100%;
     top: 10vh;
-    right: 0;
+	right: 0;
+	mix-blend-mode: unset;
 }
 
 
@@ -29,6 +30,7 @@
 
 
 .sub-nav {
+	mix-blend-mode: unset;
     box-sizing: border-box;
     height: 10vh;
     position: relative;

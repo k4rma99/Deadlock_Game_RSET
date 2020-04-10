@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <title>React App</title>
+  <style type="text/css">body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}</style><style type="text/css">body, html {
+    height: 100%;
+  }
+  .bg {
+    display: block;
+    position: relative;
+    background-image: url(/static/media/backgroundImage.2785ccd5.jpg);
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }</style><style type="text/css">.heading {
+  display: inline;
+  font-family: 'CODE Bold';
+  font-size: 10vh;
+  color: #3f3d3d;
+  position: relative;
+  justify-content: space-around;
+  right: 1%;
+}
+
+
+
+.main-header{
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 35vh;
+}
+
+
+.span-header{
+  padding: 0px;
+  text-align: center;
+}
+
+.border{
+  border: thin green solid;
+}
+
+.heading-container{
+
+  display: flex;
+  width: 100%;
+  padding:0px;
+}
+
+.main-font{
+  font-family: 'CODE Bold';
+}
+#light-flicker:before{
+  content: "A";
+  color: #ffcc00;
+  position: absolute;
+  z-index: 5;
+  text-shadow: none;
+  text-align: center;
+  left: 23.6%;
+  animation: flicker 3s linear infinite;
+}
+/*
+#heading:before {
+  content: "A";
+  position: relative;
+  overflow: hidden;
+  color: #ffcc00;
+  z-index: 5;
+  text-shadow: none;
+  left: 26%;
+  text-align: left;
+  -webkit-animation: flicker 3s linear infinite;
+          animation: flicker 3s linear infinite;
+}
+
+*/
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: .99;
+    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.4), 1px -1px 0 rgba(255, 255, 255, 0.4), -1px 1px 0 rgba(255, 255, 255, 0.4), 1px 1px 0 rgba(255, 255, 255, 0.4), 0 -2px 8px, 0 0 2px, 0 0 5px #ff7e00, 0 0 15px #ff4444, 0 0 2px #ff7e00, 0 2px 3px #000;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+/*
+ * Webfont: CoreCircus by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/regular/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*
+ * Webfont: CoreCircus2DDot1 by S-Core
+ * URL: http://www.myfonts.com/fonts/s-core/core-circus/dot1/
+ * Copyright: Copyright (c) 2013 by S-Core Co., Ltd.. All rights reserved.
+ * Licensed pageviews: 10,000
+*/
+@font-face {
+  font-family: 'CoreCircus2DDot1';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_1_0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'CoreCircus';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff2") format("woff2"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/333BF4_8_0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'CODE Bold';
+  src: url("/static/media/CODE Bold.f6a87fae.otf");
+  src: url("/static/media/CODE Light.e6d526de.otf");
+}
+
+
+@media only screen and(min-width:768px){
+  .heading{
+    font-size: 20vw;
+  }
+}
+
+
+@media only screen and (min-width:1024px){
+  .heading{
+    font-size: 16vw;
+  }
+
+  .heading-container{
+    text-align: center;
+    justify-content: center;
+  }
+  .main-header{
+    margin-top: 30vh;
+  }
+}
+</style><style type="text/css">i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  .arrow-white{
+   border-color: white;
+}</style><style type="text/css">.container {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 100% 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    z-index: 10;
+    padding: 0px;
+}
+
+#carousel.snap {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Needed to work on iOS Safari */
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-points-x: repeat(100%);
+    -ms-scroll-snap-points-x: repeat(100%);
+}
+
+  .page1{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+      flex-direction: column;
+      scroll-snap-align: start;
+  }
+  
+  .page2{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+    background-color: white;
+  }
+
+
+.scroll-div{
+    height: 100%;}
+
+@media only screen and (max-width:1023px){
+    .page2{
+        height: 93vh;
+    }
+    .container{
+        grid-template-columns: auto;
+        grid-template-rows: 100% 100%;
+        height: 93vh;
+        overflow-y: scroll;
+    }
+
+    #carousel.snap{
+    scroll-snap-type: none;
+    -webkit-overflow-scrolling: none; /* Needed to work on iOS Safari */
+    scroll-snap-type: none;
+    -ms-scroll-snap-type: none;
+    scroll-snap-points-x: none;
+    -ms-scroll-snap-points-x: none;
+    }
+}
+</style><style type="text/css">@import url(https://fonts.googleapis.com/css?family=Poppins:900i);</style><style type="text/css">.wrapper {
+  width: 100%;
+  place-items: center;
+  z-index: auto;
+  display: grid;
+  margin-top: 3.5vh;
+}
+
+.cta {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    color: white;
+    background: #6225E6;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+    width: 55%;
+}
+
+.cta:focus {
+   outline: none; 
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FBC638;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+  span {
+    transform: skewX(15deg) 
+  }
+
+  span:nth-child(2) {
+      display: flex;
+      margin: auto 0;
+      width: 100%;
+    text-align: center;
+  }
+
+  span:nth-child(1) {
+    text-align: center;
+  }
+  
+  
+  
+  
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    100% {
+        fill: white;
+    }
+}
+
+@media only screen and (min-width:375px){
+    .cta{
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    .cta{
+        width:20%;
+    }
+}</style><style type="text/css">.large-header {
+   position: relative;
+   width: 100%;
+   background: #111;
+   background-size: cover;
+   background-position: center center;
+   z-index: 1;
+   
+}
+
+.demo{
+   position: absolute;
+   width: 100%;
+}
+
+.demo .large-header {
+   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+}
+
+
+.main-title {
+   position: absolute;
+   margin: 0;
+   padding: 0;
+   color: #F9F1E9;
+   text-align: center;
+   top: 50%;
+   left: 50%;
+   transform: translate3d(-50%, -50%, 0);
+   z-index: 50;
+}
+
+.demo .main-title {
+   text-transform: uppercase;
+   font-size: 4.2em;
+   letter-spacing: 0.1em;
+}
+
+.main-title .thin {
+   font-weight: 200;
+}
+
+@media only screen and (max-width: 768px) {
+   .demo .main-title {
+      font-size: 3em;
+   }
+}</style><style type="text/css">.about-main{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 60%;
+    padding-top: 15vh;
+    padding-bottom: 13vh;
+    place-content: center center;
+}
+
+
+.about-main span{
+    color: darkslategray;
+}
+
+.about-main .about-container img{
+    position: absolute;
+    top:0;
+    height: 75%;
+    width: 100%;
+}
+
+.about-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    place-content: center center;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.about-content::-webkit-scrollbar {
+    display: none;
+}
+
+p::-webkit-scrollbar{
+    display: none;
+}
+
+.overflow-hide{
+    overflow-y: hidden;
+}
+
+.about-content div{
+    width: 100%;
+    position: relative;
+    height: 100%;
+    top: 75%;
+    border: thin red solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.about-content p {
+    position: relative;
+    opacity: 0;
+    display: none;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    box-sizing: border-box;
+}
+
+.about-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: thin black solid;
+    display: grid;
+    grid-template-rows: 100%;
+    flex-direction: column;
+    padding: 0;
+}
+
+@media only screen and (max-width:1023px){
+    .about-main{
+        display: grid;
+        grid-template-columns: 90%;
+    }
+
+    .about-content{
+        width: 100%;
+    }
+}</style><style type="text/css">nav{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    position: fixed;
+    z-index: 100;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    mix-blend-mode: difference;
+    padding: 0px;
+    height: 10vh;
+    padding-left: 5vw;
+}
+
+.menu-holder{
+    border: thin yellow solid;
+    display: flex;
+    flex-direction: column;
+    padding :0;
+    position: fixed;
+    right: 0;
+}
+
+.menu-svg{
+    transform: scale(0.5);
+    position: fixed;
+    right: 1vh;
+    top: 0vh;
+    transform-origin: right top;
+    width: 20vh;
+    height: 20vh;
+}
+
+.menu-div{
+    position: fixed;
+    right: 1vh;
+    top: 0vh;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-button{
+    height: 75%;
+    margin:auto auto;
+    border-radius: 30vh;
+    width: 75%;
+    background-color: transparent;
+    border: none;
+}
+
+.menu-button:hover{
+    cursor: pointer;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+img{
+    margin: auto 0;
+}
+
+nav img{
+    color: white;
+}
+
+nav li{
+    color: white;
+}
+
+nav li{
+    margin-right: 30px;
+}</style><style type="text/css">.nav-container {
+	--scale: 1;
+    --icon-size: 24px;
+    height: 10vh;
+    border-radius: 5vh;
+    width: 0%;
+    background-color: white;
+    position: fixed;
+    top: 10vh;
+    right: 0vh;
+    mix-blend-mode: difference;
+}
+.main-nav{
+    position: absolute;
+    border: thick green solid;
+    width: 100%;
+    top: 10vh;
+    right: 0;
+}
+
+
+
+.sub-nav * {
+    margin: 0;
+	padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.sub-nav {
+    box-sizing: border-box;
+    height: 10vh;
+    position: relative;
+    width: 100%;
+	display: grid;
+    grid-template-columns: repeat(5, 20%);
+    padding: 0px;
+    border-radius: 5vh;
+    background-color: black;
+	box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.sub-nav ul {
+    background-color: black;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sub-nav ul li {
+	list-style: none;
+	width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.sub-nav ul li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.sub-nav ul li a svg {
+	fill: #fff;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+	transition: opacity 100ms ease;
+	pointer-events: none;
+}
+
+.sub-nav ul li a.active svg {
+	opacity: 1;
+}
+
+.sub-nav .tubelight {
+	position: absolute;
+	top: 0px;
+    transform: translateX(-50%);
+	width: 45px;
+	height: 5px;
+	border-radius: 5px;
+	background: #ffffff;
+	transition: left 400ms ease;
+	z-index: 10;
+}
+
+
+.sub-nav .tubelight .light-ray {
+	position: absolute;
+	left: -30%;
+	top: 5px;
+	width: 160%;
+	height: 80px;
+	-webkit-clip-path: polygon(5% 100%, 25% 0px, 75% 0px, 95% 100%);
+	        clip-path: polygon(5% 100%, 25% 0px, 75% 0px, 95% 100%);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) -50%, rgba(255, 255, 255, 0) 90%);
+	pointer-events: none;
+}
+
+.support {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	padding: 10px;
+	display: flex;
+}
+
+.support a {
+	margin: 0 10px;
+	color: #222;
+	font-size: 1.8rem;
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+	transition: all 150ms ease;
+}
+
+.support a:hover {
+	transform: scale(1.1);
+}
+
+@media only screen and (min-width:1024px){
+    .nav-container{
+    }
+}</style><style type="text/css">.App{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+</style><script charset="utf-8" src="./React App_files/main.f966082f27bead85f785.hot-update.js"></script><script charset="utf-8" src="./React App_files/main.cc88adad4052d641a670.hot-update.js"></script></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><meta name="viewport" content="width=device-width, user-scalable=no"><script src="./React App_files/ScrollToPlugin.min.js"></script><div class="App"><nav><img src="http://localhost:3000/" alt="Logo"><svg class="menu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128px" height="128px"><path fill="#fff" d="M64 14A50 50 0 1 0 64 114A50 50 0 1 0 64 14Z"></path><path fill="#444b54" d="M64,117c-29.2,0-53-23.8-53-53s23.8-53,53-53s53,23.8,53,53S93.2,117,64,117z M64,17c-25.9,0-47,21.1-47,47s21.1,47,47,47s47-21.1,47-47S89.9,17,64,17z"></path><path fill="#444b54" d="M86.5 52h-45c-1.7 0-3-1.3-3-3s1.3-3 3-3h45c1.7 0 3 1.3 3 3S88.2 52 86.5 52zM86.5 67h-45c-1.7 0-3-1.3-3-3s1.3-3 3-3h45c1.7 0 3 1.3 3 3S88.2 67 86.5 67z"></path><g><path fill="#444b54" d="M86.5,82h-45c-1.7,0-3-1.3-3-3s1.3-3,3-3h45c1.7,0,3,1.3,3,3S88.2,82,86.5,82z"></path></g></svg><div class="menu-div"><button class="menu-button"></button></div><div class="nav-container"><nav class="sub-nav"><ul><li><a class="active"><svg><use xlink:href="#home-icon"></use></svg></a></li></ul><ul><li><a><svg><use xlink:href="#bookmark-icon"></use></svg></a></li></ul><ul><li><a><svg><use xlink:href="#plus-icon"></use></svg></a></li></ul><ul><li><a><svg><use xlink:href="#user-icon"></use></svg></a></li></ul><ul><li><a><svg><use xlink:href="#settings-icon"></use></svg></a></li></ul></nav><svg xmlns="http://www.w3.org/2000/svg"><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="home-icon"><path d="M13.1428571,14.5 C13.6571429,14.5 14,14.175507 14,13.6887676 L14,6.38767551 C14,6.14430577 13.9142857,5.90093604 13.6571429,5.73868955 L8.51428571,1.6825273 C8.17142857,1.43915757 7.74285714,1.43915757 7.4,1.6825273 L2.25714286,5.73868955 C2.08571429,5.90093604 2,6.14430577 2,6.38767551 L2,13.6887676 C2,14.175507 2.34285714,14.5 2.85714286,14.5 L13.1428571,14.5 Z M5.42857143,12.8775351 L3.71428571,12.8775351 L3.71428571,6.79329173 L8,3.38611544 L12.2857143,6.79329173 L12.2857143,12.8775351 L10.5714286,12.8775351 L5.42857143,12.8775351 Z"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="favorites-icon"><path d="M7.5125,14.3196446 C6.8625,13.7292662 1.5,9.09057902 1.5,5.54830881 C1.5,3.27113511 3.2875,1.5 5.4,1.5 C6.375,1.5 7.26875,1.92169883 8,2.5120772 C8.73125,1.83735907 9.625,1.5 10.6,1.5 C12.79375,1.5 14.5,3.35547487 14.5,5.54830881 C14.5,9.09057902 9.1375,13.7292662 8.4875,14.2353048 C8.24375,14.5726639 7.75625,14.5726639 7.5125,14.3196446 Z M5.4,3.18679534 C4.18125,3.18679534 3.125,4.28321231 3.125,5.54830881 C3.125,7.40378368 5.96875,10.6086948 8,12.4641697 C9.70625,10.8617141 12.875,7.57246322 12.875,5.54830881 C12.875,4.19887254 11.81875,3.18679534 10.6,3.18679534 C9.86875,3.18679534 9.1375,3.60849417 8.73125,4.28321231 C8.40625,4.78925091 7.675,4.78925091 7.35,4.28321231 C6.8625,3.60849417 6.2125,3.18679534 5.4,3.18679534 Z"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 568" id="settings-icon"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48001 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48001 17.52 2 12 2ZM11 7V11H7V13H11V17H13V13H17V11H13V7H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="bookmark-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 3H17C18.1 3 19 3.89999 19 5V21L12 18L5 21V5C5 3.89999 5.90002 3 7 3ZM12 15.82L17 18V5H7V18L12 15.82Z"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 570" id="user-icon"><path d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"></path></symbol></svg></div></nav><div class=" demo"><div class="content"><div id="large-header" class="large-header" style="height: 646px;"><canvas id="demo-canvas" width="0" height="0"></canvas></div></div></div><div id="carousel" class="container snap"><div class="page1"><div class="main-grid"><div class="main-header"><h1 id="light-flicker" class="heading">deadlock</h1></div><div class="wrapper"><a class="cta" href="http://localhost:3000/#"><span>PLAY</span><span><svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path><path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path><path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path></g></svg></span></a></div></div><div style="display: flex; position: absolute; right: 0%; width: 3%; height: 100%;"><div style="position: relative; top: 50%;"><i class="arrow-white right"></i></div></div></div><div class="page2"><div class="about-main"><div class="about-container"><img src="./React App_files/pexels-photo-1591447.jpeg"><div class="about-content overflow-hide"><div><h1>LOREM IPSUM</h1><button>CLICK</button><p>How can I approach my company for advertising a role the same as mine for a much higher salary? What actually is RP-1, and how is it different from any other hydrocarbon liquid fuel? Avoiding "Zoom bombing" in virtual conferences and seminars Is it possible to create a relativistic space probe going at least 0.1c with present day technology? What is the most ‘understandable’ way to order sparkling water in German? My inflatable hot tub says "don't use with an extension cord"... but can I? Use grep to extract some text from file based on regex Seeking in-depth coverage of this French defense sideline Manilius nesciebat quid scribebat</p></div></div></div></div><div style="display: flex; position: absolute; right: 0%; width: 3%; height: 100%;"><div style="position: relative; top: 50%;"><i class=" left"></i></div></div></div></div></div></div>
+  <script src="./React App_files/bundle.js"></script><script src="./React App_files/0.chunk.js"></script><script src="./React App_files/main.chunk.js"></script>
+
+</body></html>

@@ -19,6 +19,7 @@ var page1Ref=null;
 var page2Ref=null;
 var RightScroll=null;
 var t = gsap.timeline();
+var vh;
 gsap.registerPlugin(ScrollToPlugin);
 
 const getCarouselPositions = () => {
@@ -87,24 +88,33 @@ function goCarousel(direction) {
   const ToggleSnap = () =>{
       document.getElementById('carousel').classList.toggle('snap');
   }
+
+  const resizeScreen = () =>{
+    page2Ref.style.width = window.width;
+    page2Ref.style.height = window.height;
+  }
+
+  
+
 useEffect(
     
     ()=>{
         function f(){
           getCarouselPositions();
+          resizeScreen();
         }
         f();
     }
 )
 
   return (
-    <div id="carousel" className="container snap">
+    <div ref={ref=>ContainerRef=ref} id="carousel" className="container snap">
     <div ref={ref=>page1Ref=ref} className="page1">
         <Button></Button>
         <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
     </div>
     <div ref={ref=>page2Ref=ref} className="page2">
-      <About></About>
+      <About/>
     <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
     </div> 
   </div>

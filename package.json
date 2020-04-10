@@ -12,6 +12,7 @@
     "n": "^6.4.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
+    "react-div-100vh": "^0.3.8",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "typescript": "^3.8.3"

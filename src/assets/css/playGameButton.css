@@ -6,12 +6,13 @@
   width: 100%;
   place-items: center;
   z-index: auto;
-  display: grid;
+  display: flex;
   margin-top: 3.5vh;
 }
 
 .cta {
     display: grid;
+    margin: 0 auto;
     grid-template-columns: 80% 20%;
     padding: 10px 45px;
     text-decoration: none;

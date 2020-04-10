@@ -9,7 +9,7 @@ export const ScrollButton = (props) =>{
         if(props.page==0){
             if(window.screen.width<1024){
                 return (
-                    <div onClick={()=>props.goCarousel('next-vert')}  style={{position:"absolute",bottom:"2%",width:"100%",height:"4%"}}>
+                    <div onClick={()=>props.goCarousel('next-vert')}  style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
                         <div style={{position:"relative",left:"50%"}}>
                         <i  className="arrow-white down"/>
                         </div>
@@ -30,7 +30,7 @@ export const ScrollButton = (props) =>{
         else{
             if(window.screen.width<1024){
                 return(
-                    <div onClick={()=>props.goCarousel('previous-vert')} style={{position:"absolute",bottom:"2%",width:"100%",height:"4%"}}>
+                    <div onClick={()=>props.goCarousel('previous-vert')} style={{position:"absolute",bottom:"0%",width:"100%",height:"4%"}}>
                         <div style={{position:"relative",left:"50%"}}>
                         <i  className=" up"/>
                         </div>

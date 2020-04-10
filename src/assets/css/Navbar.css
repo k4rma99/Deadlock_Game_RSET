@@ -8,9 +8,9 @@ nav{
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    mix-blend-mode: difference;
     padding: 0px;
     height: 10vh;
+    mix-blend-mode: difference;
     padding-left: 5vw;
 }
 
@@ -31,6 +31,7 @@ nav{
     transform-origin: right top;
     width: 20vh;
     height: 20vh;
+    mix-blend-mode: difference;
 }
 
 .menu-div{
