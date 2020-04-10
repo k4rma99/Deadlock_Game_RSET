@@ -4,6 +4,7 @@ import "../assets/css/ScrollSnap.css"
 import "../assets/css/heading-flicker.css"
 import "../assets/css/arrow.css"
 import {ScrollButton} from '../components/scrollButton.jsx'
+import {About} from "../components/About.jsx";
 import {gsap} from "gsap/all";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 export const ScrollSnap = (props) => {
@@ -22,10 +23,8 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const getCarouselPositions = () => {
   carouselPositions = [];
-    console.log("item1");
     carouselPositions.push([page1Ref.offsetLeft, page1Ref.offsetLeft + page1Ref.offsetWidth,page1Ref.offsetTop, page1Ref.offsetTop + page1Ref.offsetHeight]);
     carouselPositions.push([page2Ref.offsetLeft, page2Ref.offsetLeft + page2Ref.offsetWidth,page2Ref.offsetTop, page2Ref.offsetTop + page2Ref.offsetHeight]); // add to array the positions information
-    console.log(carouselPositions);
   halfWidth = document.querySelector('.container').offsetWidth/2;
   halfHeight = document.querySelector('.container').offsetHeight/2;
 }
@@ -35,7 +34,6 @@ const getCarouselPositions = () => {
 function goCarousel(direction) {
   
   var currentScollTopHorizontal = document.querySelector('.container').scrollLeft;
-  var currentScrollBottom = currentScollTopHorizontal + document.querySelector('.container').offsetWidth;
   var currentScrollTopVertical = document.querySelector('.container').scrollTop;
   if (direction === 'next' || direction== 'next-vert') {
       currentItem = 1;
@@ -106,6 +104,7 @@ useEffect(
         <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
     </div>
     <div ref={ref=>page2Ref=ref} className="page2">
+      <About></About>
     <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
     </div> 
   </div>
