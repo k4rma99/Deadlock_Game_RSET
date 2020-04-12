@@ -25,6 +25,7 @@ var t = gsap.timeline();
 var vh;
 gsap.registerPlugin(ScrollToPlugin);
 
+/*
 const getCarouselPositions = () => {
   carouselPositions = [];
     carouselPositions.push([page1Ref.offsetLeft, page1Ref.offsetLeft + page1Ref.offsetWidth,page1Ref.offsetTop, page1Ref.offsetTop + page1Ref.offsetHeight]);
@@ -39,7 +40,6 @@ function goCarousel(direction) {
   
   //t.to(".container",{duration:0.7,scrollTo: ".page2", ease: "power2"})
 
-  
   
   var currentScollTopHorizontal = document.querySelector('.container').scrollLeft;
   var currentScrollTopVertical = document.querySelector('.container').scrollTop;
@@ -121,37 +121,27 @@ function goCarousel(direction) {
     document.getElementById('nav-color').style.gridTemplateRows = `${page1Ref.clientHeight}px ${page2Ref.clientHeight}px 100vh` ;
   }
 
+  */
 useEffect(
     
     ()=>{
         function f(){
-          getCarouselPositions();
-          resizeScreen();
-          window.addEventListener("resize",setNavColor);
-          setNavColor();
+          //getCarouselPositions();
+          //resizeScreen();
+          //window.addEventListener("resize",setNavColor);
+          //setNavColor();
         }
         f();
     }
 )
 
   return (    
-      <div onScroll={()=>{setNavScroll()}} ref={ref=>ContainerRef=ref} id="carousel" className="container snap">
-    <div ref={ref=>page1Ref=ref} className="page1">
+      <div ref={ref=>ContainerRef=ref} id="carousel" className="container snap">
+      <Div100vh>
+      <div ref={ref=>page1Ref=ref} className="page1">
         <Button></Button>
-        <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
-    </div>
-    <div ref={ref=>page2Ref=ref} className="page2">
-      <About/>
-    <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
-    </div> 
-    <div id="nav-color" className="navigation-color">
-              <div style={{position:"relative",background:"black",width:"100%",height:"100%"}}>
-
-              </div>
-              <div style={{position:"relative",background:"white",width:"100%",height:"100%"}}>
-
-          </div>
-        </div>  
+      </div>
+      </Div100vh>
   </div>
   );
 }
