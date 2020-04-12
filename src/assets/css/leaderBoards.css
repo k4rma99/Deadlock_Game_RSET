@@ -1,0 +1,34 @@
+.leader-board{
+    margin-left: 4vw;
+    margin-right: 4vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 92vw;
+}
+
+.leader-board-legend{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+table{
+    text-align: left;
+    border: none;
+    border-top: thin lightgray solid;
+    border-collapse: collapse;
+}
+
+th{
+    color:#8d27d6;
+}
+
+th,td{ 
+    padding: 10px;
+    border-right: none;
+    border-left: none;
+    border-bottom: thin lightgray solid;
+}

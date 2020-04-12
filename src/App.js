@@ -36,9 +36,9 @@ function App() {
   </head>
   <Router>
     <div  id='App' className="App">
+        <Navbar></Navbar>
         <Switch>
           <Route path="/">
-              <Navbar></Navbar>
               <ScrollSnap></ScrollSnap>
           </Route>
           <Route path="/info">

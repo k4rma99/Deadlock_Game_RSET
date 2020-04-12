@@ -1,6 +1,6 @@
 import React, { Component,useEffect,useState } from 'react';
 import "../assets/css/Menu.css"
-import {SubBar} from "../components/SubBar.jsx";
+import {LeaderBoards} from "./leaderBoards.jsx";
 import {gsap} from "gsap";
 
 export const Menu = () =>{
@@ -72,20 +72,18 @@ export const Menu = () =>{
             case 1:{
                 //Return the how to play page
                 return (
-                    <span style={{marginLeft:"4vw"}}>
-                        How to play page content goes here
-                    </span>
+                    <LeaderBoards></LeaderBoards>
                 )
             }
             case 2:{
                 //Return the game rules page
                 return (
-                    <div style={{marginLeft:"4vw",marginLeft:"4vw",display:"flex",flexDirection:"row",flexWrap:"wrap"}}>
-                        <div>
+                    <div style={{marginLeft:"4vw",marginRight:"4vw",width:"92vw",display:"flex",flexDirection:"row",flexWrap:"wrap",borderTop:"thin lightgray solid"}}>
+                        <div style={{marginRight:"1vw"}}>
                             <h3>Admin is always right.</h3>
                             <h4>He's right above you.</h4>
                         </div>
-                        <div>
+                        <div style={{marginRight:"1vw"}}>
                             <h3>We suggest you enter FULL NAMES including space.</h3>
                             <h4>Answer is CASE INSENSITIVE.Eg.barton hills,Barton Hills,BARTON HILLS,BaRtOn HilLs are all same</h4>
                         </div>
@@ -93,11 +91,11 @@ export const Menu = () =>{
                             <h3>Play fair, the mods will be fair.</h3>
                             <h4>Dare to post answers in forum or any place known to us, be ready to face the consequences.</h4>
                         </div>
-                        <div>
+                        <div style={{marginRight:"1vw"}}>
                             <h3>Google and Wikipedia</h3>
                             <h4>They are both our boon and bane.</h4>
                         </div>
-                        <div>
+                        <div style={{marginRight:"1vw"}}>
                             <h3>If you're stuck then hit up the clues section</h3>
                             <h4>Clues for the levels may be found in page source too</h4>
                         </div>
@@ -154,10 +152,10 @@ export const Menu = () =>{
         
         <div className="black-header">
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
-            <h4 id="options" className="htp" style={{marginTop:"1vh"}} onClick={()=>setToggle({isToggled:true,value:"Leaderboards",section:1})}>Leaderboards</h4>
-            <h4 id="options" onClick={()=>setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" onClick={()=>setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
-            <h4 id="options" onClick={()=>setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
+            <h4 id="options" className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Leaderboards",section:1})}>Leaderboards</h4>
+            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
+            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
+            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
         </div>
             {toggle.isToggled?(
                 <div ref={ref=>contentArea=ref} className="content-area">

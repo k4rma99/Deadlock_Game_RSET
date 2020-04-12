@@ -6,14 +6,14 @@
     left: 0;
     z-index:100;
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .heading-options{
     position: absolute;
     margin-top: 30vh;
     display: block;
-  font-size: 14vw;
+  font-size: 12vw;
   color: white;
   position: relative;
   /*right: 1%;*/
@@ -113,10 +113,6 @@ mix-blend-mode: difference;
     opacity: 0;
 }
 
-.content-area div div{
-    width: 100%;
-}
-
 .content-area h3{
     color:#8d27d6;
     font-family: montserrat, sans-serif;
@@ -133,8 +129,7 @@ mix-blend-mode: difference;
     }
 
     .content-area div div{
-        width: 30.6666%;
-        height: 30%;
+        width: 29.6666vw;
         text-align: center;
     }
 
