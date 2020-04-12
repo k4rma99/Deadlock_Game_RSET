@@ -2,11 +2,14 @@ import React,{useEffect} from 'react';
 import Button from './playGame.js';
 import "../assets/css/ScrollSnap.css"
 import "../assets/css/heading-flicker.css"
+import Div100vh from 'react-div-100vh';
 import "../assets/css/arrow.css"
 import {ScrollButton} from '../components/scrollButton.jsx'
 import {About} from "../components/About.jsx";
+import {AnimatedBackground} from "../components/animatedBackground.jsx"
 import {gsap} from "gsap/all";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import {BlackHole} from "../components/blackhole.jsx"
 export const ScrollSnap = (props) => {
 
 
@@ -33,6 +36,10 @@ const getCarouselPositions = () => {
  // call it once
 
 function goCarousel(direction) {
+  
+  //t.to(".container",{duration:0.7,scrollTo: ".page2", ease: "power2"})
+
+  
   
   var currentScollTopHorizontal = document.querySelector('.container').scrollLeft;
   var currentScrollTopVertical = document.querySelector('.container').scrollTop;
@@ -74,14 +81,24 @@ function goCarousel(direction) {
 
  const scrollTo = (method) =>{  
    if(method == 'up'){
-    t.to(".container",{duration:0.7,scrollTo: {y:carouselPositions[currentItem][2]}, ease: "power2"})  
+     if(currentItem == 0){
+      t.to(".container",{duration:0.7,scrollTo: {y:0, ease: "power2"}})  
+     }
+     else{
+      t.to(".container",{duration:0.7,scrollTo: {y:"max", ease: "power2"}})  
+     }
    }
    else{
     ToggleSnap();
     setTimeout(()=>{
       ToggleSnap();
     },700)
-    t.to(".container",{duration:0.7,scrollTo: {x: carouselPositions[currentItem][0]}, ease: "power2"})
+    if(currentItem == 0){
+      t.to(".container",{duration:0.7,scrollTo: {x:0, ease: "power2"}})  
+     }
+     else{
+      t.to(".container",{duration:0.7,scrollTo: {x: "max", ease: "power2"}})  
+     }
    }
   }
 
@@ -94,7 +111,15 @@ function goCarousel(direction) {
     page2Ref.style.height = window.height;
   }
 
+  const setNavScroll = () =>{
+    document.getElementById("nav-color").scrollTop = ContainerRef.scrollTop;
+    document.getElementById("nav-color").scrollLeft = ContainerRef.scrollLeft;
+  }
   
+  const setNavColor = () =>{
+    setNavScroll()
+    document.getElementById('nav-color').style.gridTemplateRows = `${page1Ref.clientHeight}px ${page2Ref.clientHeight}px 100vh` ;
+  }
 
 useEffect(
     
@@ -102,13 +127,15 @@ useEffect(
         function f(){
           getCarouselPositions();
           resizeScreen();
+          window.addEventListener("resize",setNavColor);
+          setNavColor();
         }
         f();
     }
 )
 
-  return (
-    <div ref={ref=>ContainerRef=ref} id="carousel" className="container snap">
+  return (    
+      <div onScroll={()=>{setNavScroll()}} ref={ref=>ContainerRef=ref} id="carousel" className="container snap">
     <div ref={ref=>page1Ref=ref} className="page1">
         <Button></Button>
         <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
@@ -117,6 +144,14 @@ useEffect(
       <About/>
     <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
     </div> 
+    <div id="nav-color" className="navigation-color">
+              <div style={{position:"relative",background:"black",width:"100%",height:"100%"}}>
+
+              </div>
+              <div style={{position:"relative",background:"white",width:"100%",height:"100%"}}>
+
+          </div>
+        </div>  
   </div>
   );
 }

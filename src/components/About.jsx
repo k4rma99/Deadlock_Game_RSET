@@ -24,12 +24,7 @@ export const About = () =>{
        }
     state = state * -1;
     if(state == 1){
-        t.reversed()?t.restart():t
-        .fromTo('.about-main img',{width:"100%",height:"70%"},{duration:0.5,width:imgWidth,height:"100%"})
-        .fromTo('.about-main .about-content div',{top:"70%"},{top:"0%",duration:0.5},0)
-        .fromTo('.about-content p',{display:"none"},{display:"initial",duration:0})
-        .fromTo('.about-content p',{opacity:0},{opacity:1,duration:0.3});
-        contentRef.classList.toggle('overflow-hide');
+        t.reversed()?t.restart():t.pause()
     }
     else{
         contentRef.classList.toggle('overflow-hide');
@@ -40,11 +35,15 @@ export const About = () =>{
     return(
         <div className="about-main">
             <div className="about-container">
-                    <img src="https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
+                    <img id="img" src="https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
                     <div ref={ref=>{contentRef = ref}} className="about-content overflow-hide">
                             <div>
-                                <h1>LOREM IPSUM</h1>
+                                <div>
+                                    <span>LOREM IPSUM</span>
+                                </div>
+                                <div>
                                 <button ref={(ref)=>buttonRef = ref} onClick={()=>contentShift()}>CLICK</button>
+                                </div>
                                 <p>
                                 How can I approach my company for advertising a role the same as mine for a much higher salary?
 What actually is RP-1, and how is it different from any other hydrocarbon liquid fuel?

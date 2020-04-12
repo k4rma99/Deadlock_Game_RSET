@@ -14,6 +14,22 @@
     left: 0;
 }
 
+.navigation-color{
+  display: grid;
+  scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch; /* Needed to work on iOS Safari */
+    -ms-scroll-snap-type: y mandatory;
+    scroll-snap-points-y: repeat(100%);
+    -ms-scroll-snap-points-y: repeat(100%);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    overflow:hidden;
+    height:10vh;
+    background-color:transparent
+}
+
 #carousel.snap {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch; /* Needed to work on iOS Safari */
@@ -24,12 +40,11 @@
 
   .page1{
     width: 100%;
-    height: 100%;
     position: relative;
     display: flex;
       flex-direction: column;
       scroll-snap-align: start;
-      background-color: gray;
+   /* background-color: #ffd900;*/
   }
   
   .page2{
@@ -39,7 +54,7 @@
     display: flex;
     flex-direction: column;
     scroll-snap-align: start;
-    background-color: white;
+    background-color:white ;
   }
 
 

@@ -1,17 +1,19 @@
 import React,{useEffect} from 'react';
-import BackgroundImagePage from "./components/bgImage"
 import "./assets/css/heading-flicker.css"
-import {ScrollButton} from './components/scrollButton.jsx'
 import "./assets/css/ScrollSnap.css"
 import "./assets/css/arrow.css"
-import Button from "./components/playGame"
-import {AnimatedBackground} from "./components/animatedBackground.jsx" 
 import "./assets/css/animated-background.css"
+
 import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
-import {SubBar} from "./components/SubBar.jsx";
 import Div100vh from 'react-div-100vh';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -27,14 +29,25 @@ function App() {
   }, [])
 
   return (
+<html>
 
-    
+  <head>
+    <link rel="stylesheet" href="https://use.typekit.net/bfk1sru.css"/>
+  </head>
+  <Router>
     <div  id='App' className="App">
-      <Navbar></Navbar>
-      <Div100vh>
-      <ScrollSnap></ScrollSnap>
-      </Div100vh>
-      </div>
+        <Switch>
+          <Route path="/">
+              <Navbar></Navbar>
+              <ScrollSnap></ScrollSnap>
+          </Route>
+          <Route path="/info">
+          </Route>
+        </Switch>
+    </div>
+
+  </Router>
+</html>
   );
 }
 

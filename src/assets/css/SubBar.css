@@ -9,6 +9,7 @@
     top: 10vh;
 	right: 0vh;
 	mix-blend-mode: unset;
+	z-index: 100;
 }
 .main-nav{
     position: absolute;

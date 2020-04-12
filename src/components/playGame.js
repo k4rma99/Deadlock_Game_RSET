@@ -6,7 +6,8 @@ class playGameButton extends React.Component{
     render(){
         return(<div className="main-grid">
         <div className="main-header">
-        <h1 id="light-flicker" className = "heading">deadlock</h1>
+        <h1 id="light-flicker" className = "heading">DEADLOCK</h1>
+        <span className="span-header">Lorem ipsum dolor</span>
         </div>
         <div className="wrapper">
                 <a class="cta" href="#">
