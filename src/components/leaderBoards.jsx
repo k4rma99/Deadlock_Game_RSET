@@ -1,7 +1,7 @@
 import React, { Component,useEffect,useState } from 'react';
 import "../assets/css/leaderBoards.css"
 
-export const LeaderBoards = () =>{
+export const LeaderBoard = () =>{
 
     let [leaderBoardData,setLeaderBoardData] = useState({
         LeaderBoard:

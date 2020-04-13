@@ -1,11 +1,9 @@
 import React, { useEffect,useState } from 'react';
 import "../assets/css/Navbar.css"
-import {Menu} from  "../components/Menu.jsx";
 import {gsap} from "gsap/all";
 export const Navbar = () =>{
 
     var t = gsap.timeline();
-    var t1 = gsap.timeline();
 
     let [openState,setOpenState] = useState(-1);
     
@@ -26,8 +24,9 @@ export const Navbar = () =>{
             if(openState==1){
                 requestAnimationFrame(()=>{
                     t
-                    .to(".options",{transform:"scaleY(1)",force3D:true,duration:0.1})
-                    .to(".option-textarea",{zIndex:"100",duration:0})  
+                    //.to(".options",{opacity:"1",duration:0.2})
+                    .to(".options",{transform:"translateY(0)",duration:0.1})
+                    .fromTo(".option-textarea",{opacity:0,pointerEvents:"none"},{pointerEvents:"auto",opacity:"1",duration:0.2})  
 
                 }) 
             }
@@ -36,15 +35,12 @@ export const Navbar = () =>{
     }, [t])
 
     return (
-        <div >          
+        <div >
+            <div className="options"/>           
             <svg className="menu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128px" height="128px"><path fill="#fff" d="M64 14A50 50 0 1 0 64 114A50 50 0 1 0 64 14Z"/><path fill="#444b54" d="M64,117c-29.2,0-53-23.8-53-53s23.8-53,53-53s53,23.8,53,53S93.2,117,64,117z M64,17c-25.9,0-47,21.1-47,47s21.1,47,47,47s47-21.1,47-47S89.9,17,64,17z"/><path fill="#444b54" d="M86.5 52h-45c-1.7 0-3-1.3-3-3s1.3-3 3-3h45c1.7 0 3 1.3 3 3S88.2 52 86.5 52zM86.5 67h-45c-1.7 0-3-1.3-3-3s1.3-3 3-3h45c1.7 0 3 1.3 3 3S88.2 67 86.5 67z"/><g><path fill="#444b54" d="M86.5,82h-45c-1.7,0-3-1.3-3-3s1.3-3,3-3h45c1.7,0,3,1.3,3,3S88.2,82,86.5,82z"/></g></svg>
             <div className="menu-div">
                         <button onClick={()=>{changeOpenState()}} className="menu-button"></button>
             </div>
-            {
-                
-                openState==1?(<Menu></Menu>):<></>
-            }
         </div>
         
     )

@@ -1,13 +1,13 @@
-import React, { Component,useEffect,useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import "../assets/css/Menu.css"
-import {LeaderBoards} from "./leaderBoards.jsx";
-import {gsap} from "gsap";
+import {gsap,TimelineLite,TweenMax} from "gsap";
+import { LeaderBoard } from "../components/leaderBoards.jsx";
 
 export const Menu = () =>{
     var headerText = null;
     var contentArea = null;
-
-    var t1 = gsap.timeline();
+    let t1 = gsap.timeline();
+    let id = useRef(null);
 
     //used for generating random alphanumeric characters. If num == -1 then the recursive functions starts
     //the recursive function generates the random number effect 
@@ -30,13 +30,16 @@ export const Menu = () =>{
     const setTextHeading = (s) =>{
         num = num *-1;
         if(headerText){
-            headerText.innerHTML = s
+            requestAnimationFrame(()=>{
+                headerText.textContent = s
+            })
         }
     }
 
     const Minimize = () => 
     {
-        if(isOpen==1 && num!=-1){
+        if(num!=-1){
+        requestAnimationFrame(()=>{
         setNum()
         t1
         .to('.content-area',{autoAlpha:"0",duration:0.2})
@@ -46,25 +49,21 @@ export const Menu = () =>{
         .to('.black-header h4',{display:"block",duration:0.2})
         .fromTo('.black-header h4',{autoAlpha:0},{autoAlpha:1,duration:0.2})
         .eventCallback("onComplete", ()=>{isOpen = 0;setToggle({isToggled:false,value:"DEADLOCK",section:0})});
+        })
         }
 
     }
 
     const RandomLetters = (s) =>{
         if(headerText){
-               if(headerText){
-                headerText.innerHTML = Math.random().toString(36).substr(2, s.length)
-               }
+                headerText.textContent = Math.random().toString(36).substr(2, s.length)
         if(num==-1){
             setTimeout(()=>{
-                RandomLetters(s);
-
+                requestAnimationFrame(()=>RandomLetters(s))
             },100)
         }
         else{
-            if(headerText){
-                headerText.innerHTML = s
-           }
+                headerText.textContent = s
         }
 
         }
@@ -75,7 +74,7 @@ export const Menu = () =>{
             case 1:{
                 //Return the how to play page
                 return (
-                    <LeaderBoards></LeaderBoards>
+                    <LeaderBoard></LeaderBoard>
                 )
             }
             case 2:{
@@ -128,38 +127,59 @@ export const Menu = () =>{
         }
     }
 
+    var optionTextArea = useRef(null);
+    var contentArea = useRef(null);
+    var LeaderBoards = useRef(null);
+    var Rules = useRef(null);
+    var Contact = useRef(null);
+    var Clues = useRef(null);
+
+    const OpenPage = () =>{
+        console.log(t1)
+        setNum()
+        t1
+                .fromTo([LeaderBoards.current,Rules.current,Contact.current,Clues.current],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
+                .add(()=>RandomLetters(toggle.value))
+                .to(optionTextArea.current,{transform:"translateY(-20vh)",duration:0.7})
+                .add(()=>setTextHeading(toggle.value))
+                .to([LeaderBoards.current,Rules.current,Contact.current,Clues.current],{display:"none",duration:0.2})
+                .to(contentArea.current,{autoAlpha:1,duration:0.2})
+                .eventCallback("onComplete", ()=>{t1.clear();})
+    }
+
     useEffect(()=>{
         const f = () =>{
-            if(isOpen == 0 && num!=-1 && toggle.isToggled==true){
-                setNum()
-                t1
-                .add(()=>RandomLetters(toggle.value))
-                .fromTo('.black-header h4',{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                .to('.option-textarea',{transform:"translateY(-20vh)",duration:0.7})
-                .add(()=>setTextHeading(toggle.value))
-                .to('.black-header h4',{display:"none",duration:0.2})
-                .to('.content-area',{autoAlpha:1,duration:0.2})
-                .eventCallback("onComplete", ()=>{t1.clear();isOpen = 1;})
+            if(num!=-1 && toggle.isToggled==true){
+                console.log(LeaderBoards)
+                requestAnimationFrame(()=>{
+                    setNum()
+                    t1.add(()=>RandomLetters(toggle.value))
+                            .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
+                            .to(optionTextArea,{transform:"translateY(-20vh)",duration:0.7},0.2)
+                            .add(()=>setTextHeading(toggle.value))
+                            .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
+                            .to(contentArea,{autoAlpha:1,duration:0.2})
+                            .eventCallback("onComplete", ()=>{t1.clear();})
+                })
             }
 
         }
         f();
-    })
+    },[toggle])
     
     return(
-        <div style={{display:"flex"}}>
-        <div className="options"/> 
-        <div className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
+        <div style={{display:"flex",position:"absolute",zIndex:"100",willChange:"content"}}>
+        <div ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div className="black-header">
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
-            <h4 id="options" className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
-            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
-            <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
+            <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
+            <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
+            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
+            <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
         </div>
             {toggle.isToggled?(
                 <div ref={ref=>contentArea=ref} className="content-area">
-                    {returnSection(toggle.section)}
+                    {toggle.isToggled?returnSection(toggle.section):""}
                 </div>
             ):<></>
             }
