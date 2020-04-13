@@ -1,7 +1,5 @@
 .container {
-    top: 0;
-    left: 0;
-    position: relative;
+    position: absolute;
     display: grid;
     height: 100%;
     grid-template-columns: 100% 100%;
@@ -10,8 +8,6 @@
     width: 100%;
     z-index: 10;
     padding: 0px;
-    bottom: 0;
-    left: 0;
 }
 
 .navigation-color{

@@ -1,26 +1,21 @@
 import React from "react"
-import { AlertHeading } from "react-bootstrap/Alert"
 import "../assets/css/playGameButton.css"
 import Svg from "./playGameSVG"
-class playGameButton extends React.Component{
-    render(){
+export const playGameButton = () =>{
+    
         return(<div className="main-grid">
         <div className="main-header">
         <h1 id="light-flicker" className = "heading">DEADLOCK</h1>
-        <span className="span-header">Lorem ipsum dolor</span>
+        <h1 className="span-header">Lorem ipsum dolor</h1>
         </div>
         <div className="wrapper">
-                <a class="cta" href="#">
+                <a className="cta" href="#">
                 <span>PLAY</span>
                 <Svg />
-            </a>
-      
-      </div>
-            
-            </div>
+            </a></div>
+        </div>
             
         )
-    }
 }
 
 export default playGameButton

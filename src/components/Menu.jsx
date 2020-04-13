@@ -17,11 +17,10 @@ export const Menu = () =>{
     //tells us if any one of the subsections are open
     var isOpen = 0;
 
-
     var [toggle,setToggle] = useState({
         isToggled:false,
         value:"",
-        section:0
+        section:0,
     });
     
     const setNum = () =>{
@@ -40,28 +39,32 @@ export const Menu = () =>{
         if(isOpen==1 && num!=-1){
         setNum()
         t1
-        .fromTo('.content-area',{opacity:1,top:` 10vh - ${headerText.clientHeight} + 10vh `},{opacity:0,top:` 10vh - ${headerText.clientHeight} + 10vh `,duration:0.3})
-        .add(RandomLetters("DEADLOCK"),0)
-        .fromTo('.heading-options',{marginTop:"10vh"},{marginTop:"30vh",duration:0.8})
-        .to('.black-header h4',{display:"block",duration:0},0)
-        .fromTo('.black-header h4',{opacity:0},{opacity:1,duration:0.8})
-        .eventCallback("onComplete", ()=>{setTextHeading("DEADLOCK");isOpen = 0;setToggle({isToggled:false,value:"DEADLOCK",section:0})});
+        .to('.content-area',{autoAlpha:"0",duration:0.2})
+        .add(()=>RandomLetters("DEADLOCK"))
+        .to('.option-textarea',{transform:"translateY(0vh)",duration:0.7})
+        .add(()=>setTextHeading(toggle.value))
+        .to('.black-header h4',{display:"block",duration:0.2})
+        .fromTo('.black-header h4',{autoAlpha:0},{autoAlpha:1,duration:0.2})
+        .eventCallback("onComplete", ()=>{isOpen = 0;setToggle({isToggled:false,value:"DEADLOCK",section:0})});
         }
 
     }
 
     const RandomLetters = (s) =>{
         if(headerText){
-            headerText.innerHTML = Math.random().toString(36).substr(2, s.length)
+               if(headerText){
+                headerText.innerHTML = Math.random().toString(36).substr(2, s.length)
+               }
         if(num==-1){
-            console.log("bleep")
             setTimeout(()=>{
                 RandomLetters(s);
 
             },100)
         }
         else{
-            headerText.innerHTML = s
+            if(headerText){
+                headerText.innerHTML = s
+           }
         }
 
         }
@@ -127,20 +130,16 @@ export const Menu = () =>{
 
     useEffect(()=>{
         const f = () =>{
-
-            console.log(toggle.isToggled)
             if(isOpen == 0 && num!=-1 && toggle.isToggled==true){
-                contentArea.style.top = ` 10vh - ${headerText.clientHeight} + 10vh `;
-                contentArea.style.paddingTop = ` 10vh - ${headerText.clientHeight} + 10vh `;
                 setNum()
                 t1
-                .clear()
-                .add(RandomLetters(toggle.value),0)
-                .fromTo('.heading-options',{marginTop:"30vh"},{marginTop:"10vh",duration:0.8})
-                .fromTo('.black-header h4',{opacity:1},{opacity:0,duration:0.8},0)
-                .to('.black-header h4',{display:"none",duration:0},0.8)
-                .to('.content-area',{opacity:1,duration:0.3})
-                .eventCallback("onComplete", ()=>{setTextHeading(toggle.value);t1.clear();isOpen = 1;})
+                .add(()=>RandomLetters(toggle.value))
+                .fromTo('.black-header h4',{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
+                .to('.option-textarea',{transform:"translateY(-20vh)",duration:0.7})
+                .add(()=>setTextHeading(toggle.value))
+                .to('.black-header h4',{display:"none",duration:0.2})
+                .to('.content-area',{autoAlpha:1,duration:0.2})
+                .eventCallback("onComplete", ()=>{t1.clear();isOpen = 1;})
             }
 
         }
@@ -148,11 +147,12 @@ export const Menu = () =>{
     })
     
     return(
-        <div className="options">
-        
+        <div style={{display:"flex"}}>
+        <div className="options"/> 
+        <div className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div className="black-header">
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
-            <h4 id="options" className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Leaderboards",section:1})}>Leaderboards</h4>
+            <h4 id="options" className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
             <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
             <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
             <h4 id="options" onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
@@ -162,7 +162,8 @@ export const Menu = () =>{
                     {returnSection(toggle.section)}
                 </div>
             ):<></>
-                }
+            }
+        </div>
         </div>
     )
 }

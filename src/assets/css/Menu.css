@@ -1,24 +1,31 @@
 .options{
     position: absolute;
     width: 100%;
-    height: 0;
-    top: 0;
-    left: 0;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: 0 0;
     z-index:100;
-    background-color: white;
-    overflow-y: scroll;
+    background-color: #ffffff;
+    top: 0;
+}
+
+.option-textarea{
+    border: thin yellow solid;
+    display: flexbox;
+    position: absolute;
+    top: 0;
+    margin-top: 30vh;
 }
 
 .heading-options{
-    position: absolute;
-    margin-top: 30vh;
+    position: relative;
+    margin: 0;
+    border: none;
     display: block;
-  font-size: 12vw;
+  font-size: 14vw;
   color: white;
-  position: relative;
   /*right: 1%;*/
   font-family: montserrat, sans-serif;
-
 font-weight: 700;
 
 font-style: normal;
@@ -31,41 +38,6 @@ mix-blend-mode: difference;
 .heading-options:hover{
     cursor: pointer;
 }
-
-.menu-div{
-    position: fixed;
-    right: 1vh;
-    top: 0vh;
-    width: 10vh;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-}
-
-
-.menu-button{
-    height: 75%;
-    margin:auto auto;
-    border-radius: 30vh;
-    width: 75%;
-    background-color: transparent;
-    border: none;
-    z-index: 101;
-    border: thin yellow solid;
-}
-
-.menu-svg{
-    transform: scale(0.5);
-    position: fixed;
-    right: 1vh;
-    top: 0vh;
-    transform-origin: right top;
-    width: 20vh;
-    height: 20vh;
-    z-index: 99;
-    mix-blend-mode: difference;
-}
-
 
 .black-header{
     position: relative;
@@ -108,7 +80,8 @@ mix-blend-mode: difference;
 }
 
 .content-area{
-    position: absolute;
+    position: relative;
+    top:0;
     width: 100%;
     opacity: 0;
 }

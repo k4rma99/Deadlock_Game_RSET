@@ -36,9 +36,11 @@ mix-blend-mode: difference;
   color: white;
   display: block;
   padding-left: 3vw;
-  font-size: 5vw;
+  font-size: 7vw;
   font-family: montserrat, sans-serif;
-  font-style:italic;
+  text-align: left;
+  margin-top: 0vh;
+  font-weight: 300;
 mix-blend-mode: difference;
 }
 
@@ -136,6 +138,12 @@ mix-blend-mode: difference;
   }
   .main-header{
     margin-top: 30vh;
+  }
+
+  .span-header{
+    font-size: 4vw;
+    margin-top: -3vh;
+    padding-left: 3.5vw;
   }
 }
 
