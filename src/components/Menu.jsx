@@ -1,4 +1,4 @@
-import React, { useEffect,useState,useRef } from 'react';
+import React, { useEffect,useState,useRef,useLayoutEffect } from 'react';
 import "../assets/css/Menu.css"
 import {gsap,TimelineLite,TweenMax} from "gsap";
 import { LeaderBoard } from "../components/leaderBoards.jsx";
@@ -16,6 +16,8 @@ export const Menu = () =>{
 
     //tells us if any one of the subsections are open
     var isOpen = 0;
+
+    var topMargin = useRef();
 
     var [toggle,setToggle] = useState({
         isToggled:false,
@@ -134,15 +136,43 @@ export const Menu = () =>{
     var Contact = useRef(null);
     var Clues = useRef(null);
 
+    useLayoutEffect(() => {
+        /*function updateSize() {
+            setSize([window.innerWidth, window.innerHeight]);
+          }
+        window.addEventListener('resize', updateSize);
+        return () => window.removeEventListener('resize', updateSize);
+        */
+       const f = () =>{
+            function updateSize() {
+            topMargin.current = { 
+                width: window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')>"29.2143px"?20:0,
+                orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
+                setListener:true
+            };
+            }
+        if(!topMargin.current){
+            console.log("pp")
+            window.addEventListener('resize', updateSize);
+            updateSize();
+        }
+       }
+       f();
+      }, [topMargin]);
+    
+
     useEffect(()=>{
         const f = () =>{
             if(num!=-1 && toggle.isToggled==true){
-                console.log(LeaderBoards)
+                console.log(topMargin)
+                var newwidth;
+                    newwidth = 20
+                setNum()
                 requestAnimationFrame(()=>{
-                    setNum()
-                    t1.add(()=>RandomLetters(toggle.value))
+                        t1
+                            .add(()=>RandomLetters(toggle.value))
                             .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                            .to(optionTextArea,{transform:"translateY(-20vh)",duration:0.7},0.2)
+                            .to(optionTextArea,{transform:`translateY(-${topMargin.width}vh)`,duration:0.7},0.2)
                             .add(()=>setTextHeading(toggle.value))
                             .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
                             .to(contentArea,{autoAlpha:1,duration:0.2})
@@ -155,7 +185,7 @@ export const Menu = () =>{
     },[toggle])
     
     return(
-        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100",overflow:"auto"}}>
+        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
         
         <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">

@@ -9,7 +9,7 @@
     margin-top: 30vh;
     pointer-events: none;
     z-index: 100;
-    overflow: auto;
+    overflow: none;
 }
 
 .heading-options{
