@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+html,
+body {
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+	background: black;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.hello {
+	color: white;
+	letter-spacing: 2px;
+	font-size: 25px;
+	font-family: "roboto";
+	text-align: center;
+	font-weight: 300;
+}
+
+#main-ctr {
+	display: grid;
+	place-content: center center;
+	height:100vh;
+}
+
+.content {
+	border: 1px solid black;
+	display: inline-block;
+	position: relative;
+}
+
+svg {
+	transform: scale(0.7);
+	margin:auto auto
+}
+
+svg #smile-up,
+  svg #circle,
+  svg #eye-to-left,
+  svg #eye-to-right,
+  svg #wink,
+  svg #bg {
+	visibility: hidden;
+}

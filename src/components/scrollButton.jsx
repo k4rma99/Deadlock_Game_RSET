@@ -6,7 +6,7 @@ export const ScrollButton = (props) =>{
     let [refresh,SetRefresh] = useState(0);
 
     const returnPage = () =>{
-        if(props.page==0){
+        if(props.page===0){
             if(window.screen.width<1024){
                 return (
                     <div onClick={()=>props.goCarousel('next-vert')}  style={{position:"absolute",bottom:"10%",width:"100%",height:"4%"}}>
@@ -66,3 +66,4 @@ export const ScrollButton = (props) =>{
             returnPage()
     )
 }
+

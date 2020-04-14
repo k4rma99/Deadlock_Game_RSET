@@ -6,6 +6,8 @@ import "../assets/css/arrow.css"
 import {ScrollButton} from '../components/scrollButton.jsx'
 import {gsap} from "gsap/all";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import Info from "./aboutInfo.jsx"
+
 export const ScrollSnap = (props) => {
 
 
@@ -106,7 +108,7 @@ useEffect(
         <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={0}></ScrollButton>
     </div>
     <div ref={ref=>page2Ref=ref} className="page2">
-      <h1>About</h1>
+      <Info></Info>
     <ScrollButton goCarousel={goCarousel} getCarouselPositions={getCarouselPositions} page={1}></ScrollButton>
     </div> 
   </div>
