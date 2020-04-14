@@ -155,7 +155,7 @@ export const Menu = () =>{
     },[toggle])
     
     return(
-        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
+        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100",overflow:"auto"}}>
         
         <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">
