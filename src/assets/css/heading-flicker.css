@@ -22,7 +22,7 @@ mix-blend-mode: difference;
 
 
 .main-header{
-  width: 100%;
+  width: 100vw;
   align-content: center;
   justify-content: center;
   text-align: center;
@@ -121,15 +121,69 @@ mix-blend-mode: difference;
 /*# sourceMappingURL=heading-flicker.css.map */
 
 
-@media only screen and(min-width:768px){
+@media only screen and(min-device-width:768px){
   .heading{
     font-size: 20vw;
   }
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
+    
   .heading{
-    font-size: 10vw;
+    font-size: 6vw;
+  }
+
+  .span-header{
+    font-size: 3vw;
+  }
+
+  .main-header{
+    margin-top: 10vh;
+  }
+}
+
+@media only screen and (min-device-width:321px) and (max-device-width: 767px) and (orientation: landscape){
+  
+  .heading{
+    font-size: 6vw;
+  }
+
+  .span-header{
+    font-size: 3vw;
+  }
+
+  .main-header{
+    margin-top: 30vh;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (orientation: landscape) {
+    
+
+  .heading{
+    font-size: 6vw;
+  }
+
+  .span-header{
+    font-size: 3vw;
+  }
+
+  .main-header{
+    margin-top: 30vh;
+  }
+}
+
+@media only screen and (min-device-width: 768px) {
+    
+  .main-header{
+    margin-top: 30vh;
+  }
+}
+
+
+@media only screen and (min-device-width:1024px){
+  .heading{
+    font-size: calc(5em + 3.5vw);
   }
 
   .heading-container{

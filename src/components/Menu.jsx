@@ -134,19 +134,6 @@ export const Menu = () =>{
     var Contact = useRef(null);
     var Clues = useRef(null);
 
-    const OpenPage = () =>{
-        console.log(t1)
-        setNum()
-        t1
-                .fromTo([LeaderBoards.current,Rules.current,Contact.current,Clues.current],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                .add(()=>RandomLetters(toggle.value))
-                .to(optionTextArea.current,{transform:"translateY(-20vh)",duration:0.7})
-                .add(()=>setTextHeading(toggle.value))
-                .to([LeaderBoards.current,Rules.current,Contact.current,Clues.current],{display:"none",duration:0.2})
-                .to(contentArea.current,{autoAlpha:1,duration:0.2})
-                .eventCallback("onComplete", ()=>{t1.clear();})
-    }
-
     useEffect(()=>{
         const f = () =>{
             if(num!=-1 && toggle.isToggled==true){
@@ -168,9 +155,10 @@ export const Menu = () =>{
     },[toggle])
     
     return(
-        <div style={{display:"flex",position:"absolute",zIndex:"100",willChange:"content"}}>
-        <div ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
-        <div className="black-header">
+        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
+        
+        <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
+        <div style={{color:"black"}} className="black-header">
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
             <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
             <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>

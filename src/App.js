@@ -3,6 +3,7 @@ import {Navbar} from "./components/Navbar.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import { Menu } from './components/Menu.jsx';
+import Div100vh from 'react-div-100vh'
 
 function App() {
 
@@ -15,8 +16,10 @@ function App() {
   </head>
   <body id='App' className="App">
   <Navbar></Navbar>
-  <Menu></Menu>
-  <ScrollSnap></ScrollSnap>
+    <Menu></Menu>
+    <Div100vh>
+    <ScrollSnap></ScrollSnap>
+    </Div100vh>
   </body>
 
 </html>

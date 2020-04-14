@@ -1,34 +1,31 @@
 
 .option-textarea{
-    border: thin yellow solid;
-    display: flexbox;
+    display: block;
     position: absolute;
     top: 0;
     opacity: 0;
     transform: translate3d(0,0,0);
-    will-change: opacity;
+    will-change: opacity contents;
     margin-top: 30vh;
     pointer-events: none;
     z-index: 100;
 }
 
+
 .heading-options{
     will-change: contents;
     position: relative;
     margin: 0;
-    border: none;
     display: block;
   font-size: 14vw;
-  color: white;
-  /*right: 1%;*/
   font-family: montserrat, sans-serif;
 font-weight: 700;
 
 font-style: normal;
 text-align: left;
 padding-left: 3vw;
-margin-bottom: 0;
 mix-blend-mode: difference;
+text-rendering: optimizeSpeed;
 }
 
 .heading-options:hover{
@@ -37,7 +34,6 @@ mix-blend-mode: difference;
 
 .black-header{
     position: relative;
-    z-index: inherit;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -46,7 +42,6 @@ mix-blend-mode: difference;
 
 
 .menu-holder{
-    border: thin yellow solid;
     display: flex;
     flex-direction: column;
     padding :0;
@@ -58,10 +53,12 @@ mix-blend-mode: difference;
 .black-header h4{
     margin-top: 0vh;
     margin-left: 4vw;
-    display: block;
+    display: flex;
     text-align: left;
     font-family: montserrat, sans-serif;
     font-weight: 700;
+    will-change:opacity;
+    color: black;
 }
 
 .black-header h4:hover{
@@ -93,9 +90,42 @@ mix-blend-mode: difference;
     font-family: montserrat, sans-serif;
 }
 
-@media only screen and (min-width: 1023px){
+@media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
+    
+
     .heading-options{
-        font-size: 10vw;
+      font-size: 6vw;
+    }
+
+    .option-textarea{
+        margin-top: 10vh;
+    } 
+
+}
+
+@media only screen and (min-device-width:321px) and (max-device-width: 767px) and (orientation: landscape){
+    .heading-options{
+        font-size: 6vw;
+      }
+}
+
+@media only screen and (min-device-width: 768px) and (orientation: landscape){
+    .heading-options{
+        font-size: 6vw;
+      }
+}
+
+
+@media only screen and(min-device-width:768px){
+    .heading-options{
+      font-size: 6vw;
+    }
+}
+
+
+@media only screen and (min-device-width: 1023px){
+    .heading-options{
+        font-size: calc(5em + 3.5vw);
     }
 
     .content-area div div{

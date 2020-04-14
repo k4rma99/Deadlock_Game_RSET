@@ -15,10 +15,12 @@ nav{
 .options{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     top: 0;
-    -webkit-transform: translate3d(0,-100%,0);
-  transform: translate3d(0,-100%,0);
+    -webkit-transform:scaleY(0) translate3d(0,0%,0);
+  transform:scaleY(0) translate3d(0,0%,0);
+  transform-origin: 0 0 ;
+  -webkit-transform-origin: 0 0;
   pointer-events: none;
     z-index:11;
     background-color: #ffffff;
@@ -61,5 +63,3 @@ nav{
 .menu-button:hover{
     cursor: pointer;
 }
-
-

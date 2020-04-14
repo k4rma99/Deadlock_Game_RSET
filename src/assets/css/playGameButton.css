@@ -8,6 +8,7 @@
   z-index: auto;
   display: flex;
   margin-top: 3.5vh;
+  border: thin yellow solid;
 }
 
 .cta {

@@ -25,9 +25,8 @@ export const Navbar = () =>{
                 requestAnimationFrame(()=>{
                     t
                     //.to(".options",{opacity:"1",duration:0.2})
-                    .to(".options",{transform:"translateY(0)",duration:0.1})
+                    .to(".options",{transform:"scaleY(1)",duration:0.1})
                     .fromTo(".option-textarea",{opacity:0,pointerEvents:"none"},{pointerEvents:"auto",opacity:"1",duration:0.2})  
-
                 }) 
             }
         }
