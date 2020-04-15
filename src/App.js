@@ -1,11 +1,47 @@
-import React from 'react';
+import React,{useEffect,useRef} from 'react';
 import {Navbar} from "./components/Navbar.jsx"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import {useSelector} from 'react-redux';
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import { Menu } from './components/Menu.jsx';
 import Div100vh from 'react-div-100vh'
 
-function App() {
+export const App = (props) => {
+
+  var Cookie = require('js-cookie');
+  let auth = useSelector(state=>state.fireBaseReducer.auth);
+  
+  const returnPage = () =>{
+    if(auth.isEmpty ==true){
+      if(Cookie.get("LoggedIn")=='true'){
+
+      }
+      else{
+        return <ScrollSnap></ScrollSnap>
+      }
+    }
+    else{
+      if(Cookie.get("LoggedIn")!='true'){
+        Cookie.set('LoggedIn','true');
+      }
+      return (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
+      <h1>Game Page</h1>
+    </div>)
+    }
+  }
+
+  useEffect(() => {
+
+    
+    
+    
+
+  }, [])
 
   return (
 <html>
@@ -17,14 +53,31 @@ function App() {
   <body id='App' className="App">
   <Navbar></Navbar>
     <Menu></Menu>
-    <Div100vh>
-    <ScrollSnap></ScrollSnap>
-    </Div100vh>
+
+    <Router>
+    <Switch>
+      <Route exact path="/">
+        <Div100vh>
+          {returnPage()}
+        </Div100vh>
+      </Route>
+      {/*<Route path="/home">
+        <div style={{backgroundColor:"white",color:"black",marginTop:"10vh"}}>
+          Game Page
+        </div>
+  </Route>*/}
+      <Route render={() =>
+      <Div100vh>
+              <div style={{backgroundColor:"white",position:"fixed",width:"100%",height:"100vh",zIndex:"1000"}}>
+                <h1>404: page not found</h1>
+                </div>
+      </Div100vh>}>
+        </Route>
+    </Switch>
+  </Router>
   </body>
 
 </html>
   );
 }
 
-
-export default App;

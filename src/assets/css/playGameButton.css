@@ -12,6 +12,7 @@
 
 .cta {
     display: grid;
+    border: none;
     margin: 0 auto;
     grid-template-columns: 80% 20%;
     padding: 10px 45px;
@@ -21,7 +22,6 @@
     color: white;
     background: #6225E6;
     transition: 1s;
-    box-shadow: 6px 6px 0 black;
     transform: skewX(-15deg);
     width: 55%;
 }

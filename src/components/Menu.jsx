@@ -6,13 +6,13 @@ import { LeaderBoard } from "../components/leaderBoards.jsx";
 export const Menu = () =>{
     var headerText = null;
     var contentArea = null;
-    let t1 = gsap.timeline();
+    let t1 = useRef(gsap.timeline());
     let id = useRef(null);
 
     //used for generating random alphanumeric characters. If num == -1 then the recursive functions starts
     //the recursive function generates the random number effect 
     //when we set it back to 1 then it stops
-    var num = 1;
+    var num = useRef(1);
 
     //tells us if any one of the subsections are open
     var isOpen = 0;
@@ -26,11 +26,11 @@ export const Menu = () =>{
     });
     
     const setNum = () =>{
-        num = num *-1;
+        num.current = num.current *-1;
     }
 
     const setTextHeading = (s) =>{
-        num = num *-1;
+        num.current = num.current *-1;
         if(headerText){
             requestAnimationFrame(()=>{
                 headerText.textContent = s
@@ -40,17 +40,17 @@ export const Menu = () =>{
 
     const Minimize = () => 
     {
-        if(num!=-1){
+        if(num.current!=-1 && toggle.isToggled==true){
         requestAnimationFrame(()=>{
         setNum()
-        t1
+        t1.current
         .to('.content-area',{autoAlpha:"0",duration:0.2})
         .add(()=>RandomLetters("DEADLOCK"))
         .to('.option-textarea',{transform:"translateY(0vh)",duration:0.7})
-        .add(()=>setTextHeading(toggle.value))
+        .add(()=>setTextHeading("DEADLOCK"))
         .to('.black-header h4',{display:"block",duration:0.2})
         .fromTo('.black-header h4',{autoAlpha:0},{autoAlpha:1,duration:0.2})
-        .eventCallback("onComplete", ()=>{isOpen = 0;setToggle({isToggled:false,value:"DEADLOCK",section:0})});
+        .eventCallback("onComplete", ()=>{isOpen = 0;t1.current.clear();setToggle({isToggled:false,value:"DEADLOCK",section:0})});
         })
         }
 
@@ -59,7 +59,7 @@ export const Menu = () =>{
     const RandomLetters = (s) =>{
         if(headerText){
                 headerText.textContent = Math.random().toString(36).substr(2, s.length)
-        if(num==-1){
+        if(num.current==-1){
             setTimeout(()=>{
                 requestAnimationFrame(()=>RandomLetters(s))
             },100)
@@ -137,46 +137,56 @@ export const Menu = () =>{
     var Clues = useRef(null);
 
     useLayoutEffect(() => {
-        /*function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
-          }
-        window.addEventListener('resize', updateSize);
-        return () => window.removeEventListener('resize', updateSize);
-        */
        const f = () =>{
-            function updateSize() {
-            topMargin.current = { 
-                width: window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')>"29.2143px"?20:0,
-                orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
-                setListener:true
-            };
+       
+        function updateSize() {
+            if(num.current == -1){
+               /*    setToggle({
+                    isToggled:false,
+                    value:"",
+                    section:0,
+                });
+                */
             }
-        if(!topMargin.current){
-            console.log("pp")
-            window.addEventListener('resize', updateSize);
-            updateSize();
+            else{
+                if(optionTextArea){
+                    var c = window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')
+                    console.log(c)
+                    topMargin.current = { 
+                        width: Number(c.substring(0,c.length-2))>29.2143?20:0,
+                        orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
+                        setListener:true
+                    };
+              }  
+            }
+          //  console.log(Number(c.substring(0,c.length-2)))
         }
+    if(!topMargin.current){
+        console.log("pp")
+        window.addEventListener('resize', updateSize);
+        updateSize();
+    }
        }
        f();
-      }, [topMargin]);
-    
+      }, [topMargin,t1]);
+
 
     useEffect(()=>{
+
+        
         const f = () =>{
-            if(num!=-1 && toggle.isToggled==true){
-                console.log(topMargin)
-                var newwidth;
-                    newwidth = 20
+            if(num.current!=-1 && toggle.isToggled==true){
+                console.log("hello")
                 setNum()
                 requestAnimationFrame(()=>{
-                        t1
+                        t1.current
                             .add(()=>RandomLetters(toggle.value))
                             .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                            .to(optionTextArea,{transform:`translateY(-${topMargin.width}vh)`,duration:0.7},0.2)
+                            .to(optionTextArea,{transform:`translateY(-${topMargin.current.width}vh)`,duration:0.7},0.2)
                             .add(()=>setTextHeading(toggle.value))
                             .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
                             .to(contentArea,{autoAlpha:1,duration:0.2})
-                            .eventCallback("onComplete", ()=>{t1.clear();})
+                            .eventCallback("onComplete", ()=>{t1.current.clear();})
                 })
             }
 
