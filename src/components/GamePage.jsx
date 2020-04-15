@@ -1,4 +1,5 @@
 import React, { useEffect,useState,useRef } from 'react';
+//import {FancyLoader} from "./fancyLoader.jsx"
 
 import "../assets/css/GamePage.css"
 
@@ -128,7 +129,7 @@ useEffect(()=>{
 
     return (
         <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100%",paddingTop:"10vh",paddingLeft:"4vw",backgroundColor:"black"}}>
-<h1 className="game-header">Overclock your Brain</h1>
+<h1 className="game-header">Challenge</h1>
 <nav className="search-nav">
   <ul>
     <li ref={ref=>liRef=ref} style={{display:"flex",flexDirection:"row",height:"100%"}}>

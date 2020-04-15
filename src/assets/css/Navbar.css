@@ -23,7 +23,7 @@ nav{
   -webkit-transform-origin: 0 0;
   pointer-events: none;
     z-index:11;
-    background-color: #ffffff;
+    background-color: white;
     will-change: transform;
 }
 
