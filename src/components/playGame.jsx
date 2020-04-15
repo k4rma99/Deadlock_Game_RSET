@@ -2,14 +2,23 @@ import React,{Component,useEffect} from "react"
 import "../assets/css/playGameButton.css"
 import {useSelector} from 'react-redux';
 import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
+import {useHistory} from 'react-router-dom'
 import Svg from "./playGameSVG"
 var Cookie = require('js-cookie');
-export const PlayGameButton = () =>{
+export const PlayGameButton = (props) =>{
 
         const firebase =useFirebase();
+        var history = useHistory();
 
         let auth = useSelector(state=>state.fireBaseReducer.auth);
         let authError = useSelector(state=>state.fireBaseReducer.authError)
+
+        useEffect(()=>{
+                if(auth.isEmpty==false){
+                        Cookie.set("LoggedIn","true");
+                        props.SetStateChange(props.forceStateChange * -1);
+                }
+        })
 
         function loginWithGoogle() {
                 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)

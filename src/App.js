@@ -3,10 +3,9 @@ import {Navbar} from "./components/Navbar.jsx"
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  useHistory
+  Route
 } from "react-router-dom";
-import {useSelector} from 'react-redux';
+import {GamePage} from "./components/GamePage.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import { Menu } from './components/Menu.jsx';
@@ -15,51 +14,20 @@ import { useFirebase } from 'react-redux-firebase';
 
 export const App = (props) => {
 
+  let [forceStateChange,SetStateChange] = useState(1);
   var Cookie = require('js-cookie');
-  let [user,SetUser] = useState(Cookie.get("LoggedIn"));
-  //let auth = useSelector(state=>state.fireBaseReducer.auth);
   const firebase = useFirebase();
 
-  const logout = () =>{
-    console.log("eee");firebase.logout();Cookie.set("LoggedIn","false");
-  }
-
   const returnPage = () =>{
+    if(Cookie.get("LoggedIn")=='true'){
+      return (<GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}>
 
-   /* if(auth.isEmpty ==true){
-      if(Cookie.get("LoggedIn")=='true'){
-        console.log("peepee")
-        return (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
-        <button onclick={()=>{console.log("eee");firebase.logout();Cookie.set("LoggedIn","false")}}>Game Page</button>
-      </div>)
-      }
-      else{
-        return <ScrollSnap></ScrollSnap>
-      }
-    }
-    else{
-      console.log("peepee")
-      if(Cookie.get("LoggedIn")!='true'){
-        Cookie.set('LoggedIn','true');
-      }
-      return  (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
-        dwdw
-      <button onClick={()=>logout()}>Game Page</button>
-    </div>)
-    }
-    */
-
-    if(user==true){
-      return (
-        <div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
-        Game Page
-      <button onClick={()=>logout()}>Logout</button>
-    </div>
+      </GamePage>
       )
     }
     else{
       return (
-        <ScrollSnap></ScrollSnap>
+        <ScrollSnap forceStateChange={forceStateChange} SetStateChange={SetStateChange}></ScrollSnap>
       )
     }
   }
@@ -67,6 +35,7 @@ export const App = (props) => {
   firebase.auth().onAuthStateChanged((user)=>{
     if(user){
       if(Cookie.get("LoggedIn")!='true'){
+        console.log("Ran event listener")
           Cookie.set("LoggedIn","true");
       }
     }
@@ -79,6 +48,7 @@ export const App = (props) => {
 
   useEffect(() => {
       console.log("s")
+      console.log("Ran");
   }, [])
 
   return (
@@ -86,7 +56,7 @@ export const App = (props) => {
 
   <head>
     <link rel="stylesheet" href="https://use.typekit.net/bfk1sru.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.js" integrity="sha256-mfgvzVjyIcoXo0ElsT8uFIuDWYkvKCQ6wrkm6If7iug=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.js" integrity="sha256-mfgvzVjyIcoXo0ElsT8uFIuDWYkvKCQ6wrkm6If7iug=" crossOrigin="anonymous"></script>
   </head>
   <body id='App' className="App">
   <Navbar></Navbar>

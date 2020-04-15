@@ -12,7 +12,7 @@
 
 .cta {
     display: grid;
-    border: none;
+    border: thin green solid;
     margin: 0 auto;
     grid-template-columns: 80% 20%;
     padding: 10px 45px;

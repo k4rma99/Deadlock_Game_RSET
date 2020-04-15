@@ -1,0 +1,65 @@
+  #searchOverlay {
+    width: 80%;
+    padding: 10%;
+  }
+  
+  #searchOverlay input, #searchOverlay input:focus {
+    width: 100%;
+    padding: 0px;
+    border: 0px;
+    font-size: 4em;
+    outline: none;
+    
+  }
+
+  .search-nav{
+      position: absolute;
+      padding: 0;
+      mix-blend-mode: normal;
+      width: 80%;
+      z-index: 10;
+  }
+
+  .search-nav ul{
+    width: 100%;
+    top: 0;
+    height: 100%;
+    list-style-type: none;
+  }
+
+  .search-nav p{
+      position: absolute;
+      top: 0;
+  }
+
+  .search-nav input{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+  }
+  
+  nav .search {
+      width: 2em;
+      height: 2em;
+      border: none;
+      background-color: white;
+      position: absolute;
+      left: 0;
+    background: white url(https://d30y9cdsu7xlg0.cloudfront.net/png/1311-42.png) center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  
+  nav .search:hover {
+    opacity: .4;
+    cursor: pointer;
+  }
+  
+  nav .search.close {
+    background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/27846-84.png);
+  }
+  
+  
+  /* other stuff */
+  
