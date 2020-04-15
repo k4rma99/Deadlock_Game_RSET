@@ -127,7 +127,8 @@ useEffect(()=>{
 },[])
 
     return (
-        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw"}}>
+        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100%",paddingTop:"10vh",paddingLeft:"4vw",backgroundColor:"black"}}>
+<h1 className="game-header">Overclock your Brain</h1>
 <nav className="search-nav">
   <ul>
     <li ref={ref=>liRef=ref} style={{display:"flex",flexDirection:"row",height:"100%"}}>
@@ -137,7 +138,7 @@ useEffect(()=>{
     <li>
     <div ref={ref=>searchOverlay=ref} id="searchOverlay" style={{display:"none"}}>
   
-  <input ref={ref=>searchInput=ref} style={{fontSize:"3em",height:"100%"}} onKeyUp={(e)=>SearchInputKeyUp(e)} autofocus type="text" placeholder="Search anything..."/>
+  <input ref={ref=>searchInput=ref} style={{fontSize:"3em",height:"100%"}} onKeyUp={(e)=>SearchInputKeyUp(e)} autofocus type="text" placeholder=""/>
     
   </div>
     </li>

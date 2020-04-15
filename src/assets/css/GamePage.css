@@ -16,13 +16,20 @@
   .search-nav{
       position: absolute;
       padding: 0;
-      mix-blend-mode: normal;
       width: 80%;
       z-index: 10;
   }
 
   .search-nav *{
     font-family: montserrat, sans-serif;
+    color: white;
+  }
+
+  .game-header{
+    font-family: montserrat, sans-serif;
+      font-size: 5em;
+      margin: 0;
+      color: white;
   }
 
   .search-nav ul{
@@ -44,16 +51,16 @@
       width: 100%;
       font-family: montserrat, sans-serif;
       font-weight: bold;
+      background-color: black;
   }
   
   nav .search {
       width: 2em;
       height: 2em;
       border: none;
-      background-color: white;
       position: absolute;
       left: 0;
-    background: white url(https://d30y9cdsu7xlg0.cloudfront.net/png/1311-42.png) center center;
+    background: url(https://lh3.googleusercontent.com/proxy/TC5VF-31Fhs3Zm0NCkJEp6n9Cx9eokd7BgQ29ZemirlvaTPcfqVjAJGa7fPsGBqx7aZiVIcafkjW2NTp061igyTA3MJmZi6kLFqXdTuZKdpliD2u7zGAlsnuL66kSg) center center;
     background-repeat: no-repeat;
     background-size: 100%;
   }
