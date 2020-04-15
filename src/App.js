@@ -1,46 +1,84 @@
-import React,{useEffect,useRef} from 'react';
+import React,{useEffect,useState} from 'react';
 import {Navbar} from "./components/Navbar.jsx"
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom";
 import {useSelector} from 'react-redux';
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import { Menu } from './components/Menu.jsx';
 import Div100vh from 'react-div-100vh'
+import { useFirebase } from 'react-redux-firebase';
 
 export const App = (props) => {
 
   var Cookie = require('js-cookie');
-  let auth = useSelector(state=>state.fireBaseReducer.auth);
-  
-  const returnPage = () =>{
-    if(auth.isEmpty ==true){
-      if(Cookie.get("LoggedIn")=='true'){
+  let [user,SetUser] = useState(Cookie.get("LoggedIn"));
+  //let auth = useSelector(state=>state.fireBaseReducer.auth);
+  const firebase = useFirebase();
 
+  const logout = () =>{
+    console.log("eee");firebase.logout();Cookie.set("LoggedIn","false");
+  }
+
+  const returnPage = () =>{
+
+   /* if(auth.isEmpty ==true){
+      if(Cookie.get("LoggedIn")=='true'){
+        console.log("peepee")
+        return (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
+        <button onclick={()=>{console.log("eee");firebase.logout();Cookie.set("LoggedIn","false")}}>Game Page</button>
+      </div>)
       }
       else{
         return <ScrollSnap></ScrollSnap>
       }
     }
     else{
+      console.log("peepee")
       if(Cookie.get("LoggedIn")!='true'){
         Cookie.set('LoggedIn','true');
       }
-      return (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
-      <h1>Game Page</h1>
+      return  (<div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
+        dwdw
+      <button onClick={()=>logout()}>Game Page</button>
     </div>)
+    }
+    */
+
+    if(user==true){
+      return (
+        <div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
+        Game Page
+      <button onClick={()=>logout()}>Logout</button>
+    </div>
+      )
+    }
+    else{
+      return (
+        <ScrollSnap></ScrollSnap>
+      )
     }
   }
 
+  firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+      if(Cookie.get("LoggedIn")!='true'){
+          Cookie.set("LoggedIn","true");
+      }
+    }
+    else{
+      if(Cookie.get("LoggedIn")=='true'){
+        Cookie.set("LoggedIn","false");
+    }
+    }
+  })
+
   useEffect(() => {
-
-    
-    
-    
-
+      console.log("s")
   }, [])
 
   return (

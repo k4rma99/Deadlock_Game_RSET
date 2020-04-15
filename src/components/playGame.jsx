@@ -1,11 +1,9 @@
 import React,{Component,useEffect} from "react"
 import "../assets/css/playGameButton.css"
 import {useSelector} from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
-
 import Svg from "./playGameSVG"
-
+var Cookie = require('js-cookie');
 export const PlayGameButton = () =>{
 
         const firebase =useFirebase();
@@ -14,7 +12,10 @@ export const PlayGameButton = () =>{
         let authError = useSelector(state=>state.fireBaseReducer.authError)
 
         function loginWithGoogle() {
-                return firebase.login({ provider: 'google', type: 'popup' })
+                firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(function() {
+                        return firebase.login({ provider: 'google', type: 'popup' });
+                })
         }
     
         return(<div className="main-grid">
