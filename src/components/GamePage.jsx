@@ -16,6 +16,7 @@ export const GamePage = (props) =>{
 var searchOverlay = null;
 var searchInput = null;
 var searchButton = null;
+var liRef = null;
 
 // hide the searchOverlay
 
@@ -30,18 +31,26 @@ var searchStatus = useRef(false);
 
 // Open and close search when magnifying class or close is tapped
 const searchClicked = () =>{
+    console.log("epe")
+    
     if (!searchStatus.current) {
-            searchOverlay.style.display = "flex"
+            requestAnimationFrame(()=>{ 
+                searchOverlay.style.display = "flex"
+                liRef.style.opacity = "0"
             //searchOverlay.show();
             //searchOverlay.find('input').focus();
-            searchInput.focus();
+                searchInput.focus();
+            })
 			searchStatus.current = true;
       }
     else  {
-        searchOverlay.style.display = "none"
+        requestAnimationFrame(()=>{
+            searchOverlay.style.display = "none"
+            liRef.style.opacity = "1"
         //searchOverlay.hide();
         //searchOverlay.find('input').val('');
-        searchInput.textContent = ''
+            searchInput.textContent = ''
+        })
         searchStatus.current = false;
         //searchButton.removeClass("close");
 
@@ -52,10 +61,13 @@ const SearchInputKeyUp = (e) =>{
     if (searchStatus) {
         //might have to change the below line of code
         if (!e.target.value) {
-            searchOverlay.style.display = "none"
-         //searchOverlay.hide();
-         //searchOverlay.find('input').val('');
-         searchInput.textContent=''
+            requestAnimationFrame(()=>{
+                searchOverlay.style.display = "none"
+                liRef.style.opacity = "1"
+             //searchOverlay.hide();
+             //searchOverlay.find('input').val('');
+                searchInput.textContent=''
+            })
          searchStatus.current = false;
          //searchButton.removeClass("close");
         }
@@ -63,10 +75,15 @@ const SearchInputKeyUp = (e) =>{
 }
 
 const ClosePage = (e) =>{
-    if(e.target.className!='search'){
+    console.log("d")
+    console.log(e.target.className)
+    if(e.target.className!='search' && e.target.className!='text-area-search'){
         if(searchStatus.current == true){
-            searchOverlay.style.display = "none"
-            searchInput.textContent = ''
+            requestAnimationFrame(()=>{
+                searchOverlay.style.display = "none"
+                liRef.style.opacity = "1"
+                searchInput.textContent = ''
+            })
             searchStatus.current = false;
         }
     }
@@ -80,9 +97,10 @@ useEffect(()=>{
         document.addEventListener("keyup",(e)=>{
             if (e.keyCode == 27 && searchStatus.current) {
                 //searchOverlay.hide();//
-                searchOverlay.style.display = "none"
-                //searchOverlay.find('input').val('');//
-                searchInput.textContent = ''
+                    searchOverlay.style.display = "none"
+                    liRef.style.opacity = "1"
+                    //searchOverlay.find('input').val('');//
+                    searchInput.textContent = ''
                 searchStatus.current = false;
                 //searchButton.removeClass("close");//
                  }
@@ -93,9 +111,10 @@ useEffect(()=>{
             if (!e.metaKey) {
               if(e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode >= 48 && e.keyCode <= 57) {
                   if (!searchStatus.current) {
-                      //searchOverlay.show();//
-                      searchOverlay.style.display = "flex"
-                      searchInput.focus();//
+                        //searchOverlay.show();//
+                        searchOverlay.style.display = "flex"
+                        liRef.style.opacity = "0"
+                        searchInput.focus();//
                       searchStatus.current = true;
                       //searchButton.addClass("close");//
                   }
@@ -105,21 +124,20 @@ useEffect(()=>{
         added.current = true;
     }
     searchOverlay.style.display = "none"
-
 },[])
 
     return (
-        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100vh"}}>
+        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw"}}>
 <nav className="search-nav">
   <ul>
-    <li style={{display:"flex",flexDirection:"row"}}>
-        <button  ref={ref=>searchButton=ref}  onClick={()=>searchClicked()} className="search"></button>
-    <p style={{width:"80%"}}>Type anywhere (or click the icon) to search.</p>
+    <li ref={ref=>liRef=ref} style={{display:"flex",flexDirection:"row",height:"100%"}}>
+        <button onClick={()=>searchClicked()} ref={ref=>searchButton=ref} className="search"></button>
+        <div onClick={()=>searchClicked()} style={{width:"80%"}} className="text-area-search">Your answer here.</div>
     </li>
     <li>
     <div ref={ref=>searchOverlay=ref} id="searchOverlay" style={{display:"none"}}>
   
-  <input ref={ref=>searchInput=ref} style={{fontSize:"2em",height:"100%"}} onKeyUp={(e)=>SearchInputKeyUp(e)} autofocus type="text" placeholder="Search anything..."/>
+  <input ref={ref=>searchInput=ref} style={{fontSize:"3em",height:"100%"}} onKeyUp={(e)=>SearchInputKeyUp(e)} autofocus type="text" placeholder="Search anything..."/>
     
   </div>
     </li>
