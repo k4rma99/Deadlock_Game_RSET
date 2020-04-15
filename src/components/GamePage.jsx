@@ -31,7 +31,6 @@ var searchStatus = useRef(false);
 // Open and close search when magnifying class or close is tapped
 const searchClicked = () =>{
     if (!searchStatus.current) {
-            console.log(searchOverlay);
             searchOverlay.style.display = "flex"
             //searchOverlay.show();
             //searchOverlay.find('input').focus();
@@ -61,6 +60,16 @@ const SearchInputKeyUp = (e) =>{
          //searchButton.removeClass("close");
         }
      }
+}
+
+const ClosePage = (e) =>{
+    if(e.target.className!='search'){
+        if(searchStatus.current == true){
+            searchOverlay.style.display = "none"
+            searchInput.textContent = ''
+            searchStatus.current = false;
+        }
+    }
 }
 
 useEffect(()=>{
@@ -100,7 +109,7 @@ useEffect(()=>{
 },[])
 
     return (
-        <div>
+        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100vh"}}>
 <nav className="search-nav">
   <ul>
     <li style={{display:"flex",flexDirection:"row"}}>
