@@ -131,6 +131,10 @@ text-rendering: optimizeSpeed;
     .heading-options{
         font-size: 20vw;
       }
+
+      .option-textarea{
+        margin-top: 30vh;
+    }
   }
 
   @media only screen and (max-height: 17.77cm) and (orientation: landscape){
@@ -156,7 +160,7 @@ text-rendering: optimizeSpeed;
   }
   
   
-  @media only screen and (min-device-height: 17.78cm) and (orientation:landscape) {
+ @media only screen and (min-device-height: 17.78cm) and (orientation:landscape) {
       
   
     .heading-options{
@@ -166,15 +170,19 @@ text-rendering: optimizeSpeed;
     .option-textarea{
         margin-top: 30vh;
     }
-  }
-  
-  @media only screen and (min-device-width: 17.78) {
+}
+
+ 
+  @media only screen and (min-device-width: 17.78cm) and(orientation:portrait){
       
+    .heading-options{
+        font-size: 14vw;
+      }
+
     .option-textarea{
         margin-top: 30vh;
     }
   }
-  
 
 
 @media only screen and (min-device-width: 1023px){
