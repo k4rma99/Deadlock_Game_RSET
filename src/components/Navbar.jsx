@@ -26,6 +26,7 @@ export const Navbar = () =>{
                     t
                     //.to(".options",{opacity:"1",duration:0.2})
                     .to(".options",{transform:"scaleY(1)",duration:0.1})
+                    .to([".container",".game-main"],{display:"none",duration:0})
                     .fromTo(".option-textarea",{opacity:0,pointerEvents:"none"},{pointerEvents:"auto",opacity:"1",duration:0.2})  
                 }) 
             }

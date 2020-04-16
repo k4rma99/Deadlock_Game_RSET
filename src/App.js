@@ -56,6 +56,7 @@ export const App = (props) => {
 
   <head>
     <link rel="stylesheet" href="https://use.typekit.net/bfk1sru.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.js" integrity="sha256-mfgvzVjyIcoXo0ElsT8uFIuDWYkvKCQ6wrkm6If7iug=" crossOrigin="anonymous"></script>
   </head>
   <body id='App' className="App">
@@ -65,9 +66,7 @@ export const App = (props) => {
     <Router>
     <Switch>
       <Route exact path="/">
-        <Div100vh>
           {returnPage()}
-        </Div100vh>
       </Route>
       {/*<Route path="/home">
         <div style={{backgroundColor:"white",color:"black",marginTop:"10vh"}}>

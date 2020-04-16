@@ -11,8 +11,9 @@ font-weight: 700;
 font-style: normal;
 text-align: left;
 padding-left: 3vw;
-margin-bottom: 0;
+margin: 0;
 mix-blend-mode: difference;
+border: thin yellow solid;
 }
 
 .main-grid{
@@ -22,7 +23,6 @@ mix-blend-mode: difference;
 
 
 .main-header{
-  width: 100vw;
   align-content: center;
   justify-content: center;
   text-align: center;
@@ -127,10 +127,29 @@ mix-blend-mode: difference;
   }
 }
 
+/* targets mobile devices in landscape mode */
+@media only screen and (max-height: 17.77cm) and (orientation: landscape){
+  
+  .heading{
+    font-size: 10vw;
+  }
+
+  .span-header{
+    font-size: 5vw;
+  }
+
+  .main-header{
+    margin-top: 10vh;
+    top: 0;
+  }
+}
+
+/*targets very small devices in landscape mode*/
 @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
     
   .heading{
     font-size: 6vw;
+    border: none;
   }
 
   .span-header{
@@ -142,38 +161,34 @@ mix-blend-mode: difference;
   }
 }
 
-@media only screen and (min-device-width:321px) and (max-device-width: 767px) and (orientation: landscape){
-  
-  .heading{
-    font-size: 6vw;
-  }
-
-  .span-header{
-    font-size: 3vw;
-  }
-
-  .main-header{
-    margin-top: 30vh;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (orientation: landscape) {
+/*
+@media only screen and (min-device-height: 17.78cm) and (orientation:landscape) {
     
 
   .heading{
-    font-size: 6vw;
+    font-size: 10vw;
   }
 
   .span-header{
-    font-size: 3vw;
+    font-size: 5vw;
   }
 
   .main-header{
     margin-top: 30vh;
   }
 }
+*/
 
-@media only screen and (min-device-width: 768px) {
+
+@media only screen and (min-device-width: 17.78) {
+
+  .heading{
+    font-size: 10vw;
+  }
+
+  .span-header{
+    font-size: 5vw;
+  }
     
   .main-header{
     margin-top: 30vh;

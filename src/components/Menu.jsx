@@ -140,15 +140,7 @@ export const Menu = () =>{
        const f = () =>{
        
         function updateSize() {
-            if(num.current == -1){
-               /*    setToggle({
-                    isToggled:false,
-                    value:"",
-                    section:0,
-                });
-                */
-            }
-            else{
+            
                 if(optionTextArea){
                     var c = window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')
                     console.log(c)
@@ -157,8 +149,7 @@ export const Menu = () =>{
                         orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
                         setListener:true
                     };
-              }  
-            }
+              }
           //  console.log(Number(c.substring(0,c.length-2)))
         }
     if(!topMargin.current){

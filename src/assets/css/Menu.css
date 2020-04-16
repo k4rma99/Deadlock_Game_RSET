@@ -16,6 +16,7 @@
     will-change: contents;
     position: relative;
     margin: 0;
+    border: thin black solid;
     display: block;
   font-size: 14vw;
   font-family: montserrat, sans-serif;
@@ -90,6 +91,8 @@ text-rendering: optimizeSpeed;
     font-family: montserrat, sans-serif;
 }
 
+/*New Sizing info
+
 @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
     
 
@@ -115,12 +118,63 @@ text-rendering: optimizeSpeed;
       }
 }
 
-
 @media only screen and(min-device-width:768px){
     .heading-options{
       font-size: 6vw;
     }
 }
+
+
+*/
+
+@media only screen and(min-device-width:768px){
+    .heading-options{
+        font-size: 20vw;
+      }
+  }
+
+  @media only screen and (max-height: 17.77cm) and (orientation: landscape){
+    
+    .heading-options{
+          font-size: 10vw;
+        }
+
+        .option-textarea{
+            margin-top: 10vh;
+        } 
+  }
+  
+  @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
+      
+    .heading-options{
+        font-size: 6vw;
+      }
+  
+      .option-textarea{
+          margin-top: 10vh;
+      } 
+  }
+  
+  
+  @media only screen and (min-device-height: 17.78cm) and (orientation:landscape) {
+      
+  
+    .heading-options{
+      font-size: 10vw;
+    }
+  
+    .option-textarea{
+        margin-top: 30vh;
+    }
+  }
+  
+  @media only screen and (min-device-width: 17.78) {
+      
+    .option-textarea{
+        margin-top: 30vh;
+    }
+  }
+  
 
 
 @media only screen and (min-device-width: 1023px){

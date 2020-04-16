@@ -1,12 +1,11 @@
 import React, { useEffect,useState,useRef } from 'react';
-//import {FancyLoader} from "./fancyLoader.jsx"
+import {FancyLoader} from "./fancyLoader.jsx"
 
 import "../assets/css/GamePage.css"
 
 export const GamePage = (props) =>{
 
-    var added = useRef(false);
-
+  var added = useRef(false);
   const logout = () =>{
     props.firebase.logout();
     props.SetStateChange(props.forceStateChange*-1)
@@ -19,18 +18,10 @@ var searchInput = null;
 var searchButton = null;
 var liRef = null;
 
-// hide the searchOverlay
-
-//searchOverlay.hide();
-
-
 // Status indicating that search is not active. 
 	
 var searchStatus = useRef(false);
 
-// If any key is pressed while CMD is not pressed, begin search
-
-// Open and close search when magnifying class or close is tapped
 const searchClicked = () =>{
     console.log("epe")
     
@@ -38,8 +29,6 @@ const searchClicked = () =>{
             requestAnimationFrame(()=>{ 
                 searchOverlay.style.display = "flex"
                 liRef.style.opacity = "0"
-            //searchOverlay.show();
-            //searchOverlay.find('input').focus();
                 searchInput.focus();
             })
 			searchStatus.current = true;
@@ -48,29 +37,22 @@ const searchClicked = () =>{
         requestAnimationFrame(()=>{
             searchOverlay.style.display = "none"
             liRef.style.opacity = "1"
-        //searchOverlay.hide();
-        //searchOverlay.find('input').val('');
             searchInput.textContent = ''
         })
         searchStatus.current = false;
-        //searchButton.removeClass("close");
 
     }
 }
 
 const SearchInputKeyUp = (e) =>{
     if (searchStatus) {
-        //might have to change the below line of code
         if (!e.target.value) {
             requestAnimationFrame(()=>{
                 searchOverlay.style.display = "none"
                 liRef.style.opacity = "1"
-             //searchOverlay.hide();
-             //searchOverlay.find('input').val('');
                 searchInput.textContent=''
             })
          searchStatus.current = false;
-         //searchButton.removeClass("close");
         }
      }
 }
@@ -78,7 +60,7 @@ const SearchInputKeyUp = (e) =>{
 const ClosePage = (e) =>{
     console.log("d")
     console.log(e.target.className)
-    if(e.target.className!='search' && e.target.className!='text-area-search'){
+    if(e.target.className!='search' && e.target.className!='text-area-search' && e.target.className!='search-button'){
         if(searchStatus.current == true){
             requestAnimationFrame(()=>{
                 searchOverlay.style.display = "none"
@@ -90,6 +72,10 @@ const ClosePage = (e) =>{
     }
 }
 
+const submitAnswer = () =>{
+
+}
+
 useEffect(()=>{
 
     console.log(added.current)
@@ -97,13 +83,10 @@ useEffect(()=>{
 
         document.addEventListener("keyup",(e)=>{
             if (e.keyCode == 27 && searchStatus.current) {
-                //searchOverlay.hide();//
                     searchOverlay.style.display = "none"
                     liRef.style.opacity = "1"
-                    //searchOverlay.find('input').val('');//
                     searchInput.textContent = ''
                 searchStatus.current = false;
-                //searchButton.removeClass("close");//
                  }
         })
 
@@ -112,12 +95,10 @@ useEffect(()=>{
             if (!e.metaKey) {
               if(e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode >= 48 && e.keyCode <= 57) {
                   if (!searchStatus.current) {
-                        //searchOverlay.show();//
                         searchOverlay.style.display = "flex"
                         liRef.style.opacity = "0"
                         searchInput.focus();//
                       searchStatus.current = true;
-                      //searchButton.addClass("close");//
                   }
               }
             }
@@ -128,8 +109,9 @@ useEffect(()=>{
 },[])
 
     return (
-        <div onClick={e=>ClosePage(e)} style={{width:"100%",height:"100%",paddingTop:"10vh",paddingLeft:"4vw",backgroundColor:"black"}}>
+        <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vh",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column"}}>
 <h1 className="game-header">Challenge</h1>
+<div className="img-wrapper">
 <nav className="search-nav">
   <ul>
     <li ref={ref=>liRef=ref} style={{display:"flex",flexDirection:"row",height:"100%"}}>
@@ -144,8 +126,14 @@ useEffect(()=>{
   </div>
     </li>
   </ul>
+  <br/>
+  <button className="search-button" onClick={()=>submitAnswer()}>
+     <h3>Submit</h3>
+  </button>
 </nav>
-
+    <img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg"></img>
+</div>
+<FancyLoader></FancyLoader>
 
 {/*
 

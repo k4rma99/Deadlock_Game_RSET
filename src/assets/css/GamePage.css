@@ -1,5 +1,5 @@
   #searchOverlay {
-    width: 80%;
+    width: 100%;
     padding: 10%;
   }
   
@@ -14,10 +14,19 @@
 
 
   .search-nav{
-      position: absolute;
+      position: relative;
       padding: 0;
-      width: 80%;
+      width: 100%;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .search-nav button{
+    background-color: #ff176c;
+    border: thin #ff176c solid;
+    border-radius: 0.2em;
+    width: 30%;
   }
 
   .search-nav *{
@@ -29,7 +38,9 @@
     font-family: montserrat, sans-serif;
       font-size: 5em;
       margin: 0;
+      position: relative;
       color:#ff176c;
+      margin-bottom: 2vh;
   }
 
   .search-nav ul{
@@ -73,7 +84,39 @@
   nav .search.close {
     background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/27846-84.png);
   }
+
+  .img-wrapper {
+    display: flex;
+    border-top: thin lightgray solid;
+    flex-direction: row-reverse;
+    width: 92vw;
+    height: 60vh;
+    padding-top: 2vh;
+  }
+
+  .img-wrapper nav{
+    margin: auto 0;
+    margin-left: 2vw;
+  }
   
-  
-  /* other stuff */
-  
+  .img-wrapper img {
+    position: relative;
+    left: 0%;
+    width: 50vw;
+    margin-bottom: 10%;
+    height: 100%;
+    background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
+  }
+
+@media only screen and (max-width:1023px){
+  .img-wrapper img{
+    width: 100%;
+  }
+  .img-wrapper nav{
+    margin-left: 0;
+  }
+
+  .img-wrapper{
+    flex-direction: column-reverse;
+  }
+}
