@@ -133,16 +133,12 @@ useEffect(()=>{
 </nav>
     <img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg"></img>
 </div>
-<FancyLoader></FancyLoader>
-
-{/*
+{/*<FancyLoader></FancyLoader>*/}
 
 <div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
         Game Page
       <button onClick={()=>logout()}>Logout</button>
     </div>
-
-*/}
     </div>
     )
 }

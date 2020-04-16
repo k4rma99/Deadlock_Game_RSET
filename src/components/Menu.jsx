@@ -9,6 +9,8 @@ export const Menu = () =>{
     let t1 = useRef(gsap.timeline());
     let id = useRef(null);
 
+    const [force, setforce] = useState(1)
+
     //used for generating random alphanumeric characters. If num == -1 then the recursive functions starts
     //the recursive function generates the random number effect 
     //when we set it back to 1 then it stops
@@ -32,9 +34,7 @@ export const Menu = () =>{
     const setTextHeading = (s) =>{
         num.current = num.current *-1;
         if(headerText){
-            requestAnimationFrame(()=>{
                 headerText.textContent = s
-            })
         }
     }
 
@@ -141,19 +141,23 @@ export const Menu = () =>{
        
         function updateSize() {
             
-                if(optionTextArea){
+              /*s  if(optionTextArea){
                     var c = window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')
-                    console.log(c)
                     topMargin.current = { 
                         width: Number(c.substring(0,c.length-2))>29.2143?20:0,
                         orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
                         setListener:true
                     };
-              }
-          //  console.log(Number(c.substring(0,c.length-2)))
+              }*/
+             console.log("wdwfwef")
+             if(num.current == -1){
+                 t1.current.totalProgress(1)
+                setforce(force*-1)
+                 
+             }
+             
         }
     if(!topMargin.current){
-        console.log("pp")
         window.addEventListener('resize', updateSize);
         updateSize();
     }
@@ -163,9 +167,27 @@ export const Menu = () =>{
 
 
     useEffect(()=>{
-
-        
         const f = () =>{
+            if(num.current == -1){
+                var orientation = window.innerHeight > window.innerWidth?"portrait":"landscape";
+                var w=window.innerHeight/96*2.54;
+                   setTextHeading("DEADLOCK");
+                   LeaderBoards.style.opacity = 1;
+                   Rules.style.opacity = 1;
+                   Contact.style.opacity = 1;
+                   Clues.style.opacity = 1;
+                   contentArea.style.opacity = 0;
+                   contentArea.style.display = "none";
+                   if(w<17.78 && orientation=="landscape"){
+                       optionTextArea.style.top = "1000vh"
+                   }
+                   else{
+                       optionTextArea.style.top = "1000vh"
+                   }
+
+            }
+            
+            //console.log("device width",window.screen.width)
             if(num.current!=-1 && toggle.isToggled==true){
                 console.log("hello")
                 setNum()
@@ -173,20 +195,19 @@ export const Menu = () =>{
                         t1.current
                             .add(()=>RandomLetters(toggle.value))
                             .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                            .to(optionTextArea,{transform:`translateY(-${topMargin.current.width}vh)`,duration:0.7},0.2)
+                            .to(optionTextArea,{top:`-20vh`,duration:0.7},0.2)
                             .add(()=>setTextHeading(toggle.value))
                             .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
                             .to(contentArea,{autoAlpha:1,duration:0.2})
                             .eventCallback("onComplete", ()=>{t1.current.clear();})
                 })
             }
-
         }
         f();
     },[toggle])
     
     return(
-        <div className="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
+        <div className="main-menu" id="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
         
         <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">
