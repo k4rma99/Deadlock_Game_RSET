@@ -61,7 +61,6 @@ export const App = (props) => {
   </head>
   <body id='App' className="App">
   <Navbar></Navbar>
-    <Menu></Menu>
 
     <Router>
     <Switch>

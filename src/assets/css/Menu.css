@@ -6,7 +6,7 @@
     opacity: 0;
     transform: translate3d(0,0,0);
     will-change: opacity contents;
-    margin-top: 30vh;
+    /*start here*/top: 30vh;
     pointer-events: none;
     z-index: 100;
     overflow: none;
@@ -132,7 +132,7 @@ text-rendering: optimizeSpeed;
       }
 
       .option-textarea{
-        margin-top: 30vh;
+        /*start here*/top: 30vh;
     }
   }
 
@@ -143,7 +143,7 @@ text-rendering: optimizeSpeed;
         }
 
         .option-textarea{
-            margin-top: 10vh;
+            /*start here*/top: 10vh;
         } 
   }
   
@@ -154,7 +154,7 @@ text-rendering: optimizeSpeed;
       }
   
       .option-textarea{
-          margin-top: 10vh;
+          /*start here*/top: 10vh;
       } 
   }
   
@@ -167,7 +167,7 @@ text-rendering: optimizeSpeed;
     }
   
     .option-textarea{
-        margin-top: 30vh;
+        /*start here*/top: 30vh;
     }
 }
 
@@ -179,7 +179,7 @@ text-rendering: optimizeSpeed;
       }
 
     .option-textarea{
-        margin-top: 30vh;
+        /*start here*/top: 30vh;
     }
   }
 

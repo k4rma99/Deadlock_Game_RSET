@@ -41,9 +41,8 @@ export const Menu = () =>{
     const Minimize = () => 
     {
         if(num.current!=-1 && toggle.isToggled==true){
-        requestAnimationFrame(()=>{
-        setNum()
-        t1.current
+            console.log("testing")
+        /*t1.current
         .to('.content-area',{autoAlpha:"0",duration:0.2})
         .add(()=>RandomLetters("DEADLOCK"))
         .to('.option-textarea',{transform:"translateY(0vh)",duration:0.7})
@@ -51,10 +50,17 @@ export const Menu = () =>{
         .to('.black-header h4',{display:"block",duration:0.2})
         .fromTo('.black-header h4',{autoAlpha:0},{autoAlpha:1,duration:0.2})
         .eventCallback("onComplete", ()=>{isOpen = 0;t1.current.clear();setToggle({isToggled:false,value:"DEADLOCK",section:0})});
-        })
-        }
-
+        })*/setNum();
+            RandomLetters("DEADLOCK");
+            t1.current
+            .reverse()
+            .eventCallback("onReverseComplete",()=>{setTextHeading("DEADLOCK");t1.current.clear();setToggle({
+                isToggled:false,
+                value:"",
+                section:0
+            })});
     }
+}
 
     const RandomLetters = (s) =>{
         if(headerText){
@@ -136,70 +142,20 @@ export const Menu = () =>{
     var Contact = useRef(null);
     var Clues = useRef(null);
 
-    useLayoutEffect(() => {
-       const f = () =>{
-       
-        function updateSize() {
-            
-              /*s  if(optionTextArea){
-                    var c = window.getComputedStyle(optionTextArea).getPropertyValue('margin-top')
-                    topMargin.current = { 
-                        width: Number(c.substring(0,c.length-2))>29.2143?20:0,
-                        orientation:window.innerHeight > window.innerWidth?"portrait":"landscape-primary",
-                        setListener:true
-                    };
-              }*/
-             console.log("wdwfwef")
-             if(num.current == -1){
-                 t1.current.totalProgress(1)
-                setforce(force*-1)
-                 
-             }
-             
-        }
-    if(!topMargin.current){
-        window.addEventListener('resize', updateSize);
-        updateSize();
-    }
-       }
-       f();
-      }, [topMargin,t1]);
-
-
     useEffect(()=>{
         const f = () =>{
-            if(num.current == -1){
-                var orientation = window.innerHeight > window.innerWidth?"portrait":"landscape";
-                var w=window.innerHeight/96*2.54;
-                   setTextHeading("DEADLOCK");
-                   LeaderBoards.style.opacity = 1;
-                   Rules.style.opacity = 1;
-                   Contact.style.opacity = 1;
-                   Clues.style.opacity = 1;
-                   contentArea.style.opacity = 0;
-                   contentArea.style.display = "none";
-                   if(w<17.78 && orientation=="landscape"){
-                       optionTextArea.style.top = "1000vh"
-                   }
-                   else{
-                       optionTextArea.style.top = "1000vh"
-                   }
-
-            }
-            
-            //console.log("device width",window.screen.width)
             if(num.current!=-1 && toggle.isToggled==true){
+                t1.current = gsap.timeline();
                 console.log("hello")
                 setNum()
+                RandomLetters(toggle.value)
                 requestAnimationFrame(()=>{
                         t1.current
-                            .add(()=>RandomLetters(toggle.value))
                             .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                            .to(optionTextArea,{top:`-20vh`,duration:0.7},0.2)
-                            .add(()=>setTextHeading(toggle.value))
+                            .to(optionTextArea,{top:`10vh`,duration:0.7},0.2)
                             .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
                             .to(contentArea,{autoAlpha:1,duration:0.2})
-                            .eventCallback("onComplete", ()=>{t1.current.clear();})
+                            .eventCallback("onComplete", ()=>{setTextHeading(toggle.value)})
                 })
             }
         }

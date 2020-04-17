@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import "../assets/css/Navbar.css"
+import {Menu} from "./Menu.jsx"
 import {gsap} from "gsap/all";
 export const Navbar = () =>{
 
@@ -21,6 +22,13 @@ export const Navbar = () =>{
     
     useEffect(() => {
         const f = () => {
+            function updateSize() {
+                if(openState == 1){
+                    changeOpenState();
+                }
+               
+          }
+            window.addEventListener('resize', updateSize);
             if(openState==1){
                 requestAnimationFrame(()=>{
                     t
@@ -41,6 +49,7 @@ export const Navbar = () =>{
             <div className="menu-div">
                         <button onClick={()=>{changeOpenState()}} className="menu-button"></button>
             </div>
+            {openState==1?<Menu></Menu>:<></>}
         </div>
         
     )
