@@ -12,7 +12,7 @@ export const Credentials = (props) =>{
     var [error,SetError] = useState(null);
     const firebase = useFirebase();
 
-    var profile = useSelector(state=>state.fireBaseReducer.profile);
+    var firebaseState = useSelector(state=>state.fireBaseReducer);
 
     const SubmitUserProfileData = () =>{
         console.log(mobRef.value);
@@ -27,7 +27,8 @@ export const Credentials = (props) =>{
                         mobileNo:mobRef.value.trim(),
                         collegeNo:checkRef.checked?"RSET":"OTHER",
                         isRSET:checkRef.checked?true:false,
-                        level:1
+                        level:1,
+                        previousHash:""
                     }
                     ).then((success)=>{
                         localStorage.setItem('isDetailSet','true');
@@ -43,7 +44,7 @@ export const Credentials = (props) =>{
     return(
         <div className="credentials-page" style={{height:"100vh",addingTop:"10vh",marginLeft:"4vh",marginRight:"4vh",display:"flex",flexDirection:"column"}}>
           {  
-                isLoaded(profile)
+                isLoaded(firebaseState.profile)
                 ?(
                     <div>
                 <h1 style={{color:"white"}}>Enter your details</h1>

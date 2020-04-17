@@ -5,15 +5,18 @@ import { LeaderBoard } from "../components/leaderBoards.jsx";
 import { useFirebase } from 'react-redux-firebase';
 import {useSelector} from "react-redux"
 
-export const Menu = () =>{
+export const Menu = (props) =>{
     var headerText = null;
     var contentArea = null;
     let t1 = useRef(gsap.timeline());
     let id = useRef(null);
 
 
-    var profile = useSelector(state=>state.fireBaseReducer.profile);
-    var auth = useSelector(state=>state.fireBaseReducer.auth);
+    var firebaseState = useSelector(state=>state.fireBaseReducer);
+    //var firebaseState =  localStorage.getItem('firebaseState');
+    console.log("fbstate",firebaseState)
+    //var profile = useSelector(state=>state.fireBaseReducer.profile);
+    //var auth = useSelector(state=>state.fireBaseReducer.auth);
 
     var firebase = useFirebase();
 
@@ -34,6 +37,16 @@ export const Menu = () =>{
         value:"",
         section:0,
     });
+
+
+    const logout = () =>{
+        props.changeOpenState();
+        setTimeout(()=>{
+            firebase.logout();
+            props.SetStateChange(props.forceStateChange*-1);
+        },500)
+     }
+ 
     
     const setNum = () =>{
         num.current = num.current *-1;
@@ -126,7 +139,7 @@ export const Menu = () =>{
             }
             case 3:{
                 //Returns the contact page
-                if(auth.isEmpty){
+                if(firebaseState.auth.isEmpty){
                     return (
                         <span style={{marginLeft:"4vw"}}>
                             Contact page content goes here
@@ -138,26 +151,26 @@ export const Menu = () =>{
                         <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"100%"}}>
                             <div >
                                 <h3>Username:</h3>
-                                <h4>{profile.displayName}</h4>
+                                <h4>{firebaseState.profile.displayName}</h4>
                             </div>
                             <div >
                                 <h3>Email ID:</h3>
-                                <h4>{profile.email}</h4>
+                                <h4>{firebaseState.profile.email}</h4>
                             </div>
                             <div >
                                 <h3>Mobile Number:</h3>
-                                <h4>{profile.mobileNo}</h4>
+                                <h4>{firebaseState.profile.mobileNo}</h4>
                             </div>
                             <div >
                                 <h3>Level:</h3>
-                                <h4>{profile.level}</h4>
+                                <h4>{firebaseState.profile.level}</h4>
                             </div>
                             <div >
                                 <h3>College:</h3>
-                                <h4>{profile.collegeNo}</h4>
+                                <h4>{firebaseState.profile.collegeNo}</h4>
                             </div>
                             <div >
-                                <button className="logout-button">Logout</button>
+                                <button onClick={()=>logout()} className="logout-button">Logout</button>
                             </div>
                         </div>
                     )
@@ -211,7 +224,7 @@ export const Menu = () =>{
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
             <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
             <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:auth.isEmpty?"Contact":"Profile",section:3})}>{auth.isEmpty?"Contact":"Profile"}</h4>
+            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:firebaseState.auth.isEmpty?"Contact":"Profile",section:3})}>{firebaseState.auth.isEmpty?"Contact":"Profile"}</h4>
             <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"More",section:4})}>More</h4>
         </div>
             {toggle.isToggled?(

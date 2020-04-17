@@ -8,7 +8,9 @@ import { useSelector } from 'react-redux';
 export const GamePage = (props) =>{
   var profile = useSelector(state=>state.fireBaseReducer.profile);
   var auth = useSelector(state=>state.fireBaseReducer.auth);
-  const firebase = useFirebase()
+  const firebase = useFirebase();
+
+  var [error,setError] = useState(null);
 
   var added = useRef(false);
   const logout = () =>{
@@ -96,11 +98,46 @@ const ClosePage = (e) =>{
 const submitAnswer = async () =>{
   try{
 
-    let querySnapshot = await firebase.firestore().collection('QnA').doc(profile.level+'').get();
-    console.log(querySnapshot.data())
+    //let querySnapshot = await firebase.firestore().collection('QnA').doc(profile.level+'').get();
+    //console.log(querySnapshot.data())
+
+    if(searchInput){
+        if(searchInput.value.trim()!=""){
+                console.log("ok we can submit the answer now");
+                /*
+                var hash = sha256(this.ans + '' + this.question.photoURL + '' + profile.previousHash).toString()
+          firebase.firestore().collection('QnA').doc(profile.previousHash).get().then((doc) => {
+          if (doc.exists) {
+            firebase.updateProfile({
+              currentHash: hash,
+              previousHash: profile.previousHash,
+              currentLevel: this.getCurrentLevel + 1
+            })
+            .then((success) => {
+                //swal('Good job!', 'Correct Answer !', 'success').then(success => {
+                //this.answer = null
+                //this.$store.commit('CURRENT_LEVEL', this.getCurrentLevel + 1)
+                //this.$store.commit('SET_PREVIOUS_HASH', this.getCurrentHash)
+                //this.$store.commit('SET_CURRENT_HASH', hash)
+                //this.question = {
+                  //photoURL: doc.data().photoURL,
+                  //previousHash: doc.data().id
+                //}
+              })
+            })
+          } else {
+              //swal('Sorry', 'Wrong Answer!!', 'error')
+          }
+                */
+        }
+        else{
+          setError("Please enter an answer!");
+        }
+    }
+    else{
+      setError("Please enter an answer!");
+    }
     
-    //const docRef = firestore.doc('QnA/1')
-    //docRef.get() (doc.data)
   } 
   catch(error){
     console.log(error)
@@ -145,6 +182,13 @@ useEffect(()=>{
       searchOverlay.style.display = "none"
 
     }
+
+    /*
+    firebase.firestore().collection('QnA').doc(profile.previousHash).get().then((doc) => {
+            console.log(doc.data);
+    })
+
+    */
 },[])
 
     return (
@@ -157,6 +201,7 @@ useEffect(()=>{
         <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vh",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column"}}>
 
 <h1 className="game-header">Challenge</h1>
+      <h3 style={{color:"red"}}>{error!=null?error:""}</h3>
 <div className="img-wrapper">
 <nav className="search-nav">
   <ul>
@@ -179,10 +224,7 @@ useEffect(()=>{
 </nav>
     <img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg"></img>
 </div>
-    <div style={{height:"100vh",backgroundColor:"white",color:"black",paddingTop:"10vh"}}>
-        Game Page
-      <button onClick={()=>logout()}>Logout</button>
-    </div>
+    
           </div>
         
       )

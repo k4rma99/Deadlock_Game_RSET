@@ -17,7 +17,7 @@ import { FancyLoader } from './components/fancyLoader.jsx';
 export const App = (props) => {
 
   let [forceStateChange,SetStateChange] = useState(1);
-  let profile = useSelector(state=>state.fireBaseReducer.profile)
+  let auth = useSelector(state=>state.fireBaseReducer.profile)
   var Cookie = require('js-cookie');
   const firebase = useFirebase();
 
@@ -49,7 +49,7 @@ export const App = (props) => {
       if(localStorage.getItem('LoggedIn')!='true'){
         console.log("Ran event listener")
         localStorage.setItem('LoggedIn','true');
-        console.log(firebase.auth().currentUser)
+        console.log(user)
         //localStorage.setItem('LoggedIn','true');
       }
     }
@@ -61,7 +61,7 @@ export const App = (props) => {
     }
   })
 
-  useEffect(() => {
+  useEffect(async () => {
   }, [])
 
   return (
@@ -73,7 +73,7 @@ export const App = (props) => {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.js" integrity="sha256-mfgvzVjyIcoXo0ElsT8uFIuDWYkvKCQ6wrkm6If7iug=" crossOrigin="anonymous"></script>
   </head>
   <body id='App' className="App">
-  <Navbar></Navbar>
+  <Navbar forceStateChange={forceStateChange} SetStateChange={SetStateChange}></Navbar>
 
     <Router>
     <Switch>

@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react';
 import "../assets/css/Navbar.css"
 import {Menu} from "./Menu.jsx"
 import {gsap} from "gsap/all";
-export const Navbar = () =>{
+export const Navbar = (props) =>{
 
     var t = gsap.timeline();
 
@@ -34,6 +34,7 @@ export const Navbar = () =>{
           }
             window.addEventListener('resize', updateSize);
             if(openState==1){
+                console.log("openState is 1")
                 requestAnimationFrame(()=>{
                     t
                     //.to(".options",{opacity:"1",duration:0.2})
@@ -53,7 +54,7 @@ export const Navbar = () =>{
             <div className="menu-div">
                         <button onClick={()=>{changeOpenState()}} className="menu-button"></button>
             </div>
-            {openState==1?<Menu></Menu>:<></>}
+            {openState==1?<Menu  forceStateChange={props.forceStateChange} changeOpenState={changeOpenState} SetStateChange={props.SetStateChange}></Menu>:<></>}
         </div>
         
     )

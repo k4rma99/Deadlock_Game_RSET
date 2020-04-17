@@ -31,7 +31,6 @@ firebase.initializeApp(firebaseConfig);
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
-  updateProfileOnLogin: false,
   updateProfileOnLogin: false
   // enableClaims: true // Get custom claims along with the profile
 }
