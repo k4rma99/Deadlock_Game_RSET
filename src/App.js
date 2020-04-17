@@ -8,22 +8,33 @@ import {
 import {GamePage} from "./components/GamePage.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
-import { Menu } from './components/Menu.jsx';
 import Div100vh from 'react-div-100vh'
 import { useFirebase } from 'react-redux-firebase';
+import { useSelector } from 'react-redux';
+import {MainLoader} from "./components/main-loader.jsx";
+import { FancyLoader } from './components/fancyLoader.jsx';
 
 export const App = (props) => {
 
   let [forceStateChange,SetStateChange] = useState(1);
+  let profile = useSelector(state=>state.fireBaseReducer.profile)
   var Cookie = require('js-cookie');
   const firebase = useFirebase();
 
   const returnPage = () =>{
-    if(Cookie.get("LoggedIn")=='true'){
-      return (<GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}>
+    if(localStorage.getItem('LoggedIn')=='true'){
+      if(localStorage.getItem('isDetailSet') != 'true'){
+          return (
+            <MainLoader auth={false} profile={true} forceStateChange={forceStateChange} SetStateChange={SetStateChange}></MainLoader>
+          )
+      }
+      else{
+        return (
+          <GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}>
 
-      </GamePage>
-      )
+          </GamePage>
+          )
+      }
     }
     else{
       return (
@@ -32,23 +43,25 @@ export const App = (props) => {
     }
   }
 
+
   firebase.auth().onAuthStateChanged((user)=>{
     if(user){
-      if(Cookie.get("LoggedIn")!='true'){
+      if(localStorage.getItem('LoggedIn')!='true'){
         console.log("Ran event listener")
-          Cookie.set("LoggedIn","true");
+        localStorage.setItem('LoggedIn','true');
+        console.log(firebase.auth().currentUser)
+        //localStorage.setItem('LoggedIn','true');
       }
     }
     else{
-      if(Cookie.get("LoggedIn")=='true'){
-        Cookie.set("LoggedIn","false");
+      if(localStorage.getItem('LoggedIn')=='true'){
+        localStorage.setItem('LoggedIn','false');
+        localStorage.setItem('isDetailSet','false');
     }
     }
   })
 
   useEffect(() => {
-      console.log("s")
-      console.log("Ran");
   }, [])
 
   return (

@@ -22,7 +22,7 @@ nav{
   transform-origin: 0 0 ;
   -webkit-transform-origin: 0 0;
   pointer-events: none;
-    z-index:11;
+    z-index:111;
     background-color: white;
     will-change: transform;
 }
@@ -37,7 +37,7 @@ nav{
     transform-origin: right top;
     width: 20vh;
     height: 20vh;
-    z-index: 101;
+    z-index: 121;
 }
 
 .menu-div{
@@ -48,7 +48,7 @@ nav{
     height: 10vh;
     display: flex;
     justify-content: center;
-    z-index: 101;
+    z-index: 121;
 }
 
 .menu-button{
@@ -56,6 +56,7 @@ nav{
     margin:auto auto;
     border-radius: 30vh;
     width: 75%;
+    z-index: 121;
     background-color: transparent;
     border: none;
 }

@@ -2,12 +2,16 @@ import React, { useEffect,useState,useRef,useLayoutEffect } from 'react';
 import "../assets/css/Menu.css"
 import {gsap,TimelineLite,TweenMax} from "gsap";
 import { LeaderBoard } from "../components/leaderBoards.jsx";
+import { useFirebase } from 'react-redux-firebase';
+import {useSelector} from "react-redux"
 
 export const Menu = () =>{
     var headerText = null;
     var contentArea = null;
     let t1 = useRef(gsap.timeline());
     let id = useRef(null);
+
+    var firebase = useFirebase();
 
     const [force, setforce] = useState(1)
 
@@ -144,6 +148,7 @@ export const Menu = () =>{
 
     useEffect(()=>{
         const f = () =>{
+            console.log(firebase);
             if(num.current!=-1 && toggle.isToggled==true){
                 t1.current = gsap.timeline();
                 console.log("hello")
@@ -163,7 +168,7 @@ export const Menu = () =>{
     },[toggle])
     
     return(
-        <div className="main-menu" id="main-menu" style={{display:"flex",position:"absolute",zIndex:"100"}}>
+        <div className="main-menu" id="main-menu" style={{display:"flex",position:"absolute",zIndex:"121"}}>
         
         <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">

@@ -8,9 +8,11 @@ import {Provider} from 'react-redux';
 import * as firebase from "firebase/app";
 import { ReactReduxFirebaseProvider} from 'react-redux-firebase'
 import "firebase/auth";
+import 'firebase/firestore'
 var Cookie = require('js-cookie');
 
 window.Cookie = Cookie;
+
 
 var firebaseConfig = {
         apiKey: "AIzaSyBtRrJtcIanMnaZlsdgxPoY7DfTx6F7fhU",
@@ -20,14 +22,17 @@ var firebaseConfig = {
         storageBucket: "iedc-firebase-test.appspot.com",
         messagingSenderId: "769907728983",
         appId: "1:769907728983:web:cebf44c216bfbd66e03912",
-        measurementId: "G-FH9JN90Q6E"
+        measurementId: "G-FH9JN90Q6E",
+        updateProfileOnLogin: false
 };
       // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 const rrfConfig = {
   userProfile: 'users',
-  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+  useFirestoreForProfile: true,
+  updateProfileOnLogin: false,
+  updateProfileOnLogin: false
   // enableClaims: true // Get custom claims along with the profile
 }
 

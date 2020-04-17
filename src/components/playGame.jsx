@@ -11,19 +11,23 @@ export const PlayGameButton = (props) =>{
         var history = useHistory();
 
         let auth = useSelector(state=>state.fireBaseReducer.auth);
+        let profile = useSelector(state=>state.fireBaseReducer.profile);
         let authError = useSelector(state=>state.fireBaseReducer.authError)
 
         useEffect(()=>{
-                if(auth.isEmpty==false){
+                /*if(auth.isEmpty==false){
                         Cookie.set("LoggedIn","true");
                         props.SetStateChange(props.forceStateChange * -1);
                 }
+                */
         })
 
         function loginWithGoogle() {
                 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .then(function() {
-                        return firebase.login({ provider: 'google', type: 'popup' });
+                        return firebase.login(
+                                { provider: 'google', type: 'popup' }
+                                );
                 })
         }
     
@@ -38,12 +42,12 @@ export const PlayGameButton = (props) =>{
                                 }
                         </div>
                         <div className="wrapper">
-                                <div className="cta" >
+                                <div onClick={()=>{isLoaded(auth)?loginWithGoogle():console.log("")}} className="cta" >
                                         {
                                                 !isLoaded(auth)
                                                 ? <span>Loading</span>
                                                 : isEmpty(auth)
-                                                ? <span onClick={loginWithGoogle}>LOGIN</span>
+                                                ? <span>LOGIN</span>
                                                 : <span>LOGGEDIN</span>
                                         }
                                         <Svg />
