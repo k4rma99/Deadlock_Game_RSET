@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 
 export const GamePage = (props) =>{
   var profile = useSelector(state=>state.fireBaseReducer.profile);
-    const firebase = useFirebase()
+  var auth = useSelector(state=>state.fireBaseReducer.auth);
+  const firebase = useFirebase()
 
   var added = useRef(false);
   const logout = () =>{
@@ -92,8 +93,18 @@ const ClosePage = (e) =>{
     }
 }
 
-const submitAnswer = () =>{
+const submitAnswer = async () =>{
+  try{
 
+    let querySnapshot = await firebase.firestore().collection('QnA').doc(profile.level+'').get();
+    console.log(querySnapshot.data())
+    
+    //const docRef = firestore.doc('QnA/1')
+    //docRef.get() (doc.data)
+  } 
+  catch(error){
+    console.log(error)
+  }
 }
 
 useEffect(()=>{

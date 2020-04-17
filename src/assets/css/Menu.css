@@ -9,7 +9,7 @@
     /*start here*/top: 30vh;
     pointer-events: none;
     z-index: 100;
-    overflow: none;
+    height:100vh
 }
 
 .heading-options{
@@ -70,6 +70,18 @@ text-rendering: optimizeSpeed;
     margin-left: 6vw;
     display: block;
     text-align: left;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: row;
+    width: 92vw;
+    flex-wrap: wrap;
+}
+
+.profile-info div{
+    width:30.6666vw;
+    margin:auto auto;
 }
 
 .content-area{
@@ -145,6 +157,9 @@ text-rendering: optimizeSpeed;
         .option-textarea{
             /*start here*/top: 10vh;
         } 
+        .profile-info div{
+            width: 92vw;
+        }
   }
   
   @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
@@ -156,6 +171,9 @@ text-rendering: optimizeSpeed;
       .option-textarea{
           /*start here*/top: 10vh;
       } 
+      .profile-info div{
+          width: 92vw;
+      }
   }
   
   

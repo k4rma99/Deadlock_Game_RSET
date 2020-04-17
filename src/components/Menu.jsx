@@ -11,6 +11,10 @@ export const Menu = () =>{
     let t1 = useRef(gsap.timeline());
     let id = useRef(null);
 
+
+    var profile = useSelector(state=>state.fireBaseReducer.profile);
+    var auth = useSelector(state=>state.fireBaseReducer.auth);
+
     var firebase = useFirebase();
 
     const [force, setforce] = useState(1)
@@ -122,17 +126,49 @@ export const Menu = () =>{
             }
             case 3:{
                 //Returns the contact page
-                return (
-                    <span style={{marginLeft:"4vw"}}>
-                        Contact page content goes here
-                    </span>
-                )
+                if(auth.isEmpty){
+                    return (
+                        <span style={{marginLeft:"4vw"}}>
+                            Contact page content goes here
+                        </span>
+                    )
+                }
+                else{
+                    return (
+                        <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"100%"}}>
+                            <div >
+                                <h3>Username:</h3>
+                                <h4>{profile.displayName}</h4>
+                            </div>
+                            <div >
+                                <h3>Email ID:</h3>
+                                <h4>{profile.email}</h4>
+                            </div>
+                            <div >
+                                <h3>Mobile Number:</h3>
+                                <h4>{profile.mobileNo}</h4>
+                            </div>
+                            <div >
+                                <h3>Level:</h3>
+                                <h4>{profile.level}</h4>
+                            </div>
+                            <div >
+                                <h3>College:</h3>
+                                <h4>{profile.collegeNo}</h4>
+                            </div>
+                            <div >
+                                <button className="logout-button">Logout</button>
+                            </div>
+                        </div>
+                    )
+                }
+                
             }
             case 4:{    
                 //Returns the clues page
                 return (
                     <span style={{marginLeft:"4vw"}}>
-                        Clues page content goes here
+                        More page content goes here
                     </span>
                 )
             }
@@ -168,15 +204,15 @@ export const Menu = () =>{
     },[toggle])
     
     return(
-        <div className="main-menu" id="main-menu" style={{display:"flex",position:"absolute",zIndex:"121"}}>
+        <div className="main-menu" id="main-menu" style={{height:"100%",display:"flex",position:"absolute",zIndex:"121"}}>
         
-        <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"fixed",zIndex:"-1"}}>
+        <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"relative",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
             <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
             <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Contact",section:3})}>Contact</h4>
-            <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Clues",section:4})}>Clues</h4>
+            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:auth.isEmpty?"Contact":"Profile",section:3})}>{auth.isEmpty?"Contact":"Profile"}</h4>
+            <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"More",section:4})}>More</h4>
         </div>
             {toggle.isToggled?(
                 <div ref={ref=>contentArea=ref} className="content-area">
