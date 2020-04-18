@@ -161,6 +161,7 @@ useEffect(()=>{
             
         })
 
+
         window.addEventListener("keydown",(e)=>{
           if(searchOverlay && searchInput &&liRef){
             if (!e) e = window.event;
@@ -192,15 +193,14 @@ useEffect(()=>{
 },[])
 
     return (
-        <div style={{width:"100%",height:"100%"}}>
+        <div style={{width:"100vw",position:"fixed",zIndex:"-10"}}>
 {
-/*<FancyLoader></FancyLoader>*/
       !isLoaded(profile)
       ?<FancyLoader></FancyLoader>
       :(
-        <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vh",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column"}}>
+        <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vw",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column"}}>
 
-<h1 className="game-header">Challenge</h1>
+<h4 className="game-header">Challenge</h4>
       <h3 style={{color:"red"}}>{error!=null?error:""}</h3>
 <div className="img-wrapper">
 <nav className="search-nav">

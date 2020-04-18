@@ -1,16 +1,3 @@
-nav{
-    display: flex;
-    flex-direction: row;
-    background-color: transparent;
-    position: fixed;
-    z-index: 100;
-    justify-content: space-between;
-    width: 100%;
-    height: 10vh;
-    padding-left: 5vw;
-    opacity: 1;
-    mix-blend-mode: difference;
-}
 
 .options{
     position: absolute;
@@ -52,13 +39,17 @@ nav{
 }
 
 .menu-button{
-    height: 75%;
-    margin:auto auto;
-    border-radius: 30vh;
-    width: 75%;
+    transform: scale(0.5);
+    position: fixed;
+    right: 1vh;
+    top: 0vh;
+    transform-origin: right top;
+    width: 20vh;
+    height: 20vh;
     z-index: 121;
+    border-radius: 100%;
+    border-color: transparent;
     background-color: transparent;
-    border: none;
 }
 
 .menu-button:hover{

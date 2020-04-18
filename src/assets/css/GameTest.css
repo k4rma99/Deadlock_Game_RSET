@@ -1,0 +1,24 @@
+
+  .main-console{
+    padding:2%;
+    padding-left:4vw;
+    height:100vh;
+    background:black;
+    font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;
+    padding-top: 10vh;
+  }
+  
+  .input-area-answer{
+    display:inline-flex;
+    color:green;
+    flex-direction:column;
+  }
+
+  .answer-text{
+      display: contents;
+  }
+  
+  .cursor{
+    background-color:green;
+    padding:4px;
+  }

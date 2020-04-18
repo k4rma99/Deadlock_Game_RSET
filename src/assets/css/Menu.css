@@ -77,10 +77,11 @@ text-rendering: optimizeSpeed;
     flex-direction: row;
     width: 92vw;
     flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 .profile-info div{
-    width:30.6666vw;
+    width:92vw;
     margin:auto auto;
 }
 
@@ -104,9 +105,6 @@ text-rendering: optimizeSpeed;
     font-family: montserrat, sans-serif;
 }
 
-.main-menu{
-
-}
 
 /*New Sizing info
 
@@ -163,9 +161,6 @@ text-rendering: optimizeSpeed;
         .option-textarea{
             /*start here*/top: 10vh;
         } 
-        .profile-info div{
-            width: 92vw;
-        }
   }
   
   @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
@@ -193,6 +188,8 @@ text-rendering: optimizeSpeed;
     .option-textarea{
         /*start here*/top: 30vh;
     }
+
+    
 }
 
  
@@ -220,6 +217,11 @@ text-rendering: optimizeSpeed;
 
     .content-area div div h4{
         padding-right: 10px;
+    }
+
+
+    .profile-info div{
+        width: 30.6666vw;
     }
 }
 

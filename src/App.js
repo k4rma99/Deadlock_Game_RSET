@@ -13,6 +13,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
 import {MainLoader} from "./components/main-loader.jsx";
 import { FancyLoader } from './components/fancyLoader.jsx';
+import { GameTest } from './components/GameTest.jsx';
 
 export const App = (props) => {
 
@@ -30,9 +31,10 @@ export const App = (props) => {
       }
       else{
         return (
-          <GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}>
 
-          </GamePage>
+        //<GameTest></GameTest>
+        <GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}></GamePage>
+
           )
       }
     }

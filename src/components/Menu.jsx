@@ -148,7 +148,7 @@ export const Menu = (props) =>{
                 }
                 else{
                     return (
-                        <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"100%",overflowY:"scroll"}}>
+                        <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"90%",overflowY:"scroll"}}>
                             <div >
                                 <h3>Username:</h3>
                                 <h4>{firebaseState.profile.displayName}</h4>

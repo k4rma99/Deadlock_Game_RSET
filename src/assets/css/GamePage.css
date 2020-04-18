@@ -65,7 +65,7 @@
       background-color: black;
   }
   
-  nav .search {
+  .search-nav .search {
       width: 2em;
       height: 2em;
       border: none;
@@ -76,12 +76,12 @@
     background-size: 100%;
   }
   
-  nav .search:hover {
+  .search-nav .search:hover {
     opacity: .4;
     cursor: pointer;
   }
   
-  nav .search.close {
+  .search-nav .search.close {
     background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/27846-84.png);
   }
 
@@ -94,7 +94,7 @@
     padding-top: 2vh;
   }
 
-  .img-wrapper nav{
+  .img-wrapper .search-nav{
     margin: auto 0;
     margin-left: 2vw;
   }
@@ -102,18 +102,21 @@
   .img-wrapper img {
     position: relative;
     left: 0%;
-    width: 50vw;
-    margin-bottom: 10%;
-    height: 100%;
+    max-width: 50vw;
     background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
   }
 
 @media only screen and (max-width:1023px){
   .img-wrapper img{
     width: 100%;
+    max-width: 92vw;
   }
-  .img-wrapper nav{
+  .img-wrapper .search-nav{
     margin-left: 0;
+  }
+
+  .game-header{
+    font-size: 3em;
   }
 
   .img-wrapper{
