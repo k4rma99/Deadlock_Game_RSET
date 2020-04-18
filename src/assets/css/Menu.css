@@ -9,7 +9,7 @@
     /*start here*/top: 30vh;
     pointer-events: none;
     z-index: 100;
-    height:100vh
+    height:100vh;
 }
 
 .heading-options{
@@ -88,7 +88,9 @@ text-rendering: optimizeSpeed;
     position: relative;
     top:0;
     width: 100%;
+    height: 80vh;
     opacity: 0;
+    overflow-y: scroll;
     will-change: opacity;
 }
 
@@ -100,6 +102,10 @@ text-rendering: optimizeSpeed;
 .content-area h4{
     font-weight: 400;
     font-family: montserrat, sans-serif;
+}
+
+.main-menu{
+
 }
 
 /*New Sizing info

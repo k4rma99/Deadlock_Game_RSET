@@ -33,7 +33,10 @@ export const PlayGameButton = (props) =>{
     
         return(<div className="main-grid">
                         <div className="main-header">
-                                <h1 id="light-flicker" className = "heading">DEADLOCK</h1>
+                                <div style={{position:"relative"}}>
+                                <div id="glitch-holder">
+                                        <h1  class="heading glitch" data-text="DEADLOCK">DEADLOCK</h1>
+                                </div></div>
                                 <h1 className="span-header">Lorem ipsum dolor</h1>
                                 {
                                         authError!=null

@@ -148,7 +148,7 @@ export const Menu = (props) =>{
                 }
                 else{
                     return (
-                        <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"100%"}}>
+                        <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"100%",overflowY:"scroll"}}>
                             <div >
                                 <h3>Username:</h3>
                                 <h4>{firebaseState.profile.displayName}</h4>
@@ -217,7 +217,7 @@ export const Menu = (props) =>{
     },[toggle])
     
     return(
-        <div className="main-menu" id="main-menu" style={{height:"100%",display:"flex",position:"absolute",zIndex:"121"}}>
+        <div className="main-menu" id="main-menu" style={{height:"100vh",display:"flex",position:"absolute",zIndex:"121",overflow:"hidden"}}>
         
         <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"relative",zIndex:"-1"}}>
         <div style={{color:"black"}} className="black-header">
