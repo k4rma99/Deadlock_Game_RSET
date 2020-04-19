@@ -36,11 +36,6 @@ export const LeaderBoard = () =>{
             if(leaderBoardData.isLoading){
                 getLeaderboard();
             }
-            //if (leaderBoardData.isLoading){
-                //do api call here using firebase
-                //once that is done set isLoading to false and then display the results
-                //setLeaderBoardData()
-           // }
         }
         f();
     },[])
@@ -65,7 +60,7 @@ export const LeaderBoard = () =>{
                             <td>{item.participantType}</td>
                             <td>{item.level}</td>
                         </tr>
-                    ))):"LOADING...."
+                    ))):""
                 }
             </tbody>
             </table>
