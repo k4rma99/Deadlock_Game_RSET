@@ -1,33 +1,48 @@
-import React,{Component,useEffect} from "react"
+import React,{Component,useEffect,useState} from "react"
 import "../assets/css/playGameButton.css"
-import {useSelector} from 'react-redux';
-import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
-import {useHistory} from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux';
 import Svg from "./playGameSVG"
+import {loginSuccess} from "../redux/actions.jsx"
+import firebase from "../firebase/firebase.js"
 var Cookie = require('js-cookie');
 export const PlayGameButton = (props) =>{
 
-        const firebase =useFirebase();
-        var history = useHistory();
-
-        let auth = useSelector(state=>state.fireBaseReducer.auth);
-        let profile = useSelector(state=>state.fireBaseReducer.profile);
-        let authError = useSelector(state=>state.fireBaseReducer.authError)
-
-        useEffect(()=>{
-                /*if(auth.isEmpty==false){
-                        Cookie.set("LoggedIn","true");
-                        props.SetStateChange(props.forceStateChange * -1);
-                }
-                */
-        })
-
+        var auth = useSelector(state=>state.rootReducer)
+        var dispatch = useDispatch();
+        console.log(auth)
+        var [error,setError] = useState(null);
         function loginWithGoogle() {
+                var provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .then(function() {
-                        return firebase.login(
-                                { provider: 'google', type: 'popup' }
-                                );
+                        return firebase.auth().signInWithPopup(provider).then(async (result) => {
+                                console.log(result)
+                                try {
+                                        var userData = await firebase.firestore().collection('users').doc(result.user.uid).get();
+                                        var isDetailsSet='false';
+                                        if(userData.exists){
+                                                console.log("ok")
+                                                if(userData.data().mobileNo!=null && userData.data().mobileNo!=undefined){
+                                                        console.log("ok1")
+                                                        isDetailsSet = 'true';
+                                                }
+                                                
+                                        }
+                                        console.log("userdata",userData.data().mobileNo);
+                                        // signed out
+                                      } catch (e){
+                                       // an error
+                                      } 
+
+
+                                        dispatch(loginSuccess({
+                                              uid:result.user.uid,
+                                                username:result.user.displayName,
+                                               isDetailsSet:isDetailsSet
+                                       }));
+                                
+                              }).catch(function(error) {
+                              });
                 })
         }
     
@@ -35,23 +50,21 @@ export const PlayGameButton = (props) =>{
                         <div className="main-header">
                                 <div style={{position:"relative"}}>
                                 <div id="glitch-holder">
-                                        <h1  class="heading glitch" data-text="DEADLOCK">DEADLOCK</h1>
+                                        <h1  className="heading glitch" data-text="DEADLOCK">DEADLOCK</h1>
                                 </div></div>
                                 <h1 className="span-header">Lorem ipsum dolor</h1>
                                 {
-                                        authError!=null
-                                        ?<span>{auth.authError}</span>
+                                        error!=null
+                                        ?<span>{error}</span>
                                         :""
                                 }
                         </div>
                         <div className="wrapper">
-                                <div onClick={()=>{isLoaded(auth)?loginWithGoogle():console.log("")}} className="cta" >
+                                <div onClick={()=>{loginWithGoogle()}} className="cta" >
                                         {
-                                                !isLoaded(auth)
+                                                auth.LoggedIn==true
                                                 ? <span>Loading</span>
-                                                : isEmpty(auth)
-                                                ? <span>LOGIN</span>
-                                                : <span>LOGGEDIN</span>
+                                                :<span>LOGIN</span>
                                         }
                                         <Svg />
                                 </div>

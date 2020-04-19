@@ -1,9 +1,10 @@
-import React, { useEffect,useState,useRef,useLayoutEffect } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import "../assets/css/Menu.css"
-import {gsap,TimelineLite,TweenMax} from "gsap";
+import {gsap} from "gsap";
 import { LeaderBoard } from "../components/leaderBoards.jsx";
-import { useFirebase } from 'react-redux-firebase';
-import {useSelector} from "react-redux"
+import firebase from "../firebase/firebase.js"
+import {logout} from "../redux/actions.jsx";
+import {useSelector,useDispatch} from "react-redux"
 
 export const Menu = (props) =>{
     var headerText = null;
@@ -11,11 +12,8 @@ export const Menu = (props) =>{
     let t1 = useRef(gsap.timeline());
     let id = useRef(null);
 
-
-    var firebaseState = useSelector(state=>state.fireBaseReducer);
-
-    var firebase = useFirebase();
-
+    var playerState = useSelector(state=>state.rootReducer);
+    var dispatch =useDispatch();
     //used for generating random alphanumeric characters. If num == -1 then the recursive functions starts
     //the recursive function generates the random number effect 
     //when we set it back to 1 then it stops
@@ -27,13 +25,41 @@ export const Menu = (props) =>{
         section:0,
     });
 
+    const resetLevel = () =>{
+        firebase.firestore().collection('users').doc(playerState.uid).update({
+            level:1
+        }).then((success)=>{
+            console.log("success")
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
 
-    const logout = () =>{
+    const Logout = async () =>{
         props.changeOpenState();
-        setTimeout(()=>{
-            firebase.logout();
-            props.SetStateChange(props.forceStateChange*-1);
+        setTimeout(async ()=>{
+            try {
+                await firebase.auth().signOut();
+                // signed out
+
+                dispatch(logout())
+              } catch (e){
+               // an error
+              } 
         },500)
+
+
+     }
+
+     const removeUser = async () =>{
+            try{
+                await firebase.firestore().collection('users').doc(playerState.uid).update({
+                    displayName:playerState.username
+                })
+            }
+            catch(error){
+
+            }
      }
  
     
@@ -119,7 +145,7 @@ export const Menu = (props) =>{
             }
             case 3:{
                 //Returns the contact page
-                if(firebaseState.auth.isEmpty){
+                if(!playerState.LoggedIn){
                     return (
                         <span style={{marginLeft:"4vw"}}>
                             Contact page content goes here
@@ -131,26 +157,17 @@ export const Menu = (props) =>{
                         <div className="profile-info" style={{marginLeft:"4vw",marginRight:"4vw",height:"90%",overflowY:"scroll"}}>
                             <div >
                                 <h3>Username:</h3>
-                                <h4>{firebaseState.profile.displayName}</h4>
+                                <h4>{playerState.username}</h4>
                             </div>
                             <div >
-                                <h3>Email ID:</h3>
-                                <h4>{firebaseState.profile.email}</h4>
+                                <button onClick={()=>Logout()} className="logout-button">Logout</button>
+                            </div>
+
+                            <div >
+                                <button onClick={()=>resetLevel()} className="logout-button">Reset Level</button>
                             </div>
                             <div >
-                                <h3>Mobile Number:</h3>
-                                <h4>{firebaseState.profile.mobileNo}</h4>
-                            </div>
-                            <div >
-                                <h3>Level:</h3>
-                                <h4>{firebaseState.profile.level}</h4>
-                            </div>
-                            <div >
-                                <h3>College:</h3>
-                                <h4>{firebaseState.profile.collegeNo}</h4>
-                            </div>
-                            <div >
-                                <button onClick={()=>logout()} className="logout-button">Logout</button>
+                                <button onClick={()=>removeUser()} className="logout-button">Reset Name</button>
                             </div>
                         </div>
                     )
@@ -177,10 +194,8 @@ export const Menu = (props) =>{
 
     useEffect(()=>{
         const f = () =>{
-            console.log(firebase);
             if(num.current!=-1 && toggle.isToggled==true){
                 t1.current = gsap.timeline();
-                console.log("hello")
                 setNum()
                 RandomLetters(toggle.value)
                 requestAnimationFrame(()=>{
@@ -204,7 +219,7 @@ export const Menu = (props) =>{
             <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
             <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
             <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:firebaseState.auth.isEmpty?"Contact":"Profile",section:3})}>{firebaseState.auth.isEmpty?"Contact":"Profile"}</h4>
+            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:!playerState.LoggedIn?"Contact":"Profile",section:3})}>{!playerState.LoggedIn?"Contact":"Profile"}</h4>
             <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"More",section:4})}>More</h4>
         </div>
             {toggle.isToggled?(

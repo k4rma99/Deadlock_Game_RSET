@@ -1,10 +1,9 @@
-import React, { Component,useEffect,useState } from 'react';
-import { useFirebase } from 'react-redux-firebase';
+import React, { useEffect,useState } from 'react';
+import firebase from "../firebase/firebase.js"
 import "../assets/css/leaderBoards.css"
 
 export const LeaderBoard = () =>{
 
-    var firebase = useFirebase();
 
     let [leaderBoardData,setLeaderBoardData] = useState({
         LeaderBoard:[]
@@ -21,7 +20,6 @@ export const LeaderBoard = () =>{
                     name:doc.data().displayName,
                     participantType:doc.data().collegeNo
                 })
-                console.log(doc.data());
             })
 
             setLeaderBoardData({
@@ -32,6 +30,7 @@ export const LeaderBoard = () =>{
     }
 
     useEffect(() => {
+        console.log("eee")
         const f = () =>{
             if(leaderBoardData.isLoading){
                 getLeaderboard();

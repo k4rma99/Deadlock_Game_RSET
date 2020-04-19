@@ -9,30 +9,25 @@ import {GamePage} from "./components/GamePage.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import Div100vh from 'react-div-100vh'
-import { useFirebase } from 'react-redux-firebase';
+import firebase from "./firebase/firebase.js"
 import { useSelector } from 'react-redux';
 import {MainLoader} from "./components/main-loader.jsx";
-import { FancyLoader } from './components/fancyLoader.jsx';
-import { GameTest } from './components/GameTest.jsx';
 
 export const App = (props) => {
 
   let [forceStateChange,SetStateChange] = useState(1);
-  let auth = useSelector(state=>state.fireBaseReducer.profile)
-  var Cookie = require('js-cookie');
-  const firebase = useFirebase();
+  var rootReducer = useSelector(state=>state.rootReducer);
 
   const returnPage = () =>{
-    if(localStorage.getItem('LoggedIn')=='true'){
-      if(localStorage.getItem('isDetailSet') != 'true'){
+    console.log("root reducer",rootReducer)
+    if(rootReducer.LoggedIn=='true'){
+      if(rootReducer.isDetailsSet!='true'){
           return (
             <MainLoader auth={false} profile={true} forceStateChange={forceStateChange} SetStateChange={SetStateChange}></MainLoader>
           )
       }
       else{
         return (
-
-        //<GameTest></GameTest>
         <GamePage firebase={firebase} forceStateChange={forceStateChange} SetStateChange={SetStateChange}></GamePage>
 
           )
@@ -44,27 +39,6 @@ export const App = (props) => {
       )
     }
   }
-
-
-  firebase.auth().onAuthStateChanged((user)=>{
-    if(user){
-      if(localStorage.getItem('LoggedIn')!='true'){
-        console.log("Ran event listener")
-        localStorage.setItem('LoggedIn','true');
-        console.log(user)
-        //localStorage.setItem('LoggedIn','true');
-      }
-    }
-    else{
-      if(localStorage.getItem('LoggedIn')=='true'){
-        localStorage.setItem('LoggedIn','false');
-        localStorage.setItem('isDetailSet','false');
-    }
-    }
-  })
-
-  useEffect(async () => {
-  }, [])
 
   return (
 <html>
@@ -82,11 +56,6 @@ export const App = (props) => {
       <Route exact path="/">
           {returnPage()}
       </Route>
-      {/*<Route path="/home">
-        <div style={{backgroundColor:"white",color:"black",marginTop:"10vh"}}>
-          Game Page
-        </div>
-  </Route>*/}
       <Route render={() =>
       <Div100vh>
               <div style={{backgroundColor:"white",position:"fixed",width:"100%",height:"100vh",zIndex:"1000"}}>

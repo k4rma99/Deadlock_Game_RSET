@@ -2,22 +2,24 @@ import React, { useEffect,useState,useRef } from 'react';
 import {FancyLoader} from "./fancyLoader.jsx"
 import { useFirebase, isLoaded } from 'react-redux-firebase'
 import {gsap} from "gsap";
+import {updateLevel} from "../redux/actions.jsx"
 import "../assets/css/GamePage.css"
-import { useSelector } from 'react-redux';
+import firebase from "../firebase/firebase.js"
+import { useSelector,useDispatch } from 'react-redux';
 var CryptoJS = require("crypto-js");
 
 export const GamePage = (props) =>{
-  var profile = useSelector(state=>state.fireBaseReducer.profile);
-  var auth = useSelector(state=>state.fireBaseReducer.auth);
-  const firebase = useFirebase();
-  var db = useRef(firebase.firestore());
+  //var profile = useSelector(state=>state.fireBaseReducer.profile);
+  //var auth = useSelector(state=>state.fireBaseReducer.auth);
+  var playerState = useSelector(state=>state.rootReducer);
+  var dispatch = useDispatch();
   const lvl1=useRef("b16d7a03a24d35c3434f78ea1f09a0ac177f64769772df7d8f2cf07940de865f");
   var t = gsap.timeline();
   var [error,setError] = useState(null);
   
   var [content,setContent] = useState(
     {
-      question:{},
+      question:"",
       isLoading:true,
       submitting:false,
       error:{
@@ -29,32 +31,54 @@ export const GamePage = (props) =>{
 
   var added = useRef(false);
 
-  var questionRef = useRef(null);
+  const openModal = () =>{
 
+    setContent(
+      {
+        question:"",
+        isLoading:false,
+        submitting:false,
+        error:{
+          flag:false,
+          message:""
+        },
+        success:true
+      }
+    )
+  }
+
+  const closeModal = () =>{
+      t.reverse();
+      setContent(
+        {
+          question:"",
+          isLoading:true,
+          submitting:false,
+          error:{
+            flag:false,
+            message:""
+          }
+        }
+      )
+  }
  
   const check_ans =(ans_hash)=>{
     firebase.firestore().collection('testQnA').doc(ans_hash).get().then((doc)=>{
       if (doc.exists) {
         var date = new Date();
         var time_stamp = date.getTime();
-        firebase.firestore().collection('users').doc(auth.uid).update({
+        firebase.firestore().collection('users').doc(playerState.uid).update({
           prevhash: ans_hash,
           timestamp: time_stamp,
-          level: profile.level + 1
+          level: content.level + 1
         }).then((success) => {
-          setContent(
-            {
-              question:"",
-              encryptedans:"",
-              isLoading:true,
-              submitting:false,
-              error:{
-                flag:false,
-                message:""
-              },
-              success:true
-            }
-          )
+          console.log("success youve answered the question");
+          openModal();
+          /*firebase.firestore().collection('logs').add({
+            uid:playerState.uid,
+            prevhash:ans_hash,
+            level:content.level+1
+          })*/
         })
       } else {
         setContent(
@@ -63,6 +87,8 @@ export const GamePage = (props) =>{
             encryptedans:content.encryptedans,
             isLoading:false,
             submitting:false,
+        level:content.level,
+        prevhash:content.prevhash,
             error:{
               flag:true,
               message:"Sorry wrong answer!"
@@ -70,85 +96,109 @@ export const GamePage = (props) =>{
           }
         )
       }
+    }).catch((error)=>{
+      setContent(
+        {
+          question:content.question,
+          isLoading:false,
+          submitting:false,
+      level:content.level,
+      prevhash:content.prevhash,
+          error:{
+            flag:true,
+            message:"Some error occurred!"
+          }
+        }
+      )
     })
   }
 
-  const hash_ans=()=>{
-    var before_hash;
-    console.log("question",content.question);
-    console.log("answer",searchInput.value);
-    console.log("lvl1",lvl1.current);
-    if(profile.level==1){
-      before_hash = lvl1.current.concat(content.question,searchInput.value);
+
+ const hash_ans=()=>{
+  var before_hash;
+  console.log("question",content.question);
+  console.log("answer",searchInput.value);
+  console.log("lvl1",lvl1.current);
+  if(content.level==1){
+    before_hash = lvl1.current.concat(content.question,searchInput.value);
+  }
+  else{
+    before_hash = content.prevhash.concat(content.question,searchInput.value);
+  }
+  let hash = CryptoJS.SHA256(before_hash);
+  let encryptedans = hash.toString(CryptoJS.enc.Hex)
+  //check_ans(encryptedans);
+  console.log(encryptedans);
+  setContent(
+    {
+      question:content.question,
+      encryptedans:encryptedans,
+      isLoading:true,
+      level:content.level,
+      prevhash:content.prevhash,
+      submitting:true,
+      error:{
+        flag:false,
+        message:""
+      }
+    }
+  )
+}
+ const submitAnswer = async () =>{
+  try{  
+    if(searchInput){
+        if(searchInput.value.trim()!=""){
+          hash_ans();
+        }
+        else{
+          setContent(
+            {
+              question:content.question,
+              isLoading:false,
+              submitting:false,
+
+        level:content.level,
+        prevhash:content.prevhash,
+              error:{
+                flag:true,
+                message:"Please enter an answer!"
+              }
+            }
+          )
+        }
     }
     else{
-      before_hash = profile.prevhash.concat(content.question,searchInput.value);
-    }
-    let hash = CryptoJS.SHA256(before_hash);
-    let encryptedans = hash.toString(CryptoJS.enc.Hex)
-    //check_ans(encryptedans);
-    console.log(encryptedans);
-    setContent(
-      {
-        question:content.question,
-        encryptedans:encryptedans,
-        isLoading:true,
-        submitting:true,
-        error:{
-          flag:false,
-          message:""
+      setContent(
+        {
+          question:content.question,
+          isLoading:false,
+          submitting:false,
+        level:content.level,
+        prevhash:content.prevhash,
+          error:{
+            flag:true,
+            message:"Please enter an answer!"
+          }
         }
-      }
-    )
-  }
-
-  const submitAnswer = async () =>{
-    try{  
-      if(searchInput){
-          if(searchInput.value.trim()!=""){
-            hash_ans();
-          }
-          else{
-            setContent(
-              {
-                question:content.question,
-                isLoading:false,
-                submitting:false,
-                error:{
-                  flag:true,
-                  message:"Please enter an answer!"
-                }
-              }
-            )
-          }
-      }
-      else{
-        setContent(
-          {
-            question:content.question,
-            isLoading:false,
-            submitting:false,
-            error:{
-              flag:true,
-              message:"Please enter an answer!"
-            }
-          }
-        )
-      }
-      
-    } 
-    catch(error){
-      console.log(error)
+      )
     }
+    
+  } 
+  catch(error){
+    console.log(error)
   }
+}
 
-  const get_ques =(actual_hash)=>{
+ const get_ques =(actual_hash,level)=>{
+  if(actual_hash!=null || actual_hash!=undefined ||actual_hash!=null){
     firebase.firestore().collection('testQnA').doc(actual_hash).get().then((doc)=>{
       console.log("question does exist");
       console.log(doc.data().question)
       setContent({
         question:doc.data().question,
         isLoading:false,
+        level:level,
+        prevhash:actual_hash,
         submitting:false,
         error:{
           flag:false,
@@ -157,28 +207,60 @@ export const GamePage = (props) =>{
       })
     }
     ).catch((error)=>{
-      console.log(error)
+      setContent(
+        {
+          question:"",
+          isLoading:false,
+          submitting:false,
+          error:{
+            flag:true,
+            message:"That question does not exist"
+          }
+        }
+      )
     });
+  }
+  else{
+    setContent(
+      {
+        question:"",
+        isLoading:false,
+        submitting:false,
+        error:{
+          flag:true,
+          message:"Check your internet connection"
+        }
+      }
+    )
+  }
+  
 }
 
-  const check_lvl =()=>{
-    if(profile.level==1){
-        get_ques(lvl1.current);
-    }else{
-        get_ques(profile.prevhash);//field prevhash to be created in each user document
-    }
+ const check_lvl =(snapshot)=>{
+  if(snapshot.level==1){
+      get_ques(lvl1.current,1);
+  }else{
+      get_ques(snapshot.prevhash,snapshot.level);//field prevhash to be created in each user document
   }
+}
 
 
-  const playgame =()=>{
-  console.log('dsdsd');
-  db.collection('users').get().then((snapshot) => {
-      snapshot.docs.forEach(doc =>{
-          if(doc.id=="HwZAWuGq5RY3QF1y4q7E7PTNFO52"){
-          check_lvl(doc.data());//passing current user's data
-          }
-      })
-  })
+  function playgame(){
+    console.log('dsdsd');
+    firebase.firestore().collection('users').doc(playerState.uid).get().then((snapshot) => {
+        check_lvl(snapshot.data());
+    }).catch((error)=>{setContent(
+      {
+        question:"",
+        isLoading:false,
+        submitting:false,
+        error:{
+          flag:true,
+          message:"Check your internet connection"
+        }
+      }
+    )
+    })
 
   }
 
@@ -252,7 +334,6 @@ const ClosePage = (e) =>{
 
 useEffect(()=>{
 
-    console.log(added.current)
     if(added.current==false){
 
         document.addEventListener("keyup",(e)=>{
@@ -287,32 +368,29 @@ useEffect(()=>{
     }
     if(searchOverlay){ 
       searchOverlay.style.display = "none"
-
     }
-
-      if(content.isLoading && isLoaded(profile)){
+      if(content.isLoading){
         if(content.submitting==false){
-          check_lvl();
+          playgame();
         }
         else{
-          if(profile.prevhash){
-            if(content.encryptedans != profile.prevhash){
-                check_ans(content.encryptedans);
-            }
+          check_ans(content.encryptedans);
           }
-          else{
-                check_ans(content.encryptedans);
-          }
-        }
       }
-    
+
+      if(content.success){
+
+        t.to('.modal-background',{visibility:"visible",duration:0})
+        .to('.modal',{transform:"scale(1)",duration:0.2});
+      }
+//playgame();
     
 })
 
     return (
-        <div style={{width:"100vw",height:"100%",position:"fixed",zIndex:"-10",overflowY:"scroll"}}>
+        <div style={{width:"100vw",height:"100%",position:"fixed",zIndex:"-10",overflowY:"scroll",overflowX:"hidden"}}>
 {
-      !isLoaded(profile)||content.isLoading
+      content.isLoading
       ?<FancyLoader></FancyLoader>
       :(
         <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vw",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column",overflowY:"auto"}}>
@@ -321,7 +399,7 @@ useEffect(()=>{
       <h3 style={{color:"red"}}>{content.error.flag?content.error.message:""}</h3>
       {
         !content.isLoading
-        ?<h3 style={{color:"white"}}>{content.question}</h3>
+        ?<h3 style={{color:"white"}}>{content.question?content.question:""}</h3>
         :""
       }
 <div className="img-wrapper">
@@ -351,6 +429,13 @@ useEffect(()=>{
         
       )
 }
+{content.success?
+<div className="modal-background">
+  <div className="modal">
+  <button onClick={()=>closeModal()}>X</button>
+  <span style={{margin:"auto auto",fontSize:"2em",display:"block"}}>Your answer is correct!</span>
+  </div>
+</div>:""}
     </div>
     )
 }
