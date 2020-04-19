@@ -13,10 +13,6 @@ export const GamePage = (props) =>{
   var [error,setError] = useState(null);
 
   var added = useRef(false);
-  const logout = () =>{
-    props.firebase.logout();
-    props.SetStateChange(props.forceStateChange*-1)
-  }
 
   function updateUserProfile() {
     return firebase.updateProfile({

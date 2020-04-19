@@ -1,45 +1,46 @@
 import React, { Component,useEffect,useState } from 'react';
+import { useFirebase } from 'react-redux-firebase';
 import "../assets/css/leaderBoards.css"
 
 export const LeaderBoard = () =>{
 
+    var firebase = useFirebase();
+
     let [leaderBoardData,setLeaderBoardData] = useState({
-        LeaderBoard:
-        [
-        {
-            rank:1,
-            name:"Jacob Mohan Chacko",
-            participantType:"RSET STUDENT",
-            level:"69"
-        },
-        {
-            rank:2,
-            name:"Vinay",
-            participantType:"RSET STUDENT",
-            level:"68"
-        },
-        {
-            rank:3,
-            name:"Matt",
-            participantType:"OTHER",
-            level:"67"
-        },
-        {
-            rank:4,
-            name:"Arjun",
-            participantType:"RSET STUDENT",
-            level:"66"
-        }
-    ]
-    ,isLoading:false});
+        LeaderBoard:[]
+    ,isLoading:true});
+
+    const getLeaderboard =()=>{
+        var temp = [];
+        firebase.firestore().collection('users').orderBy('level','desc').orderBy('timestamp').get().then((snapshot) => {
+            snapshot.docs.forEach(doc =>{
+                //console.log(doc.data().displayName,"  ",doc.data().level);
+                //render_leaderboard(doc);
+                temp.push({
+                    level:doc.data().level,
+                    name:doc.data().displayName,
+                    participantType:doc.data().collegeNo
+                })
+                console.log(doc.data());
+            })
+
+            setLeaderBoardData({
+                LeaderBoard:temp,
+                isLoading:false
+            })
+        })
+    }
 
     useEffect(() => {
         const f = () =>{
-            if (leaderBoardData.isLoading){
+            if(leaderBoardData.isLoading){
+                getLeaderboard();
+            }
+            //if (leaderBoardData.isLoading){
                 //do api call here using firebase
                 //once that is done set isLoading to false and then display the results
                 //setLeaderBoardData()
-            }
+           // }
         }
         f();
     },[])
@@ -57,14 +58,14 @@ export const LeaderBoard = () =>{
             </thead>
             <tbody>
                 {
-                    true?(leaderBoardData.LeaderBoard.map((item,index)=>(
+                    !leaderBoardData.isLoading?(leaderBoardData.LeaderBoard.map((item,index)=>(
                         <tr style={{backgroundColor:index%2==0?"white":"whitesmoke"}}>
-                            <td>{item.rank}</td>
+                            <td>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.participantType}</td>
                             <td>{item.level}</td>
                         </tr>
-                    ))):""
+                    ))):"LOADING...."
                 }
             </tbody>
             </table>
