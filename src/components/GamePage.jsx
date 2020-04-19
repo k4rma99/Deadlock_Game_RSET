@@ -31,26 +31,7 @@ export const GamePage = (props) =>{
 
   var questionRef = useRef(null);
 
-  const openModal = () =>{
-        t.to('.modal-background',{visibility:"visible"})
-        .to(".modal",{transform:"scale(1)"});
-  }
-
-  const gotoNextQuestion = () =>{
-    setContent(
-      {
-        question:"",
-        encryptedans:"",
-        isLoading:true,
-        submitting:false,
-        error:{
-          flag:false,
-          message:""
-        }
-      }
-    )
-  }
-
+ 
   const check_ans =(ans_hash)=>{
     firebase.firestore().collection('testQnA').doc(ans_hash).get().then((doc)=>{
       if (doc.exists) {
@@ -89,7 +70,6 @@ export const GamePage = (props) =>{
           }
         )
       }
-        //action(flag,ans_hash);
     })
   }
 
@@ -123,11 +103,7 @@ export const GamePage = (props) =>{
   }
 
   const submitAnswer = async () =>{
-    try{
-  
-      //let querySnapshot = await firebase.firestore().collection('QnA').doc(profile.level+'').get();
-      //console.log(querySnapshot.data())
-  
+    try{  
       if(searchInput){
           if(searchInput.value.trim()!=""){
             hash_ans();
@@ -334,12 +310,12 @@ useEffect(()=>{
 })
 
     return (
-        <div style={{width:"100vw",height:"100%",position:"fixed",zIndex:"-10"}}>
+        <div style={{width:"100vw",height:"100%",position:"fixed",zIndex:"-10",overflowY:"scroll"}}>
 {
       !isLoaded(profile)||content.isLoading
       ?<FancyLoader></FancyLoader>
       :(
-        <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vw",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column"}}>
+        <div className="game-main" onClick={e=>ClosePage(e)} style={{width:"100vw",height:"100vh",paddingTop:"10vh",paddingLeft:"4vw",paddingRight:"4vw",backgroundColor:"black",display:"flex",flexDirection:"column",overflowY:"auto"}}>
 
 <h4 className="game-header">Challenge</h4>
       <h3 style={{color:"red"}}>{content.error.flag?content.error.message:""}</h3>
@@ -375,13 +351,6 @@ useEffect(()=>{
         
       )
 }
-
-<div className="modal-background">
-    <div className="modal">
-      Success
-      <button onClick={()=>gotoNextQuestion()}></button>
-    </div>
-</div>
     </div>
     )
 }
