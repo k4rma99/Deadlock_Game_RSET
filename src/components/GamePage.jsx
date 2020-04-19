@@ -31,62 +31,24 @@ export const GamePage = (props) =>{
 
   var questionRef = useRef(null);
 
-  function updateUserProfile() {
-    return firebase.updateProfile({
-        email: "test",
-      displayName:"test",
-      mobno:"test",
-      college:"test",
-      rset:"test"
-    })
-  }
-
-  const right =(newhash)=>{
-    console.log("Correct Answer");
-    var date = new Date();
-    var time_stamp = date.getTime();
-    console.log(time_stamp);
-    db.collection('users').doc("HwZAWuGq5RY3QF1y4q7E7PTNFO52").update({
-        level : firebase.firestore.FieldValue.increment(1),
-        prevhash : newhash,
-        timestamp : time_stamp
-    })
-    .then(function(){
-        console.log("Database Updated");
-        //var x=document.getElementById('sbox');
-        //x.innerHTML="";
-        //var y=document.getElementById('answerbox');
-        //y.innerHTML="";
-        //var display_div = document.createElement('div');
-        //display_div.innerHTML = "<h2>CORRECT ANSWER! GOING TO NEXT LEVEL</h2>"
-        //document.getElementById('sbox').appendChild(display_div);
-        //setTimeout(() => { playgame(); }, 1000);
-    })
-  }
-
-  const wrong =()=>{
-    //var x=document.getElementById('sbox');
-    //x.innerHTML="";
-    //var y=document.getElementById('answerbox');
-    //y.innerHTML="";
-    //var display_div = document.createElement('div');
-    //display_div.innerHTML = "<h2>WRONG ANSWER! TRY AGAIN</h2>"
-    //document.getElementById('sbox').appendChild(display_div);
-    //setTimeout(() => { playgame(); }, 1000);
-
-  }
-
-  const action =(f,newhash)=>{
-    if(f==1){
-        right(newhash)
-    }else{
-        wrong();        
-    }
-  }
-
   const openModal = () =>{
         t.to('.modal-background',{visibility:"visible"})
         .to(".modal",{transform:"scale(1)"});
+  }
+
+  const gotoNextQuestion = () =>{
+    setContent(
+      {
+        question:"",
+        encryptedans:"",
+        isLoading:true,
+        submitting:false,
+        error:{
+          flag:false,
+          message:""
+        }
+      }
+    )
   }
 
   const check_ans =(ans_hash)=>{
@@ -94,21 +56,22 @@ export const GamePage = (props) =>{
       if (doc.exists) {
         var date = new Date();
         var time_stamp = date.getTime();
-        firebase.updateProfile({
+        firebase.firestore().collection('users').doc(auth.uid).update({
           prevhash: ans_hash,
           timestamp: time_stamp,
           level: profile.level + 1
         }).then((success) => {
           setContent(
             {
-              question:{},
+              question:"",
               encryptedans:"",
               isLoading:true,
               submitting:false,
               error:{
                 flag:false,
                 message:""
-              }
+              },
+              success:true
             }
           )
         })
@@ -351,14 +314,22 @@ useEffect(()=>{
 
     }
 
-    if(content.isLoading && isLoaded(profile)){
-      if(content.submitting==false){
-        check_lvl();
+      if(content.isLoading && isLoaded(profile)){
+        if(content.submitting==false){
+          check_lvl();
+        }
+        else{
+          if(profile.prevhash){
+            if(content.encryptedans != profile.prevhash){
+                check_ans(content.encryptedans);
+            }
+          }
+          else{
+                check_ans(content.encryptedans);
+          }
+        }
       }
-      else{
-        check_ans(content.encryptedans);
-      }
-    }
+    
     
 })
 
@@ -408,6 +379,7 @@ useEffect(()=>{
 <div className="modal-background">
     <div className="modal">
       Success
+      <button onClick={()=>gotoNextQuestion()}></button>
     </div>
 </div>
     </div>
