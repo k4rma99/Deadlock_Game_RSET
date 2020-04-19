@@ -5,30 +5,32 @@
     z-index: 1;
 }
 
-*::-webkit-scrollbar {
-    width: 10px;
-    background-color:transparent;
-  }
-  
-  /* Track */
-  *::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color:transparent;
-  }
-   
-  /* Handle */
-  *::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: darkgray; 
-  }
+
 
 
 @media only screen and (min-device-width:1024px){
+
+    *::-webkit-scrollbar {
+        width: 10px;
+        background-color:transparent;
+      }
+      
+      /* Track */
+      *::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color:transparent;
+      }
+       
+      /* Handle */
+      *::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 10px;
+      }
+      
+      /* Handle on hover */
+      *::-webkit-scrollbar-thumb:hover {
+        background-color: darkgray; 
+      }
     
     .App{
         -ms-overflow-style: none;
@@ -37,4 +39,6 @@
     .App::-webkit-scrollbar {
         display: none;
       }
+
+      
 }

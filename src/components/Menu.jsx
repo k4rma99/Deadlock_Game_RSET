@@ -13,24 +13,13 @@ export const Menu = (props) =>{
 
 
     var firebaseState = useSelector(state=>state.fireBaseReducer);
-    //var firebaseState =  localStorage.getItem('firebaseState');
-    console.log("fbstate",firebaseState)
-    //var profile = useSelector(state=>state.fireBaseReducer.profile);
-    //var auth = useSelector(state=>state.fireBaseReducer.auth);
 
     var firebase = useFirebase();
-
-    const [force, setforce] = useState(1)
 
     //used for generating random alphanumeric characters. If num == -1 then the recursive functions starts
     //the recursive function generates the random number effect 
     //when we set it back to 1 then it stops
     var num = useRef(1);
-
-    //tells us if any one of the subsections are open
-    var isOpen = 0;
-
-    var topMargin = useRef();
 
     var [toggle,setToggle] = useState({
         isToggled:false,
@@ -62,16 +51,7 @@ export const Menu = (props) =>{
     const Minimize = () => 
     {
         if(num.current!=-1 && toggle.isToggled==true){
-            console.log("testing")
-        /*t1.current
-        .to('.content-area',{autoAlpha:"0",duration:0.2})
-        .add(()=>RandomLetters("DEADLOCK"))
-        .to('.option-textarea',{transform:"translateY(0vh)",duration:0.7})
-        .add(()=>setTextHeading("DEADLOCK"))
-        .to('.black-header h4',{display:"block",duration:0.2})
-        .fromTo('.black-header h4',{autoAlpha:0},{autoAlpha:1,duration:0.2})
-        .eventCallback("onComplete", ()=>{isOpen = 0;t1.current.clear();setToggle({isToggled:false,value:"DEADLOCK",section:0})});
-        })*/setNum();
+            setNum();
             RandomLetters("DEADLOCK");
             t1.current
             .reverse()
