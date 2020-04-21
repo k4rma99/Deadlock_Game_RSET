@@ -13,25 +13,39 @@ export const Credentials = (props) =>{
     var playerState = useSelector(state=>state.rootReducer);
     var dispatch =useDispatch();
 
-const SubmitUserProfileData = () =>{
+const SubmitUserProfileData = async () =>{
       if(mobRef.value!=null || mobRef.value!=undefined){
         if(mobRef.value.trim()=="" || mobRef.value.trim().length!=10){
             SetError("Mobile number invalid!");
         }
         else{
-            var date = new Date();
-            var time_stamp = date.getTime();
-            firebase.firestore().collection('users').doc(playerState.uid).set({
-                mobileNo:mobRef.value.trim(),
-                collegeNo:checkRef.checked?"RSET":"OTHER",
-                isRSET:checkRef.checked?true:false,
-                level:1,
-                previousHash:"",
-                timestamp:time_stamp,
-                displayName:playerState.username
-              }).then((success) => {
-                  dispatch(updateProfile());
-              })
+            try{
+            var userData = await firebase.firestore().collection('users').doc(playerState.uid).get();
+                if(userData.exists){
+                if(userData.data().mobileNo!=null && userData.data().mobileNo!=undefined){
+                    dispatch(updateProfile());
+                    return;
+                    }
+                    return;
+                }
+                else{
+
+                    var date = new Date();
+                    var time_stamp = date.getTime();
+                    firebase.firestore().collection('users').doc(playerState.uid).set({
+                        mobileNo:mobRef.value.trim(),
+                        collegeNo:checkRef.checked?"RSET":"OTHER",
+                        isRSET:checkRef.checked?true:false,
+                        level:1,
+                        previousHash:"",
+                        timestamp:time_stamp,
+                        displayName:playerState.username
+                      }).then((success) => {
+                          dispatch(updateProfile());
+                      })
+                }
+            } catch (e){
+            } 
         }
 }
 else{

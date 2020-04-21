@@ -31,7 +31,7 @@ export const PlayGameButton = (props) =>{
                                         console.log("userdata",userData.data().mobileNo);
                                         // signed out
                                       } catch (e){
-                                       // an error
+                                        setError("an error occurred while signing in");
                                       } 
 
 
@@ -42,6 +42,7 @@ export const PlayGameButton = (props) =>{
                                        }));
                                 
                               }).catch(function(error) {
+                                setError(error);
                               });
                 })
         }
