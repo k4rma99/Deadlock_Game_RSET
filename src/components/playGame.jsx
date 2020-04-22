@@ -15,7 +15,7 @@ export const PlayGameButton = (props) =>{
         const loginWithGoogle =()=> {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-                .then(function() {
+                .then(()=> {
                         return firebase.auth().signInWithPopup(provider).then(async (result) => {
                                 try {
                                         var userData = await firebase.firestore().collection('users').doc(result.user.uid).get();
@@ -40,13 +40,17 @@ export const PlayGameButton = (props) =>{
                                                isDetailsSet:isDetailsSet
                                        }));
                                 
-                              }).catch(function(error) {
+                              }
+                              ).catch(function(error) {
                                 setState({
                                         isLoading:false,
-                                        error:error
+                                        error:"error while signing in"
                                 });
                               });
+                }).then((popup)=>{
+                        console.log(popup)
                 })
+
         }
 
         useEffect(()=>{
@@ -69,7 +73,7 @@ export const PlayGameButton = (props) =>{
                                 }
                         </div>
                         <div className="wrapper">
-                                <div onClick={()=>{!state.isLoading?setState({isLoading:true,error:null}):console.log()}} className="cta" >
+                                <div onClick={()=>{loginWithGoogle()}} className="cta" >
                                         {
                                                 auth.LoggedIn==true
                                                 ? <span>Loading</span>

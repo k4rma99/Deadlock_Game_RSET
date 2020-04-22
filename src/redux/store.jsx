@@ -40,6 +40,9 @@ const rootReducer = (state = initialState,action) => {
             localStorage.removeItem('username');
             localStorage.removeItem('isDetailsSet');
             localStorage.removeItem('uid');
+            if(window.sessionStorage.getItem('pending')){
+                window.sessionStorage.removeItem('pending');
+            }
             return Object.assign({},state,{
                 username:null,
                 LoggedIn:false,

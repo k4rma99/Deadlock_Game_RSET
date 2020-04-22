@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {Navbar} from "./components/Navbar.jsx"
+import {loginSuccess} from "./redux/actions.jsx"
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,14 +11,14 @@ import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import Div100vh from 'react-div-100vh'
 import firebase from "./firebase/firebase.js"
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import {MainLoader} from "./components/main-loader.jsx";
 
 export const App = (props) => {
 
   let [forceStateChange,SetStateChange] = useState(1);
   var rootReducer = useSelector(state=>state.rootReducer);
-
+  var dispatch = useDispatch();
   const returnPage = () =>{
     console.log("root reducer",rootReducer)
     if(rootReducer.LoggedIn=='true'){
@@ -39,11 +40,6 @@ export const App = (props) => {
       )
     }
   }
-  
-  useEffect(()=>{
-
-    console.log("inital state",rootReducer);
-  },[])
 
   return (
 <html>
