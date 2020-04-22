@@ -15,6 +15,7 @@
     height: 100vh;
     display: flex;
     background-color: black;
+    background-color: transparent;
       flex-direction: column;
       scroll-snap-align: start;
       

@@ -13,6 +13,7 @@ const initialState = {
     uid:localStorage.getItem('uid')?localStorage.getItem('uid'):null
 }
 
+
 const gameState ={
     prevhash:localStorage.getItem('prevhash')?localStorage.getItem('prevhash'):null,
     level:localStorage.getItem('level')?localStorage.getItem('level'):null

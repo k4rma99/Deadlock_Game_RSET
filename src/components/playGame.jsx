@@ -1,37 +1,36 @@
-import React,{Component,useEffect,useState} from "react"
+import React,{useState, useEffect} from "react"
 import "../assets/css/playGameButton.css"
 import { useSelector,useDispatch } from 'react-redux';
 import Svg from "./playGameSVG"
 import {loginSuccess} from "../redux/actions.jsx"
 import firebase from "../firebase/firebase.js"
-var Cookie = require('js-cookie');
 export const PlayGameButton = (props) =>{
 
         var auth = useSelector(state=>state.rootReducer)
         var dispatch = useDispatch();
-        console.log(auth)
-        var [error,setError] = useState(null);
-        function loginWithGoogle() {
+        var [state,setState] = useState({
+                error:null,
+                isLoading:false
+        });
+        const loginWithGoogle =()=> {
                 var provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .then(function() {
                         return firebase.auth().signInWithPopup(provider).then(async (result) => {
-                                console.log(result)
                                 try {
                                         var userData = await firebase.firestore().collection('users').doc(result.user.uid).get();
                                         var isDetailsSet='false';
                                         if(userData.exists){
-                                                console.log("ok")
                                                 if(userData.data().mobileNo!=null && userData.data().mobileNo!=undefined){
-                                                        console.log("ok1")
                                                         isDetailsSet = 'true';
                                                 }
                                                 
                                         }
-                                        console.log("userdata",userData.data().mobileNo);
-                                        // signed out
                                       } catch (e){
-                                        setError("an error occurred while signing in");
+                                        setState({
+                                                isLoading:false,
+                                                error:"an error occurred while signing in"
+                                        });
                                       } 
 
 
@@ -42,10 +41,19 @@ export const PlayGameButton = (props) =>{
                                        }));
                                 
                               }).catch(function(error) {
-                                setError(error);
+                                setState({
+                                        isLoading:false,
+                                        error:error
+                                });
                               });
                 })
         }
+
+        useEffect(()=>{
+                if(state.isLoading==true){
+                        loginWithGoogle()
+                }
+        })
     
         return(<div className="main-grid">
                         <div className="main-header">
@@ -55,13 +63,13 @@ export const PlayGameButton = (props) =>{
                                 </div></div>
                                 <h1 className="span-header">Lorem ipsum dolor</h1>
                                 {
-                                        error!=null
-                                        ?<span>{error}</span>
+                                        state.error!=null
+                                        ?<span>{state.error}</span>
                                         :""
                                 }
                         </div>
                         <div className="wrapper">
-                                <div onClick={()=>{loginWithGoogle()}} className="cta" >
+                                <div onClick={()=>{!state.isLoading?setState({isLoading:true,error:null}):console.log()}} className="cta" >
                                         {
                                                 auth.LoggedIn==true
                                                 ? <span>Loading</span>

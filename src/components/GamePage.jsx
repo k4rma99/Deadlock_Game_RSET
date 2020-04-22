@@ -9,14 +9,9 @@ import { useSelector,useDispatch } from 'react-redux';
 var CryptoJS = require("crypto-js");
 
 export const GamePage = (props) =>{
-  //var profile = useSelector(state=>state.fireBaseReducer.profile);
-  //var auth = useSelector(state=>state.fireBaseReducer.auth);
   var playerState = useSelector(state=>state.rootReducer);
-  var dispatch = useDispatch();
   const lvl1=useRef("b16d7a03a24d35c3434f78ea1f09a0ac177f64769772df7d8f2cf07940de865f");
-  var t = gsap.timeline();
-  var [error,setError] = useState(null);
-  
+  var t = gsap.timeline();  
   var [content,setContent] = useState(
     {
       question:"",

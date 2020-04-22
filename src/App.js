@@ -39,6 +39,11 @@ export const App = (props) => {
       )
     }
   }
+  
+  useEffect(()=>{
+
+    console.log("inital state",rootReducer);
+  },[])
 
   return (
 <html>
