@@ -413,9 +413,13 @@ useEffect(()=>{
     </li>
   </ul>
   <br/>
-  <button className="search-button" onClick={()=>submitAnswer()}>
-     <h3>Submit</h3>
-  </button>
+  {
+    content.success
+    ?""
+    :<button className="search-button" onClick={()=>submitAnswer()}>
+       <h3>Submit</h3>
+    </button>
+  }
 </nav>
     <img src="https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg"></img>
 </div>
