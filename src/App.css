@@ -3,6 +3,7 @@
     position: relative;
     background-color: black;
     z-index: 1;
+    
 }
 
 
@@ -12,7 +13,7 @@
 
     *::-webkit-scrollbar {
         width: 10px;
-        background-color:transparent;
+        background-color:black;
       }
       
       /* Track */

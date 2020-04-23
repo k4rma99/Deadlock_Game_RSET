@@ -2,30 +2,20 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-left: 3em;
-    width: 92vw;
     height: 100vh;
-    padding-left: 4vw;
-    padding-right: 4vw;
     background-color: #171716;
     padding-top: 10vh;
     font-family: montserrat, sans-serif;
     font-style: normal;
-    overflow-x: hidden;
     color: white;
 }
-/*
-table:before {
-    position: fixed;
-    content: '';
-    right: calc(100% + 1rem);
-    top: 0;
+.zig-zag{
+    width: 2em;
     left: 0;
-    height: 100%;
-    width: 3em;
     background: repeating-linear-gradient(-45deg, #15151E 0px, #15151E 4px, #38383F 4px, #38383F 8px);
-  }
-*/
+    border: thin #38383F solid;
+    margin: 0;
+}
 .leader-board-legend{
     position: relative;
     display: flex;
@@ -38,15 +28,33 @@ table{
     text-align: left;
     border: none;
     border-collapse: collapse;
+    margin: 0;
+    width: 92vw;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    
+    border-collapse: collapse;
 }
 
 th{
     color:gray;
     font-weight: 300;
+    
 }
 
 th,td{ 
     padding: 10px;
     border-right: none;
     border-left: none;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
+
+.level-span {
+    background: #38383F;
+    border-radius: 30px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }

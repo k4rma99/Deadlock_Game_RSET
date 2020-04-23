@@ -29,6 +29,11 @@ export const LeaderBoard = () =>{
         })
     }
 
+    const getLeftColor = (max,min) =>{
+        return `thick hsl(${(max - min) + min*Math.random()},60%,50%) solid`
+
+    }
+
     useEffect(() => {
         console.log("eee")
         const f = () =>{
@@ -41,25 +46,26 @@ export const LeaderBoard = () =>{
 
     return (
         <div className="leader-board">
-            <h1>LeaderBoards</h1>
-            <div style={{borderBottom:"thick #177cff solid"}} />
-            <table responsive="sm" style={{width:"100%"}}>
+            <h1 style={{marginLeft:"4vw"}}>LeaderBoards</h1>
+            <div style={{borderBottom:"thick #177cff solid",width:"100vw"}} />
+                <table responsive="sm" >
             <thead>
                 <tr>
                     <th style={{width:"15%"}}>POS</th>
                     <th style={{width:"45%"}}>NAME</th>
                     <th style={{width:"30%"}}>TYPE</th>
-                    <th style={{width:"10%"}}>LEVEL</th>
+                    <th style={{width:"10%",textAlign:"center"}}>LEVEL</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     !leaderBoardData.isLoading?(leaderBoardData.LeaderBoard.map((item,index)=>(
-                        <tr >
+                        <tr style={{backgroundColor:index%2!=0?"#171716":"#202121",borderLeft:getLeftColor(0,360)}}>
                             <td>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.participantType}</td>
-                            <td>{item.level}</td>
+                            <td style={{textAlign:"center"}}><span className="level-span">{item.level}</span></td>
+                            
                         </tr>
                     ))):""
                 }
