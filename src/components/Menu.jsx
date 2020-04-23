@@ -235,7 +235,7 @@ export const Menu = (props) =>{
             <div className="induvidual-icon">
                 <div className="level-icon" style={{margin:"auto 2vh"}}></div>
                 <div>
-                <span id="level-span" className="level-span" style={{fontSize:"3vh"}}>-</span>
+                <span id="level-span" className="level-span" style={{fontSize:"2vh"}}>-</span>
                 <br/>
                 <span style={{color:"gray"}}>level</span>
                 </div>
@@ -244,7 +244,7 @@ export const Menu = (props) =>{
             <div className="induvidual-icon">
                 <div className="trophy-icon" style={{margin:"auto 2vh"}}></div>
                 <div>
-                <span id="student-type-span" style={{fontSize:"3vh"}}>-</span>
+                <span id="student-type-span" style={{fontSize:"2vh"}}>-</span>
                 <br/>
                 <span style={{color:"gray"}}>type</span>
                 </div>
@@ -252,7 +252,7 @@ export const Menu = (props) =>{
         </div>
         <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
             <div className="icon-menu rules-icon"></div>
-            <a style={{margin:"auto 0"}}>Game Rules</a>
+            <a href="/rules" style={{margin:"auto 0"}}>Game Rules</a>
         </div>
         <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
             <div className="icon-menu leaderboards-icon "></div>

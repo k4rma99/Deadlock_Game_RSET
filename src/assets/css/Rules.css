@@ -1,0 +1,67 @@
+.rule-container{
+    color: white;
+    padding-top: 10vh;
+    font-family: montserrat, sans-serif;
+    font-style: normal;
+    background-color: #171716;
+}
+
+.rule-container h4{
+    color: gray;
+}
+
+.rule-item{
+    width: 92vw;
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.rules-holder{
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+
+.icons{
+    width: 10vh;
+    height: 10vh;
+    background-size: contain;
+    filter: invert() brightness(0.25);
+    border: none;
+    margin:0 auto;
+}
+
+.admin-icon{
+    background-image: url(./icons8-anonymous-mask-1080.png);
+}
+
+.pencil-icon{
+    background-image: url(./icons8-pencil-1080.png);
+}
+
+.court-icon{
+    background-image: url(./icons8-courthouse-1080.png);
+}
+
+.rule-search-icon{
+    background-image: url(./icons8-search-1080.png);
+}
+
+.rule-question-icon{
+    background-image: url(./icons8-ask-question-1080.png);
+}
+
+.hacker-icon{
+    background-image: url(./icons8-hacker-1080.png);
+}
+
+@media only screen and ( min-width : 1024px ){
+    .rule-item{
+        width: 44vw;
+        padding: 1vw;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+
+}

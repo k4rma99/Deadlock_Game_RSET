@@ -10,6 +10,7 @@ import {GamePage} from "./components/GamePage.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
 import Div100vh from 'react-div-100vh'
+import {Rules} from "./components/Rules.jsx";
 import firebase from "./firebase/firebase.js"
 import { useSelector,useDispatch } from 'react-redux';
 import {MainLoader} from "./components/main-loader.jsx";
@@ -61,6 +62,9 @@ export const App = (props) => {
       </Route>
       <Route path="/leaderboards">
         <LeaderBoard></LeaderBoard>
+      </Route>
+      <Route path="/rules">
+        <Rules></Rules>
       </Route>
       <Route render={() =>
       <Div100vh>
