@@ -11,15 +11,16 @@
 }
 
 .rule-item{
-    width: 92vw;
+    width: 100vw;
     display: inline-flex;
     flex-direction: column;
     text-align: center;
+
+    background-color: #171716;
 }
 
 .rules-holder{
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding: 0;
 }
 
 .icons{
@@ -62,6 +63,9 @@
         padding-top: 0;
         padding-bottom: 0;
     }
-
+    .rules-holder{
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
 
 }

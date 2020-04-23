@@ -4,10 +4,10 @@ import "../assets/css/Rules.css"
 export const Rules = () =>{
 
     return(
-        <div className="rule-container" >
+        <div style={{height:"100%"}} className="rule-container" >
                         <h1 style={{marginLeft:"4vw",textAlign:"center"}}>Rules</h1>
                         <div style={{borderBottom:"thick #177cff solid",width:"100vw"}} />
-                        <div className="rules-holder" style={{paddingTop:"4vh",paddingRight:"4vw",height:"100vh",display:"flex",flexDirection:"row",flexWrap:"wrap"}}>
+                        <div className="rules-holder" style={{height:"100vh",display:"flex",flexDirection:"row",flexWrap:"wrap",backgroundColor:"#171716;"}}>
                         <div className="rule-item">
                             <img className="admin-icon icons"></img>
                             <h3>The admin is always right.</h3>
