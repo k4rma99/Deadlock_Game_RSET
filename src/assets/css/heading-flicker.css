@@ -7,17 +7,15 @@
   font-family: montserrat, sans-serif;
 
 font-weight: 700;
-
 font-style: normal;
-text-align: left;
-padding-left: 3vw;
+text-align: center;
+width: 100%;
 margin: 0;
-mix-blend-mode: difference;
+padding: 0;
 }
 
 .main-grid{
   position: relative;
-  mix-blend-mode: difference;
 }
 
 
@@ -27,20 +25,20 @@ mix-blend-mode: difference;
   text-align: center;
   position: relative;
   margin-top: 30vh;
-  mix-blend-mode: difference;
 }
 
 
 .span-header{
   color: white;
   display: block;
-  padding-left: 3vw;
   font-size: 7vw;
   font-family: montserrat, sans-serif;
   text-align: left;
-  margin-top: 0vh;
+  margin: 0;
   font-weight: 300;
-mix-blend-mode: difference;
+  width: 100%;
+  padding: 0;
+text-align: center;
 }
 
 .border{
@@ -211,7 +209,6 @@ mix-blend-mode: difference;
   .span-header{
     font-size: 4vw;
     margin-top: -3vh;
-    padding-left: 3.5vw;
   }
 }
 

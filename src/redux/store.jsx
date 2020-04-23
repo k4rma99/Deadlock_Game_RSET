@@ -43,6 +43,12 @@ const rootReducer = (state = initialState,action) => {
             if(window.sessionStorage.getItem('pending')){
                 window.sessionStorage.removeItem('pending');
             }
+            if(localStorage.getItem('level')){
+                localStorage.removeItem('level');
+            }
+            if(localStorage.getItem('studentType')){
+                localStorage.removeItem('studentType');
+            }
             return Object.assign({},state,{
                 username:null,
                 LoggedIn:false,

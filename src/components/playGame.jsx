@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react"
 import "../assets/css/playGameButton.css"
 import { useSelector,useDispatch } from 'react-redux';
-import Svg from "./playGameSVG"
+import "../assets/css/arrow.css"
 import {loginSuccess} from "../redux/actions.jsx"
 import firebase from "../firebase/firebase.js"
 export const PlayGameButton = (props) =>{
@@ -23,6 +23,8 @@ export const PlayGameButton = (props) =>{
                                         if(userData.exists){
                                                 if(userData.data().mobileNo!=null && userData.data().mobileNo!=undefined){
                                                         isDetailsSet = 'true';
+                                                        localStorage.setItem('level',userData.data().level);
+                                                        localStorage.setItem('studentType',userData.data().collegeNo)
                                                 }
                                                 
                                         }
@@ -33,11 +35,10 @@ export const PlayGameButton = (props) =>{
                                         });
                                       } 
 
-
                                         dispatch(loginSuccess({
                                               uid:result.user.uid,
-                                                username:result.user.displayName,
-                                               isDetailsSet:isDetailsSet
+                                              username:result.user.displayName,
+                                              isDetailsSet:isDetailsSet
                                        }));
                                 
                               }
@@ -61,25 +62,16 @@ export const PlayGameButton = (props) =>{
     
         return(<div className="main-grid">
                         <div className="main-header">
-                                <div style={{position:"relative"}}>
-                                <div id="glitch-holder">
                                         <h1  className="heading glitch" data-text="DEADLOCK">DEADLOCK</h1>
-                                </div></div>
                                 <h1 className="span-header">Lorem ipsum dolor</h1>
-                                {
-                                        state.error!=null
-                                        ?<span>{state.error}</span>
-                                        :""
-                                }
                         </div>
                         <div className="wrapper">
                                 <div onClick={()=>{loginWithGoogle()}} className="cta" >
                                         {
                                                 auth.LoggedIn==true
                                                 ? <span>Loading</span>
-                                                :<span>LOGIN</span>
+                                                :<span>PLAY</span>
                                         }
-                                        <Svg />
                                 </div>
                         </div>
                 </div>

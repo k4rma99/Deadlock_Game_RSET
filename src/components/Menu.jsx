@@ -25,6 +25,23 @@ export const Menu = (props) =>{
         section:0,
     });
 
+    const returnLevel = () =>{
+        if(playerState.LoggedIn=='true' && playerState.isDetailsSet=='true'){
+            if(!localStorage.getItem('level') || !localStorage.getItem('studentType')){
+                firebase.firestore().collection('users').doc(playerState.uid).get().then((snapshot)=>{
+                        document.getElementById('level-span').textContent = snapshot.data().level
+                        document.getElementById('student-type-span').textContent = snapshot.data().collegeNo
+                        localStorage.setItem('level',snapshot.data().level)
+                        localStorage.setItem('studentType',snapshot.data().collegeNo)
+                });
+            }
+            else{
+                document.getElementById('level-span').textContent = localStorage.getItem('level')
+                document.getElementById('student-type-span').textContent = localStorage.getItem('studentType')
+            }
+        }
+    }
+
     const resetLevel = () =>{
         firebase.firestore().collection('users').doc(playerState.uid).update({
             level:1
@@ -33,6 +50,15 @@ export const Menu = (props) =>{
         }).catch((error)=>{
             console.log(error);
         })
+    }
+
+    const rerouteLogout =()=>{
+        if(playerState.LoggedIn){
+            Logout();
+        }
+        else{
+            //reroute the user to the about page
+        }
     }
 
     const Logout = async () =>{
@@ -194,40 +220,55 @@ export const Menu = (props) =>{
 
     useEffect(()=>{
         const f = () =>{
-            if(num.current!=-1 && toggle.isToggled==true){
-                t1.current = gsap.timeline();
-                setNum()
-                RandomLetters(toggle.value)
-                requestAnimationFrame(()=>{
-                        t1.current
-                            .fromTo([LeaderBoards,Rules,Contact,Clues],{autoAlpha:1},{autoAlpha:0,duration:0.2},0)
-                            .to(optionTextArea,{top:`10vh`,duration:0.7},0.2)
-                            .to([LeaderBoards,Rules,Contact,Clues],{display:"none",duration:0.2})
-                            .to(contentArea,{autoAlpha:1,duration:0.2})
-                            .eventCallback("onComplete", ()=>{setTextHeading(toggle.value)})
-                })
-            }
+            returnLevel()
         }
         f();
     },[toggle])
     
     return(
-        <div className="main-menu" id="main-menu" style={{height:"100vh",display:"flex",position:"absolute",zIndex:"121",overflow:"hidden"}}>
-        
-        <div id="options" ref={ref=>optionTextArea=ref} className="option-textarea" style={{position:"relative",zIndex:"-1"}}>
-        <div style={{color:"black"}} className="black-header">
-            <h1 ref={ref=>headerText = ref} style={{color:"black"}} onClick={()=>Minimize()} className = "heading-options">DEADLOCK</h1>
-            <h4 id="options" ref={ref=>LeaderBoards=ref} className="htp" style={{marginTop:"1vh"}} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"leaderboard",section:1})}>Leaderboards</h4>
-            <h4 id="options" ref={ref=>Rules=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"Game rules",section:2})}>Game rules</h4>
-            <h4 id="options" ref={ref=>Contact=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:!playerState.LoggedIn?"Contact":"Profile",section:3})}>{!playerState.LoggedIn?"Contact":"Profile"}</h4>
-            <h4 id="options" ref={ref=>Clues=ref} onClick={()=>toggle.isToggled?"":setToggle({isToggled:true,value:"More",section:4})}>More</h4>
-        </div>
-            {toggle.isToggled?(
-                <div ref={ref=>contentArea=ref} className="content-area">
-                    {toggle.isToggled?returnSection(toggle.section):""}
+        <div className="main-menu" id="main-menu" style={{backgroundColor:"transparent",height:"100vh",display:"flex",position:"absolute",zIndex:"111",overflow:"hidden"}}>
+            <div className="profile-area">
+                <img alt="" className="no-profile-pic" src={playerState.LoggedIn?firebase.auth().currentUser.photoURL:"none"} style={playerState.isLoggedIn?{backgroundImage:`none`}:{backgroundImage:""}}></img>
+                <span style={{display:"inline",textAlign:"center",marginRight:"7.5%",marginLeft:"7.5%"}}>{playerState.LoggedIn?playerState.username:"Sign up to take part in the game and win awesome prizes!"}</span>
+            </div>
+        <div className="stats-holder">
+            <div className="induvidual-icon">
+                <div className="level-icon" style={{margin:"auto 2vh"}}></div>
+                <div>
+                <span id="level-span" className="level-span" style={{fontSize:"3vh"}}>-</span>
+                <br/>
+                <span style={{color:"gray"}}>level</span>
                 </div>
-            ):<></>
-            }
+            </div>
+            <hr style={{border:"thin gray solid"}} />
+            <div className="induvidual-icon">
+                <div className="trophy-icon" style={{margin:"auto 2vh"}}></div>
+                <div>
+                <span id="student-type-span" style={{fontSize:"3vh"}}>-</span>
+                <br/>
+                <span style={{color:"gray"}}>College</span>
+                </div>
+            </div>
+        </div>
+        <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
+            <div className="icon-menu rules-icon"></div>
+            <a style={{margin:"auto 0"}}>Game Rules</a>
+        </div>
+        <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
+            <div className="icon-menu leaderboards-icon "></div>
+            <a style={{margin:"auto 0"}}>LeaderBoards</a>
+        </div>
+        <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
+            <div className="icon-menu clues-icon"></div>
+            <a style={{margin:"auto 0"}}>Clues</a>
+        </div>
+        <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
+            <div className="icon-menu contact-icon"></div>
+            <a style={{margin:"auto 0"}}>Contact us</a>
+        </div>
+        <div onClick={()=>{rerouteLogout()}} style={{position:"absolute",top:"80vh",marginLeft:"7.5%",display:"flex",flexDirection:"row"}}>
+            <div className="icon-menu logout-icon"></div>
+            <span style={{margin:"auto 0"}}>{playerState.LoggedIn?"Logout":"About"}</span>
         </div>
         </div>
     )

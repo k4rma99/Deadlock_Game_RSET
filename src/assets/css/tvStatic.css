@@ -29,7 +29,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
   }
   .noise {
     position: absolute;
@@ -37,7 +37,7 @@
     right: -500px;
     bottom: -500px;
     left: -500px;
-    background: transparent url(https://www.dropbox.com/s/h7ab1c82ctzy83n/noise.png?raw=1) 0 0;
+    background: transparent url(https://vistapointe.net/images/static-wallpaper-1.jpg) 0 0;
     background-size: 320px 320px;
     opacity: .35;
     animation: noise 1s steps(8, end) infinite both;

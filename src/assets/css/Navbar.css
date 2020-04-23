@@ -1,17 +1,29 @@
 
 .options{
     position: absolute;
-    width: 100%;
+    width: 70%;
     height: 100vh;
     top: 0;
-    -webkit-transform:scaleY(0) translate3d(0,0%,0);
-  transform:scaleY(0) translate3d(0,0%,0);
-  transform-origin: 0 0 ;
-  -webkit-transform-origin: 0 0;
-  pointer-events: none;
-    z-index:111;
-    background-color: white;
+    right: 0;
+    -webkit-transform:scaleX(0) translate3d(0,0%,0);
+  transform:scaleX(0) translate3d(0,0%,0);
+  transform-origin: center right ;
+  -webkit-transform-origin:center right;
+    z-index:131;
+    background-color: #171716;
     will-change: transform;
+}
+
+.dark-overlay{
+    position: absolute;
+
+    z-index:101;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    pointer-events: none;
+    background-color:rgba(0, 0, 0,0);
 }
 
 
@@ -39,19 +51,26 @@
 }
 
 .menu-button{
-    transform: scale(0.5);
+    transform: scale(0.4);
     position: fixed;
-    right: 1vh;
+    right: 2vh;
     top: 0vh;
     transform-origin: right top;
     width: 20vh;
     height: 20vh;
-    z-index: 121;
-    border-radius: 100%;
+    z-index: 100000;
     border-color: transparent;
-    background-color: transparent;
+    background: url(./imageonline-co-invertedimage.png);
+    background-size: contain;
 }
 
 .menu-button:hover{
     cursor: pointer;
+}
+
+
+@media only screen and (  min-width: 1024px ){
+    .options{
+        width: 30%;
+    }
 }

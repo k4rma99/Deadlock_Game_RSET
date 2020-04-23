@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react';
 import {Navbar} from "./components/Navbar.jsx"
-import {loginSuccess} from "./redux/actions.jsx"
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +15,7 @@ import {MainLoader} from "./components/main-loader.jsx";
 
 export const App = (props) => {
 
+  window.firebase = firebase;
   let [forceStateChange,SetStateChange] = useState(1);
   var rootReducer = useSelector(state=>state.rootReducer);
   var dispatch = useDispatch();
@@ -55,6 +55,7 @@ export const App = (props) => {
     <Router>
     <Switch>
       <Route exact path="/">
+
           {returnPage()}
       </Route>
       <Route render={() =>

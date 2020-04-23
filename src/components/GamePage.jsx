@@ -68,6 +68,7 @@ export const GamePage = (props) =>{
           level: content.level + 1
         }).then((success) => {
           console.log("success youve answered the question");
+          localStorage.setItem('level',content.level + 1)
           openModal();
           /*firebase.firestore().collection('logs').add({
             uid:playerState.uid,

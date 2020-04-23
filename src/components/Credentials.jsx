@@ -38,6 +38,8 @@ const SubmitUserProfileData = () =>{
                     timestamp:time_stamp,
                     displayName:playerState.username
                   }).then((success) => {
+                      localStorage.setItem('level',1)
+                      localStorage.setItem('studentType',checkRef.checked?"RSET":"OTHER")
                       dispatch(updateProfile());
                   }).catch((error)=>{
                     setState({

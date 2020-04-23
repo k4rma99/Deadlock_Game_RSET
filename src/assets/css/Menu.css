@@ -1,111 +1,90 @@
 
-.option-textarea{
-    display: block;
+.main-menu{
+    width: 100%;
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: montserrat, sans-serif;
     position: absolute;
     top: 0;
-    opacity: 0;
-    transform: translate3d(0,0,0);
-    will-change: opacity contents;
-    /*start here*/top: 30vh;
-    pointer-events: none;
-    z-index: 100;
-    height:100vh;
+    left: 0;
 }
 
-.heading-options{
-    will-change: contents;
-    position: relative;
-    margin: 0;
-    display: block;
-  font-size: 14vw;
-  font-family: montserrat, sans-serif;
-font-weight: 700;
-
-font-style: normal;
-text-align: left;
-padding-left: 3vw;
-mix-blend-mode: difference;
-text-rendering: optimizeSpeed;
-}
-
-.heading-options:hover{
-    cursor: pointer;
-}
-
-.black-header{
-    position: relative;
+.profile-area{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-top: 0;
+    width:99%;
+    margin-bottom: 2vh;
 }
 
-
-.menu-holder{
+.stats-holder{
     display: flex;
-    flex-direction: column;
-    padding :0;
-    position: fixed;
-    right: 0;
-    z-index: inherit;
+    margin-left: 7.5%;
+    flex-direction: row;
+    width: 85%;
+    padding-bottom: 2vh;
+    border-bottom: thin gray solid;
 }
 
-.black-header h4{
-    margin-top: 0vh;
-    margin-left: 4vw;
-    display: flex;
-    text-align: left;
-    font-family: montserrat, sans-serif;
-    font-weight: 700;
-    will-change:opacity;
-    color: black;
+.trophy-icon{
+    background-image: url(./icons8-trophy-1080.png);
+    width: 4vh;
+    height: 4vh;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.black-header h4:hover{
-    cursor: pointer;
+.level-icon{
+    background-image: url(./icons8-level-up-1080.png);
+    width: 4vh;
+    height: 4vh;
+    background-size: contain;
 }
 
-.htp{
-    margin-top: 0vh;
-    margin-left: 6vw;
-    display: block;
-    text-align: left;
-}
-
-.profile-info{
+.induvidual-icon{
     display: flex;
     flex-direction: row;
-    width: 92vw;
-    flex-wrap: wrap;
-    overflow-y: scroll;
+    padding: 0;
+    width: 42.5%;
 }
 
-.profile-info div{
-    width:92vw;
-    margin:auto auto;
+.icon-menu{
+    background-size: contain;
+    width: 3vh;
+    height: 3vh;
+    margin-right: 2vh;
+    filter: invert() brightness(0.25)
 }
 
-.content-area{
-    position: relative;
-    top:0;
-    width: 100%;
-    height: 80vh;
-    opacity: 0;
-    overflow-y: scroll;
-    will-change: opacity;
+.rules-icon{
+    background-image: url(./icons8-male-user-1080.png);
 }
 
-.content-area h3{
-    color:#8d27d6;
-    font-family: montserrat, sans-serif;
+.leaderboards-icon{
+    background-image: url(./icons8-leaderboard-1080.png);
 }
 
-.content-area h4{
-    font-weight: 400;
-    font-family: montserrat, sans-serif;
+.clues-icon{
+    background-image: url(./icons8-detective-1080.png);
 }
 
+.contact-icon{
+    background-image: url(./icons8-email-1080.png);
+}
 
+.logout-icon{
+    background-image: url(./icons8-export-1080.png);
+}
+
+.no-profile-pic{
+    width: 10vh;
+    height: 10vh;
+    background-image: url(./imageonline-co-invertedimage\ \(1\).png);
+    background-size: contain;
+    margin: 0 auto;
+    margin-bottom: 2vh;
+}
 /*New Sizing info
 
 @media only screen and (min-device-width: 0px) and (max-device-width:320px) and (orientation: landscape) {
@@ -218,7 +197,6 @@ text-rendering: optimizeSpeed;
     .content-area div div h4{
         padding-right: 10px;
     }
-
 
     .profile-info div{
         width: 30.6666vw;
