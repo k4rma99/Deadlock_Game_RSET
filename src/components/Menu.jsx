@@ -228,7 +228,7 @@ export const Menu = (props) =>{
     return(
         <div className="main-menu" id="main-menu" style={{backgroundColor:"transparent",height:"100vh",display:"flex",position:"absolute",zIndex:"111",overflow:"hidden"}}>
             <div className="profile-area">
-                <img alt="" className="no-profile-pic" src={playerState.LoggedIn?firebase.auth().currentUser?firebase.auth().currentUser.photoURL:"none":"none"} style={playerState.isLoggedIn?{backgroundImage:`none`}:{backgroundImage:""}}></img>
+                <img alt="" className="no-profile-pic" src={playerState.LoggedIn?firebase.auth().currentUser?firebase.auth().currentUser.photoURL:"none":"none"} style={playerState.isLoggedIn?{backgroundImage:`none`}:{backgroundImage:""},{borderRadius:"100%"}}></img>
                 <span style={{display:"inline",textAlign:"center",marginRight:"7.5%",marginLeft:"7.5%"}}>{playerState.LoggedIn?playerState.username:"Sign up to take part in the game and win awesome prizes!"}</span>
             </div>
         <div className="stats-holder">
@@ -246,7 +246,7 @@ export const Menu = (props) =>{
                 <div>
                 <span id="student-type-span" style={{fontSize:"3vh"}}>-</span>
                 <br/>
-                <span style={{color:"gray"}}>College</span>
+                <span style={{color:"gray"}}>type</span>
                 </div>
             </div>
         </div>

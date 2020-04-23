@@ -11,6 +11,11 @@
     left: 0;
 }
 
+.main-menu a{
+    color: inherit;
+    text-decoration: none;
+}
+
 .profile-area{
     display: flex;
     flex-direction: column;
@@ -29,16 +34,16 @@
 
 .trophy-icon{
     background-image: url(./icons8-trophy-1080.png);
-    width: 4vh;
-    height: 4vh;
-    background-size: contain;
+    width: 3vh;
+    height: 3vh;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
 .level-icon{
     background-image: url(./icons8-level-up-1080.png);
-    width: 4vh;
-    height: 4vh;
+    width: 3vh;
+    height: 3vh;
     background-size: contain;
 }
 
