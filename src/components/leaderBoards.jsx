@@ -29,9 +29,13 @@ export const LeaderBoard = () =>{
         })
     }
 
-    const getLeftColor = (max,min) =>{
-        return `thick #177cff solid`
-
+    const getLeftColor = (index) =>{
+        if(index%2==0){
+            return `thick #177cff solid`
+        }
+        else{
+            return `thick #1445cf solid`
+        }
     }
 
     useEffect(() => {
@@ -60,7 +64,7 @@ export const LeaderBoard = () =>{
             <tbody>
                 {
                     !leaderBoardData.isLoading?(leaderBoardData.LeaderBoard.map((item,index)=>(
-                        <tr style={{backgroundColor:index%2!=0?"#171716":"#202121",borderLeft:getLeftColor(0,360)}}>
+                        <tr style={{backgroundColor:index%2!=0?"#171716":"#202121",borderLeft:getLeftColor(index)}}>
                             <td>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.participantType}</td>
