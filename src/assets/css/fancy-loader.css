@@ -20,7 +20,8 @@
 	color: black;
 	background-color: black;
 	-webkit-font-smoothing: antialiased;
-  z-index: 100;
+
+    z-index: 13220;
    /*&.is-changing{
 		&:before, &:after{
 			transform: translateY(0);
@@ -35,7 +36,6 @@ body .loader-main:before, body .loader-main:after {
 	position: fixed;
 	left: 0;
 	background: black;
-	z-index: 1;
 }
 .loader-main:before {
 	top: 0;

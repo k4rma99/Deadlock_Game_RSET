@@ -5,6 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import {LeaderBoard} from "./components/leaderBoards.jsx"
 import {GamePage} from "./components/GamePage.jsx"
 import "./App.css"
 import { ScrollSnap } from './components/ScrollSnap.jsx';
@@ -57,6 +58,9 @@ export const App = (props) => {
       <Route exact path="/">
 
           {returnPage()}
+      </Route>
+      <Route path="/leaderboards">
+        <LeaderBoard></LeaderBoard>
       </Route>
       <Route render={() =>
       <Div100vh>

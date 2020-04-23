@@ -41,19 +41,21 @@ export const LeaderBoard = () =>{
 
     return (
         <div className="leader-board">
+            <h1>LeaderBoards</h1>
+            <div style={{borderBottom:"thick #177cff solid"}} />
             <table responsive="sm" style={{width:"100%"}}>
             <thead>
                 <tr>
-                    <th style={{width:"15%"}}>Rank</th>
-                    <th style={{width:"45%"}}>Name</th>
-                    <th>Participant Type</th>
-                    <th style={{width:"10%"}}>Level</th>
+                    <th style={{width:"15%"}}>POS</th>
+                    <th style={{width:"45%"}}>NAME</th>
+                    <th style={{width:"30%"}}>TYPE</th>
+                    <th style={{width:"10%"}}>LEVEL</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     !leaderBoardData.isLoading?(leaderBoardData.LeaderBoard.map((item,index)=>(
-                        <tr style={{backgroundColor:index%2==0?"white":"whitesmoke"}}>
+                        <tr >
                             <td>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.participantType}</td>

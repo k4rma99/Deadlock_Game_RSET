@@ -58,7 +58,7 @@
     transform-origin: right top;
     width: 20vh;
     height: 20vh;
-    z-index: 100000;
+    z-index: 120;
     border-color: transparent;
     background: url(./imageonline-co-invertedimage.png);
     background-size: contain;

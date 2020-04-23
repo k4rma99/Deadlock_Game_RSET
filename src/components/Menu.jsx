@@ -228,7 +228,7 @@ export const Menu = (props) =>{
     return(
         <div className="main-menu" id="main-menu" style={{backgroundColor:"transparent",height:"100vh",display:"flex",position:"absolute",zIndex:"111",overflow:"hidden"}}>
             <div className="profile-area">
-                <img alt="" className="no-profile-pic" src={playerState.LoggedIn?firebase.auth().currentUser.photoURL:"none"} style={playerState.isLoggedIn?{backgroundImage:`none`}:{backgroundImage:""}}></img>
+                <img alt="" className="no-profile-pic" src={playerState.LoggedIn?firebase.auth().currentUser?firebase.auth().currentUser.photoURL:"none":"none"} style={playerState.isLoggedIn?{backgroundImage:`none`}:{backgroundImage:""}}></img>
                 <span style={{display:"inline",textAlign:"center",marginRight:"7.5%",marginLeft:"7.5%"}}>{playerState.LoggedIn?playerState.username:"Sign up to take part in the game and win awesome prizes!"}</span>
             </div>
         <div className="stats-holder">
@@ -256,7 +256,7 @@ export const Menu = (props) =>{
         </div>
         <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
             <div className="icon-menu leaderboards-icon "></div>
-            <a style={{margin:"auto 0"}}>LeaderBoards</a>
+            <a href="/leaderboards" style={{margin:"auto 0"}}>LeaderBoards</a>
         </div>
         <div style={{marginLeft:"7.5%",marginTop:"3vh",display:"flex",flexDirection:"row"}}>
             <div className="icon-menu clues-icon"></div>
