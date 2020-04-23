@@ -30,7 +30,7 @@ export const LeaderBoard = () =>{
     }
 
     const getLeftColor = (max,min) =>{
-        return `thick hsl(${(max - min) + min*Math.random()},60%,50%) solid`
+        return `thick #177cff solid`
 
     }
 
@@ -64,7 +64,7 @@ export const LeaderBoard = () =>{
                             <td>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.participantType}</td>
-                            <td style={{textAlign:"center"}}><span className="level-span">{item.level}</span></td>
+                            <td style={{textAlign:"center"}}><span className="level-span-area">{item.level}</span></td>
                             
                         </tr>
                     ))):""
